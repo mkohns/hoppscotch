@@ -26,11 +26,19 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
+          if (request.baseUrl) {
+            console.log('URL:', request.baseUrl);
+          }
           let ATCookie = request.cookies['access_token'];
           if (!ATCookie) {
-            ATCookie = request.header('access_token');
-          }          
+            console.log('No access_token cookie found, checking headers');
+            ATCookie = request.header('access-token');
+          } else {
+            console.log('Access token cookie found');
+          }
           if (!ATCookie) {
+            console.log('No access-token header found, checking query');
+            console.log('Headers: ', request.headers);
             throw new ForbiddenException(COOKIES_NOT_FOUND);
           }
           return ATCookie;

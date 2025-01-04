@@ -80,7 +80,8 @@ async function getInitialUserDetails() {
       Body.json(body),
       {
         headers: {
-          Cookie: `access_token=${accessToken.value}`,
+          "access-token": accessTokenValue,
+          "refresh-token": refreshTokenValue,
         },
       }
     )
@@ -172,7 +173,10 @@ async function refreshToken() {
     let res = await client.get(
       `${import.meta.env.VITE_BACKEND_API_URL}/auth/refresh`,
       {
-        headers: { Cookie: `refresh_token=${refreshToken.value}` },
+        headers: {
+          Cookie: `refresh_token=${refreshToken.value}`,
+          "refresh-token": refreshToken.value,
+        },
       }
     )
 
@@ -250,6 +254,11 @@ export const def: AuthPlatformDef = {
     return {
       fetchOptions: {
         credentials: "include",
+        headers: {
+          Authorization: `Bearer ${accessTokenValue}`,
+          "access-token": accessTokenValue,
+          "refresh-token": refreshTokenValue,
+        },
       },
     }
   },
@@ -261,8 +270,8 @@ export const def: AuthPlatformDef = {
       // withCredentials: true,
       headers: {
         Authorization: `Bearer ${accessTokenValue}`,
-        access_token: accessTokenValue,
-        refresh_token: refreshTokenValue,
+        "access-token": accessTokenValue,
+        "refresh-token": refreshTokenValue,
       },
     }
   },
@@ -316,8 +325,14 @@ export const def: AuthPlatformDef = {
         isNotNullOrUndefined(accessToken) &&
         isNotNullOrUndefined(refreshToken)
       ) {
-        const store = new Store(APP_DATA_PATH)
+        if (accessToken != null && refreshToken != null) {
+          console.log("Setting access token and refresh token")
+          accessTokenValue = accessToken
+          refreshTokenValue = refreshToken
+        }
 
+        const store = new Store(APP_DATA_PATH)
+        console.log("Persisting access token and refresh token")
         await store.set("access_token", { value: accessToken })
         await store.set("refresh_token", { value: refreshToken })
         await store.save()
