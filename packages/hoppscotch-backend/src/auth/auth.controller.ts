@@ -168,6 +168,17 @@ export class AuthController {
   async microsoftAuthRedirect(@Request() req, @Res() res) {
     const authTokens = await this.authService.generateAuthTokens(req.user.uid);
     if (E.isLeft(authTokens)) throwHTTPErr(authTokens.left);
+
+    if (req.authInfo.state.redirect_uri === 'desktop') {
+      let redirectUrl = this.configService.get('REDIRECT_URL');
+      redirectUrl +=
+        '?access_token=' +
+        authTokens.right.access_token +
+        '&refresh_token=' +
+        authTokens.right.refresh_token;
+      return res.status(200).redirect(redirectUrl);
+    }
+
     authCookieHandler(
       res,
       authTokens.right,

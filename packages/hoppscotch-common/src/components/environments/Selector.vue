@@ -220,7 +220,11 @@
                 </span>
               </div>
               <div
-                v-if="globalEnvs.variables.length === 0"
+                v-if="
+                  !globalEnvs ||
+                  !globalEnvs.variables ||
+                  globalEnvs.variables.length === 0
+                "
                 class="text-secondaryLight"
               >
                 {{ t("environment.empty_variables") }}

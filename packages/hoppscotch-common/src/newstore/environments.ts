@@ -437,14 +437,21 @@ export const aggregateEnvs$: Observable<AggregateEnvironment[]> = combineLatest(
       }
     })
 
-    globalEnv.variables.forEach((variable) => {
-      const { key, secret } = variable
-      const value = "value" in variable ? variable.value : ""
+    if (globalEnv.variables) {
+      globalEnv.variables.forEach((variable) => {
+        const { key, secret } = variable
+        const value = "value" in variable ? variable.value : ""
 
-      if (!aggregateEnvKeys.includes(key)) {
-        effectiveAggregateEnvs.push({ key, value, secret, sourceEnv: "Global" })
-      }
-    })
+        if (!aggregateEnvKeys.includes(key)) {
+          effectiveAggregateEnvs.push({
+            key,
+            value,
+            secret,
+            sourceEnv: "Global",
+          })
+        }
+      })
+    }
 
     return effectiveAggregateEnvs
   }),
@@ -545,23 +552,25 @@ export const aggregateEnvsWithSecrets$: Observable<AggregateEnvironment[]> =
         })
       })
 
-      globalEnv.variables.map((x, index) => {
-        let value
-        if (x.secret) {
-          value = secretEnvironmentService.getSecretEnvironmentVariableValue(
-            "Global",
-            index
-          )
-        } else {
-          value = x.value
-        }
-        results.push({
-          key: x.key,
-          value: value ?? "",
-          secret: x.secret,
-          sourceEnv: "Global",
+      if (globalEnv.variables) {
+        globalEnv.variables.map((x, index) => {
+          let value
+          if (x.secret) {
+            value = secretEnvironmentService.getSecretEnvironmentVariableValue(
+              "Global",
+              index
+            )
+          } else {
+            value = x.value
+          }
+          results.push({
+            key: x.key,
+            value: value ?? "",
+            secret: x.secret,
+            sourceEnv: "Global",
+          })
         })
-      })
+      }
 
       return results
     }),
@@ -618,6 +627,12 @@ export function getLegacyGlobalEnvironment(): Environment | null {
 }
 
 export function getGlobalVariables(): GlobalEnvironmentVariable[] {
+  if (
+    !environmentsStore.value.globals ||
+    !environmentsStore.value.globals.variables
+  ) {
+    return []
+  }
   return environmentsStore.value.globals.variables.map(
     (env: GlobalEnvironmentVariable) => {
       if (env.key && "value" in env && !("secret" in env)) {

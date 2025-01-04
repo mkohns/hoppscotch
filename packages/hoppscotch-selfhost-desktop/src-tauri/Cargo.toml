@@ -21,6 +21,7 @@ tauri = { version = "1.8.1", features = [
   "shell-open",
   "window-start-dragging",
   "http-multipart",
+  "devtools",
 ] }
 tauri-plugin-store = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
 tauri-plugin-deep-link = { git = "https://github.com/FabianLars/tauri-plugin-deep-link", branch = "main" }

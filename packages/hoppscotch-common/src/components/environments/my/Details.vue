@@ -317,10 +317,13 @@ const liveEnvs = computed(() => {
       ...vars.value.map((x) => ({ ...x.env, source: editingName.value! })),
     ]
   }
-  return [
-    ...vars.value.map((x) => ({ ...x.env, source: editingName.value! })),
-    ...globalEnv.value.variables.map((x) => ({ ...x, source: "Global" })),
-  ]
+  if (globalEnv.value.variables) {
+    return [
+      ...vars.value.map((x) => ({ ...x.env, source: editingName.value! })),
+      ...globalEnv.value.variables.map((x) => ({ ...x, source: "Global" })),
+    ]
+  }
+  return [...vars.value.map((x) => ({ ...x.env, source: editingName.value! }))]
 })
 
 const workingEnvID = computed(() => {

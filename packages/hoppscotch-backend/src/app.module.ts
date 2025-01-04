@@ -8,7 +8,8 @@ import { UserSettingsModule } from './user-settings/user-settings.module';
 import { UserEnvironmentsModule } from './user-environment/user-environments.module';
 import { UserRequestModule } from './user-request/user-request.module';
 import { UserHistoryModule } from './user-history/user-history.module';
-import { subscriptionContextCookieParser } from './auth/helper';
+//import { subscriptionContextCookieParser } from './auth/helper';
+import { subscriptionContextAuthParser } from './auth/helper';
 import { TeamModule } from './team/team.module';
 import { TeamEnvironmentsModule } from './team-environments/team-environments.module';
 import { TeamCollectionModule } from './team-collection/team-collection.module';
@@ -52,11 +53,14 @@ import { InfraTokenModule } from './infra-token/infra-token.module';
           subscriptions: {
             'subscriptions-transport-ws': {
               path: '/graphql',
-              onConnect: (_, websocket) => {
+              onConnect: (e, websocket) => {
                 try {
+                  const cookies = subscriptionContextAuthParser(e);
+                  /*
                   const cookies = subscriptionContextCookieParser(
                     websocket.upgradeReq.headers.cookie,
                   );
+                  */
                   return {
                     headers: { ...websocket?.upgradeReq?.headers, cookies },
                   };

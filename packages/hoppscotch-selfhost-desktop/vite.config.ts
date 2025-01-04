@@ -78,9 +78,9 @@ export default defineConfig({
       dirs: "../hoppscotch-common/src/pages",
       importMode: "async",
       onRoutesGenerated(routes) {
-        return ((generateSitemap as any) as typeof generateSitemap)({
+        return (generateSitemap as any as typeof generateSitemap)({
           routes,
-          nuxtStyle: true,
+          nuxtStyle: false,
           allowRobots: true,
           dest: ".sitemap-gen",
           hostname: ENV.VITE_BASE_URL,
@@ -106,10 +106,7 @@ export default defineConfig({
     }),
     Components({
       dts: "../hoppscotch-common/src/components.d.ts",
-      dirs: [
-        "../hoppscotch-common/src/components",
-        "./src/components"
-      ],
+      dirs: ["../hoppscotch-common/src/components", "./src/components"],
       directoryAsNamespace: true,
       resolvers: [
         IconResolver({

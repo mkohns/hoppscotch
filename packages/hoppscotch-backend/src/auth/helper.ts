@@ -102,6 +102,29 @@ export const subscriptionContextCookieParser = (rawCookies: string) => {
 };
 
 /**
+ * Decode the header from incoming websocket connects and returns a auth token pair
+ * @param rawCookies cookies from the websocket connection
+ * @returns AuthTokens for JWT strategy to use
+ */
+export const subscriptionContextAuthParser = (payload: any) => {
+  console.error('subscriptionContextAuthParser: ', payload);
+
+  if (
+    !payload[AuthTokenType.ACCESS_TOKEN] ||
+    !payload[AuthTokenType.REFRESH_TOKEN]
+  ) {
+    throw new HttpException(COOKIES_NOT_FOUND, 400, {
+      cause: new Error(COOKIES_NOT_FOUND),
+    });
+  }
+
+  return <AuthTokens>{
+    access_token: payload[AuthTokenType.ACCESS_TOKEN],
+    refresh_token: payload[AuthTokenType.REFRESH_TOKEN],
+  };
+};
+
+/**
  * Check to see if given auth provider is present in the VITE_ALLOWED_AUTH_PROVIDERS env variable
  *
  * @param provider Provider we want to check the presence of
