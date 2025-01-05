@@ -600,6 +600,12 @@ export const MAGIC_LINK_EXPIRED = 'auth/magic_link_expired' as const;
 export const COOKIES_NOT_FOUND = 'auth/cookies_not_found' as const;
 
 /**
+ * No auth header found in the auth request
+ * (AuthService)
+ */
+export const AUTH_NOT_FOUND = 'auth/not_found' as const;
+
+/**
  * Access Token is malformed or invalid
  * (AuthService)
  */

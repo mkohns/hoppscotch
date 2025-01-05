@@ -7,11 +7,11 @@ import {
 } from '@nestjs/common';
 import { AccessTokenPayload } from 'src/types/AuthTokens';
 import { UserService } from 'src/user/user.service';
-import { AuthService } from '../auth.service';
+// import { AuthService } from '../auth.service';
 import { Request } from 'express';
 import * as O from 'fp-ts/Option';
 import {
-  COOKIES_NOT_FOUND,
+  //  COOKIES_NOT_FOUND,
   INVALID_ACCESS_TOKEN,
   USER_NOT_FOUND,
 } from 'src/errors';
@@ -26,26 +26,76 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
+          // console.log('entering jwtStrategy');
           if (request.baseUrl) {
             console.log('URL:', request.baseUrl);
           }
-          let ATCookie = request.cookies['access_token'];
-          if (!ATCookie) {
-            console.log('No access_token cookie found, checking headers');
-            ATCookie = request.header('access-token');
-          } else {
-            console.log('Access token cookie found');
+          const authCookie = this.extractJwtFromCookie(request);
+          const authHeader = this.extractJwtFromAuthHeader(request);
+          const accessHeader = this.extractJwtFromAccessHeader(request);
+          const subscriptionsHeader = this.extractforSubscriptions(request);
+
+          if (
+            !authCookie &&
+            !authHeader &&
+            !accessHeader &&
+            !subscriptionsHeader
+          ) {
+            console.log(
+              'No Authorization found in cookie/authorization/access-token/subscriptions header!',
+              request,
+            );
+            throw new ForbiddenException(INVALID_ACCESS_TOKEN);
           }
-          if (!ATCookie) {
-            console.log('No access-token header found, checking query');
-            console.log('Headers: ', request.headers);
-            throw new ForbiddenException(COOKIES_NOT_FOUND);
-          }
-          return ATCookie;
+
+          return (
+            authHeader || accessHeader || authCookie || subscriptionsHeader
+          );
         },
       ]),
       secretOrKey: configService.get('JWT_SECRET'),
     });
+  }
+
+  extractforSubscriptions(request: any) {
+    if (!request.authorization) {
+      return undefined;
+    }
+    if (!request.authorization.startsWith('Bearer')) {
+      return undefined;
+    }
+    console.log('Found token in subscriptions header');
+    return request.authorization.split(' ')[1];
+  }
+
+  extractJwtFromCookie(request: Request) {
+    if (!request.cookies) {
+      return undefined;
+    }
+    if (!request.cookies['access_token']) {
+      return undefined;
+    }
+    console.log('Found token in cookie');
+    return request.cookies['access_token'];
+  }
+
+  extractJwtFromAuthHeader(request: Request) {
+    if (!request.headers || !request.headers.authorization) {
+      return undefined;
+    }
+    if (!request.headers.authorization.startsWith('Bearer')) {
+      return undefined;
+    }
+    console.log('Found token in auth header');
+    return request.headers.authorization.split(' ')[1];
+  }
+
+  extractJwtFromAccessHeader(request: Request) {
+    if (!request.headers || !request.headers['access-token']) {
+      return undefined;
+    }
+    console.log('Found token in access-token header');
+    return request.headers['access-token'];
   }
 
   async validate(payload: AccessTokenPayload) {

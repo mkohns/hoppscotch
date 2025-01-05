@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "Hoppscotch",
+    "productName": "Schaeffler PostBoy",
     "version": "24.12.0"
   },
   "tauri": {
@@ -57,7 +57,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Hoppscotch",
+        "title": "Schaeffler PostBoy",
         "visible": false,
         "fullscreen": false,
         "resizable": true,

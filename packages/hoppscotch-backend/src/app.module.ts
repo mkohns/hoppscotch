@@ -1,4 +1,4 @@
-import { ForbiddenException, HttpException, Module } from '@nestjs/common';
+import { HttpException, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserModule } from './user/user.module';
@@ -9,7 +9,7 @@ import { UserEnvironmentsModule } from './user-environment/user-environments.mod
 import { UserRequestModule } from './user-request/user-request.module';
 import { UserHistoryModule } from './user-history/user-history.module';
 //import { subscriptionContextCookieParser } from './auth/helper';
-import { subscriptionContextAuthParser } from './auth/helper';
+//import { subscriptionContextAuthParser } from './auth/helper';
 import { TeamModule } from './team/team.module';
 import { TeamEnvironmentsModule } from './team-environments/team-environments.module';
 import { TeamCollectionModule } from './team-collection/team-collection.module';
@@ -18,7 +18,7 @@ import { TeamInvitationModule } from './team-invitation/team-invitation.module';
 import { AdminModule } from './admin/admin.module';
 import { UserCollectionModule } from './user-collection/user-collection.module';
 import { ShortcodeModule } from './shortcode/shortcode.module';
-import { COOKIES_NOT_FOUND } from './errors';
+import { AUTH_NOT_FOUND } from './errors';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -53,22 +53,44 @@ import { InfraTokenModule } from './infra-token/infra-token.module';
           subscriptions: {
             'subscriptions-transport-ws': {
               path: '/graphql',
-              onConnect: (e, websocket) => {
-                try {
-                  const cookies = subscriptionContextAuthParser(e);
-                  /*
-                  const cookies = subscriptionContextCookieParser(
-                    websocket.upgradeReq.headers.cookie,
-                  );
-                  */
-                  return {
-                    headers: { ...websocket?.upgradeReq?.headers, cookies },
-                  };
-                } catch (error) {
-                  throw new HttpException(COOKIES_NOT_FOUND, 400, {
-                    cause: new Error(COOKIES_NOT_FOUND),
+              /*
+              onOperation: (message, params, webSocket) => {
+                if (!webSocket?.upgradeReq?.headers?.authorization) {
+                  console.log('No Authorization header found in onOperation!');
+                  console.log('Headers: ', webSocket?.upgradeReq?.headers);
+                  throw new HttpException(AUTH_NOT_FOUND, 400, {
+                    cause: new Error(AUTH_NOT_FOUND),
                   });
                 }
+                return params;
+              },
+              */
+              onConnect: (message, webSocket) => {
+                // check if auth header is present
+                if (message && !message.authorization) {
+                  console.log('No Authorization header found in onConnect!');
+                  console.log('Message: ', message);
+                  throw new HttpException(AUTH_NOT_FOUND, 401, {
+                    cause: new Error(AUTH_NOT_FOUND),
+                  });
+                }
+                // check if message.authorization starts with Bearer
+                if (!message.authorization.startsWith('Bearer ')) {
+                  console.log(
+                    'Invalid Authorization header found in onConnect!',
+                  );
+                  console.log('Message: ', message);
+                  throw new HttpException(AUTH_NOT_FOUND, 401, {
+                    cause: new Error(AUTH_NOT_FOUND),
+                  });
+                }
+                const authorization = message.authorization;
+                return {
+                  headers: {
+                    ...webSocket?.upgradeReq?.headers,
+                    authorization,
+                  },
+                };
               },
             },
           },

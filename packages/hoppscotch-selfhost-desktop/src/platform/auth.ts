@@ -80,8 +80,7 @@ async function getInitialUserDetails() {
       Body.json(body),
       {
         headers: {
-          "access-token": accessTokenValue,
-          "refresh-token": refreshTokenValue,
+          authorization: "Bearer " + accessTokenValue,
         },
       }
     )
@@ -246,21 +245,11 @@ export const def: AuthPlatformDef = {
   getBackendHeaders() {
     // inject the access token
     return {
-      access_token: accessTokenValue,
-      refresh_token: refreshTokenValue,
+      authorization: "Bearer " + accessTokenValue,
     }
   },
   getGQLClientOptions() {
-    return {
-      fetchOptions: {
-        credentials: "include",
-        headers: {
-          Authorization: `Bearer ${accessTokenValue}`,
-          "access-token": accessTokenValue,
-          "refresh-token": refreshTokenValue,
-        },
-      },
-    }
+    return {}
   },
 
   axiosPlatformConfig() {
@@ -270,8 +259,6 @@ export const def: AuthPlatformDef = {
       // withCredentials: true,
       headers: {
         Authorization: `Bearer ${accessTokenValue}`,
-        "access-token": accessTokenValue,
-        "refresh-token": refreshTokenValue,
       },
     }
   },
