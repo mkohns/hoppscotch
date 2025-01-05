@@ -65,16 +65,20 @@ async function bootstrap() {
 
   if (configService.get('PRODUCTION') === 'false') {
     console.log('Enabling CORS with development settings');
-
     app.enableCors({
-      origin: configService.get('WHITELISTED_ORIGINS').split(','),
+      //This config does not response with Access-Control-Allow-Origin'
+      //if origin is an array
+      //origin: configService.get('WHITELISTED_ORIGINS').split(','),
+      origin: '*',
       credentials: true,
     });
   } else {
     console.log('Enabling CORS with production settings');
-
     app.enableCors({
-      origin: configService.get('WHITELISTED_ORIGINS').split(','),
+      //This config does not response with Access-Control-Allow-Origin'
+      //if origin is an array
+      //origin: configService.get('WHITELISTED_ORIGINS').split(','),
+      origin: '*',
       credentials: true,
     });
   }
