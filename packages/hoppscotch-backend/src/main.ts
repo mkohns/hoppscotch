@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { json } from 'express';
+import { json, NextFunction, Request, Response } from 'express';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
@@ -8,7 +8,7 @@ import { emitGQLSchemaFile } from './gql-schema';
 import { checkEnvironmentAuthProvider } from './utils';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { InfraTokensController } from './infra-token/infra-token.controller';
+//import { InfraTokensController } from './infra-token/infra-token.controller';
 import { InfraTokenModule } from './infra-token/infra-token.module';
 
 function setupSwagger(app) {
@@ -56,6 +56,20 @@ async function bootstrap() {
     }),
   );
 
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    const origin = req.header('origin');
+    const method = req.method;
+    if (method === 'OPTIONS' && origin) {
+      // check if the origin is in the whitelist
+      if (
+        configService.get('WHITELISTED_ORIGINS').split(',').includes(origin)
+      ) {
+        res.setHeader('access-control-allow-origin', origin);
+      }
+    }
+    next();
+  });
+
   // Increase fil upload limit to 50MB
   app.use(
     json({
@@ -68,8 +82,7 @@ async function bootstrap() {
     app.enableCors({
       //This config does not response with Access-Control-Allow-Origin'
       //if origin is an array
-      //origin: configService.get('WHITELISTED_ORIGINS').split(','),
-      origin: '*',
+      origin: configService.get('WHITELISTED_ORIGINS').split(','),
       credentials: true,
     });
   } else {
@@ -77,8 +90,7 @@ async function bootstrap() {
     app.enableCors({
       //This config does not response with Access-Control-Allow-Origin'
       //if origin is an array
-      //origin: configService.get('WHITELISTED_ORIGINS').split(','),
-      origin: '*',
+      origin: configService.get('WHITELISTED_ORIGINS').split(','),
       credentials: true,
     });
   }
