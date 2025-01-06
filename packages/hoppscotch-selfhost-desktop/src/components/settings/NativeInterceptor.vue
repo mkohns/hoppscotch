@@ -49,7 +49,8 @@
       />
 
       <p class="my-1 text-secondaryLight">
-        Hoppscotch native interceptor supports HTTP/HTTPS/SOCKS proxies along with NTLM and Basic Auth in those proxies. Include the username and password for the proxy authentication in the URL itself.
+        The proxy is set to your default Schaeffler zScaler proxy on localhost
+        port 9000. The rootCAs from zScaler are already added to the app.
       </p>
     </div>
   </div>
@@ -61,7 +62,10 @@ import { computed, ref } from "vue"
 import IconLucideFileBadge from "~icons/lucide/file-badge"
 import IconLucideFileKey from "~icons/lucide/file-key"
 import { useService } from "dioc/vue"
-import { RequestDef, NativeInterceptorService } from "@platform/interceptors/native"
+import {
+  RequestDef,
+  NativeInterceptorService,
+} from "@platform/interceptors/native"
 import { syncRef } from "@vueuse/core"
 
 type RequestProxyInfo = RequestDef["proxy"]
@@ -76,25 +80,30 @@ const showClientCertificatesModal = ref(false)
 const allowProxy = ref(false)
 const proxyURL = ref("")
 
-const proxyInfo = computed<RequestProxyInfo>({
+const proxyUserInfo = computed<RequestProxyInfo>({
   get() {
-    if (allowProxy.value) {
-      return {
-        url: proxyURL.value,
-      }
+    return {
+      url: proxyURL.value,
     }
-
-    return undefined
   },
   set(newData) {
-    if (newData) {
-      allowProxy.value = true
-      proxyURL.value = newData.url
-    } else {
-      allowProxy.value = false
-    }
+    proxyURL.value = newData.url
   },
 })
 
-syncRef(nativeInterceptorService.proxyInfo, proxyInfo, { direction: "both" })
+const proxyEnabled = computed<boolean>({
+  get() {
+    return allowProxy.value
+  },
+  set(newData) {
+    allowProxy.value = newData
+  },
+})
+
+syncRef(nativeInterceptorService.proxyUserInfo, proxyUserInfo, {
+  direction: "both",
+})
+syncRef(nativeInterceptorService.proxyEnabled, proxyEnabled, {
+  direction: "both",
+})
 </script>
