@@ -62,7 +62,7 @@ const headerPaddingTop = ref("0px")
     platformFeatureFlags: {
       exportAsGIST: false,
       hasTelemetry: false,
-      cookiesEnabled: true,
+      cookiesEnabled: false,
       promptAsUsingCookies: false,
     },
   })
