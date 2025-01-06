@@ -143,7 +143,25 @@
                 theme="popover"
                 :on-shown="() => tippyActions.focus()"
               >
+                <UserAvatar
+                  v-if="currentUser.photoURL"
+                  v-tippy="{
+                    theme: 'tooltip',
+                  }"
+                  :photo-url="currentUser.photoURL"
+                  :name="currentUser.uid"
+                  :title="
+                    currentUser.displayName ||
+                    currentUser.email ||
+                    t('profile.default_hopp_displayname')
+                  "
+                  indicator
+                  :indicator-styles="
+                    network.isOnline ? 'bg-green-500' : 'bg-red-500'
+                  "
+                />
                 <HoppSmartPicture
+                  v-else
                   v-tippy="{
                     theme: 'tooltip',
                   }"
@@ -267,6 +285,7 @@ import IconUploadCloud from "~icons/lucide/upload-cloud"
 import IconUser from "~icons/lucide/user"
 import IconUserPlus from "~icons/lucide/user-plus"
 import IconUsers from "~icons/lucide/users"
+import UserAvatar from "@components/smart/UserAvatar.vue"
 
 const t = useI18n()
 const toast = useToast()

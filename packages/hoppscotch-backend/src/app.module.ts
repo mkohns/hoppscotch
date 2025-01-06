@@ -31,7 +31,7 @@ import { HealthModule } from './health/health.module';
 import { AccessTokenModule } from './access-token/access-token.module';
 import { UserLastActiveOnInterceptor } from './interceptors/user-last-active-on.interceptor';
 import { InfraTokenModule } from './infra-token/infra-token.module';
-
+import { UserPhotoModule } from './userPhoto/userPhoto.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -123,6 +123,7 @@ import { InfraTokenModule } from './infra-token/infra-token.module';
     TeamModule,
     TeamEnvironmentsModule,
     TeamCollectionModule,
+    UserPhotoModule,
     TeamRequestModule,
     TeamInvitationModule,
     UserCollectionModule,

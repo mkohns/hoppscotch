@@ -108,6 +108,7 @@ async function setInitialUser() {
   isGettingInitialUser.value = true
   const res = await getInitialUserDetails()
 
+  console.log("setInitialUser", res)
   const error = res.errors && res.errors[0]
 
   // no cookies sent. so the user is not logged in

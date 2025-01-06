@@ -28,7 +28,15 @@
           ></div>
           <div class="flex flex-col justify-between space-y-8 px-4 md:flex-row">
             <div class="flex items-end">
+              <UserAvatar
+                v-if="currentUser.photoURL"
+                :name="currentUser.uid"
+                class="ring-8 ring-primary"
+                :size="84"
+                :photo-url="currentUser.photoURL"
+              ></UserAvatar>
               <HoppSmartPicture
+                v-else
                 :name="currentUser.uid"
                 class="ring-8 ring-primary"
                 :size="64"
@@ -213,6 +221,7 @@ import { toggleSetting } from "~/newstore/settings"
 
 import IconSettings from "~icons/lucide/settings"
 import IconVerified from "~icons/lucide/verified"
+import UserAvatar from "@components/smart/UserAvatar.vue"
 
 type ProfileTabs = "sync" | "teams"
 
