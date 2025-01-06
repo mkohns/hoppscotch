@@ -159,6 +159,7 @@
                   :indicator-styles="
                     network.isOnline ? 'bg-green-500' : 'bg-red-500'
                   "
+                  :size="32"
                 />
                 <HoppSmartPicture
                   v-else

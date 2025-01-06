@@ -76,7 +76,8 @@ type EmbedOption = {
 const props = defineProps({
   request: {
     type: Object as PropType<HoppRESTRequest | null>,
-    required: true,
+    required: false,
+    default: null,
   },
   show: {
     type: Boolean,

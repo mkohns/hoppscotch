@@ -201,6 +201,7 @@
       :editing-properties="editingProperties"
       :show-details="collectionsType.type === 'team-collections'"
       source="REST"
+      :loading-state="modalLoadingState"
       @hide-modal="displayModalEditProperties(false)"
       @set-collection-properties="setCollectionProperties"
     />

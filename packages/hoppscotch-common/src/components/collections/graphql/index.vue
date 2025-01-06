@@ -153,6 +153,7 @@
       :show="showModalEditProperties"
       :editing-properties="editingProperties"
       source="GraphQL"
+      loading-state="false"
       @hide-modal="displayModalEditProperties(false)"
       @set-collection-properties="setCollectionProperties"
     />

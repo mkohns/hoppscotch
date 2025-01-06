@@ -25,6 +25,8 @@ export default defineConfig({
   define: {
     // For 'util' polyfill required by dep of '@apidevtools/swagger-parser'
     "process.env": {},
+    // enable hydration mismatch details in production build
+    __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: "true",
   },
   server: {
     port: 3000,
