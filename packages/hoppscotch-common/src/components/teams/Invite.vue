@@ -602,7 +602,11 @@ const sendInvites = async () => {
       (invites): invites is Array<{ key: Email; value: TeamMemberRole }> =>
         pipe(
           invites,
-          A.every((invitee) => EmailCodec.is(invitee.key))
+          A.every(
+            (invitee) =>
+              EmailCodec.is(invitee.key) &&
+              invitee.key.endsWith("@schaeffler.com")
+          )
         )
     ),
     O.map(
