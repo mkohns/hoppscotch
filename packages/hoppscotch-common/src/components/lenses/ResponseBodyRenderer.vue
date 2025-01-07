@@ -77,7 +77,11 @@ const emit = defineEmits<{
 const doc = useVModel(props, "document", emit)
 
 const isSavable = computed(() => {
-  return doc.value.response?.type === "success" && doc.value.saveContext
+  const rc =
+    doc.value.response?.type === "success" &&
+    doc.value.saveContext !== undefined
+  console.log("isSavable", rc)
+  return rc
 })
 
 const showIndicator = computed(() => {
