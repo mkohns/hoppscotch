@@ -67,7 +67,7 @@ fn main() {
             }
 
             let handle = app.handle();
-            tauri_plugin_deep_link::register("hoppscotch", move |request| {
+            tauri_plugin_deep_link::register("postboy", move |request| {
                 println!("{:?}", request);
                 handle.emit_all("scheme-request-received", request).unwrap();
             })

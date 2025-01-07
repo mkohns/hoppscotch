@@ -45,8 +45,11 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "io.hoppscotch.desktop",
-      "targets": "all"
+      "identifier": "com.schaeffler.postboy",
+      "targets": "all",
+      "macOS": {
+        "signingIdentity": "2234DE00CD621E68C2B57D06283D6C6192456234"
+      }
     },
     "security": {
       "csp": null

@@ -7,11 +7,11 @@
             <dict>
                 <key>CFBundleURLName</key>
                 <!-- Obviously needs to be replaced with your app's bundle identifier -->
-                <string>io.hoppscotch.desktop</string>
+                <string>com.schaeffler.postboy</string>
                 <key>CFBundleURLSchemes</key>
                 <array>
                     <!-- register the myapp:// and myscheme:// schemes -->
-                    <string>hoppscotch</string>
+                    <string>postboy</string>
                 </array>
             </dict>
         </array>
