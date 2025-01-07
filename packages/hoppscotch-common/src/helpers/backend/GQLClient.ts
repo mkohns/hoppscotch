@@ -54,7 +54,9 @@ export type GQLClientErrorEvent =
 export const gqlClientError$ = new Subject<GQLClientErrorEvent>()
 
 export type GQLClientStatus = "connected" | "disconnected"
-export const gqlClientStatus$ = new BehaviorSubject<GQLClientStatus>()
+export const gqlClientStatus$ = new BehaviorSubject<GQLClientStatus>(
+  "disconnected"
+)
 
 const createSubscriptionClient = () => {
   return new SubscriptionClient(BACKEND_WS_URL, {
