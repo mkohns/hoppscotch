@@ -195,6 +195,7 @@
                   "
                 />
                 <hr />
+                <!--
                 <HoppSmartItem
                   ref="copyRequestAction"
                   :label="t('request.share_request')"
@@ -207,6 +208,7 @@
                     }
                   "
                 />
+                -->
               </div>
             </template>
           </tippy>
@@ -254,7 +256,7 @@ import IconFileCode from "~icons/lucide/file-code"
 import IconFolderPlus from "~icons/lucide/folder-plus"
 import IconRotateCCW from "~icons/lucide/rotate-ccw"
 import IconSave from "~icons/lucide/save"
-import IconShare2 from "~icons/lucide/share-2"
+//import IconShare2 from "~icons/lucide/share-2"
 import { getDefaultRESTRequest } from "~/helpers/rest/default"
 import { RESTHistoryEntry, restHistory$ } from "~/newstore/history"
 import { platform } from "~/platform"
@@ -319,7 +321,7 @@ const saveTippyActions = ref<any | null>(null)
 const curl = ref<any | null>(null)
 const show = ref<any | null>(null)
 const clearAll = ref<any | null>(null)
-const copyRequestAction = ref<any | null>(null)
+//const copyRequestAction = ref<any | null>(null)
 const saveRequestAction = ref<any | null>(null)
 
 const history = useReadonlyStream<RESTHistoryEntry[]>(restHistory$, [])
@@ -473,7 +475,7 @@ const currentUser = useReadonlyStream(
   platform.auth.getCurrentUser()
 )
 
-const fetchingShareLink = ref(false)
+//const fetchingShareLink = ref(false)
 
 const shareRequest = () => {
   if (currentUser.value) {
