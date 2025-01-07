@@ -181,6 +181,7 @@
       :text="t('helpers.tests')"
     >
       <template #body>
+        <!--
         <HoppButtonSecondary
           outline
           :label="`${t('action.learn_more')}`"
@@ -189,6 +190,7 @@
           :icon="IconExternalLink"
           reverse
         />
+        -->
       </template>
     </HoppSmartPlaceholder>
     <EnvironmentsMyDetails
@@ -223,7 +225,7 @@ import {
 import { exportTestResults } from "~/helpers/import-export/export/testResults"
 
 import IconCheck from "~icons/lucide/check"
-import IconExternalLink from "~icons/lucide/external-link"
+//import IconExternalLink from "~icons/lucide/external-link"
 import IconTrash2 from "~icons/lucide/trash-2"
 import IconClose from "~icons/lucide/x"
 import IconDownload from "~icons/lucide/download"

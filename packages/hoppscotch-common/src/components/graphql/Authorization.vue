@@ -88,6 +88,7 @@
       :text="t('empty.authorization')"
     >
       <template #body>
+        <!--
         <HoppButtonSecondary
           outline
           :label="t('app.documentation')"
@@ -96,6 +97,7 @@
           :icon="IconExternalLink"
           reverse
         />
+        -->
       </template>
     </HoppSmartPlaceholder>
     <div v-else class="flex flex-1 border-b border-dividerLight">
@@ -164,6 +166,7 @@
         <div class="pb-2 text-secondaryLight">
           {{ t("helpers.authorization") }}
         </div>
+        <!--
         <HoppSmartAnchor
           class="link"
           :label="t('authorization.learn')"
@@ -172,6 +175,7 @@
           blank
           reverse
         />
+        -->
       </div>
     </div>
   </div>
@@ -193,7 +197,7 @@ import { HoppInheritedProperty } from "~/helpers/types/HoppInheritedProperties"
 
 import IconCircle from "~icons/lucide/circle"
 import IconCircleDot from "~icons/lucide/circle-dot"
-import IconExternalLink from "~icons/lucide/external-link"
+//import IconExternalLink from "~icons/lucide/external-link"
 //import IconHelpCircle from "~icons/lucide/help-circle"
 import IconTrash2 from "~icons/lucide/trash-2"
 

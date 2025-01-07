@@ -199,6 +199,7 @@
             :text="`${t('socketio.connection_not_authorized')}`"
           >
             <template #body>
+              <!--
               <HoppButtonSecondary
                 outline
                 :label="t('app.documentation')"
@@ -207,6 +208,7 @@
                 :icon="IconExternalLink"
                 reverse
               />
+              -->
             </template>
           </HoppSmartPlaceholder>
           <div
@@ -225,6 +227,7 @@
                 <div class="pb-2 text-secondaryLight">
                   {{ t("helpers.authorization") }}
                 </div>
+                <!--
                 <HoppSmartAnchor
                   class="link"
                   :label="t('authorization.learn')"
@@ -233,6 +236,7 @@
                   blank
                   reverse
                 />
+                -->
               </div>
             </div>
           </div>
@@ -256,7 +260,7 @@ import IconCircleDot from "~icons/lucide/circle-dot"
 import IconCircle from "~icons/lucide/circle"
 //import IconHelpCircle from "~icons/lucide/help-circle"
 import IconTrash2 from "~icons/lucide/trash-2"
-import IconExternalLink from "~icons/lucide/external-link"
+//import IconExternalLink from "~icons/lucide/external-link"
 
 import { debounce } from "lodash-es"
 import {

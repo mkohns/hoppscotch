@@ -5,6 +5,7 @@
     <AppShortcutsPrompt v-if="response == null && !isEmbed" class="flex-1" />
 
     <div v-if="response == null && isEmbed">
+      <!--
       <HoppButtonSecondary
         :label="`${t('app.documentation')}`"
         to="https://docs.hoppscotch.io/documentation/features/rest-api-testing#response"
@@ -13,6 +14,7 @@
         outline
         reverse
       />
+      -->
     </div>
 
     <div v-else-if="response" class="flex flex-1 flex-col">
@@ -119,7 +121,7 @@ import { getStatusCodeReasonPhrase } from "~/helpers/utils/statusCodes"
 import { useService } from "dioc/vue"
 import { InspectionService } from "~/services/inspection"
 import { RESTTabService } from "~/services/tab/rest"
-import IconExternalLink from "~icons/lucide/external-link"
+//import IconExternalLink from "~icons/lucide/external-link"
 
 const t = useI18n()
 const colorMode = useColorMode()

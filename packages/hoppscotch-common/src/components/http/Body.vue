@@ -121,6 +121,7 @@
       :text="t('empty.body')"
     >
       <template #body>
+        <!--
         <HoppButtonSecondary
           outline
           :label="`${t('app.documentation')}`"
@@ -129,6 +130,7 @@
           :icon="IconExternalLink"
           reverse
         />
+        -->
       </template>
     </HoppSmartPlaceholder>
   </div>
@@ -145,7 +147,7 @@ import * as O from "fp-ts/Option"
 import { computed, ref } from "vue"
 import { segmentedContentTypes } from "~/helpers/utils/contenttypes"
 import IconDone from "~icons/lucide/check"
-import IconExternalLink from "~icons/lucide/external-link"
+//import IconExternalLink from "~icons/lucide/external-link"
 import IconInfo from "~icons/lucide/info"
 import IconRefreshCW from "~icons/lucide/refresh-cw"
 import { RESTOptionTabs } from "./RequestOptions.vue"

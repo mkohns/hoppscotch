@@ -39,6 +39,7 @@
         </td>
 
         <td class="flex justify-center">
+          <!--
           <HoppButtonSecondary
             v-tippy="{ theme: 'tooltip' }"
             :title="t('shared_requests.open_request')"
@@ -47,6 +48,7 @@
             :icon="IconExternalLink"
             class="px-3 text-emerald-500 hover:text-accent"
           />
+          -->
 
           <UiAutoResetIcon
             :title="t('shared_requests.copy')"
@@ -95,7 +97,7 @@ import { usePagedQuery } from '~/composables/usePagedQuery';
 import { copyToClipboard } from '~/helpers/utils/clipboard';
 import IconCheck from '~icons/lucide/check';
 import IconCopy from '~icons/lucide/copy';
-import IconExternalLink from '~icons/lucide/external-link';
+//import IconExternalLink from '~icons/lucide/external-link';
 import IconTrash from '~icons/lucide/trash';
 import {
   RevokeShortcodeByAdminDocument,
