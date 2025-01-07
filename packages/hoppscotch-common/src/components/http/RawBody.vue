@@ -7,6 +7,7 @@
         {{ t("request.raw_body") }}
       </label>
       <div class="flex">
+        <!--
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           to="https://docs.hoppscotch.io/documentation/getting-started/rest/uploading-data"
@@ -14,6 +15,7 @@
           :title="t('app.wiki')"
           :icon="IconHelpCircle"
         />
+        -->
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           :title="t('action.clear')"
@@ -80,7 +82,7 @@
 </template>
 
 <script setup lang="ts">
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconWrapText from "~icons/lucide/wrap-text"
 import IconTrash2 from "~icons/lucide/trash-2"
 import IconFilePlus from "~icons/lucide/file-plus"

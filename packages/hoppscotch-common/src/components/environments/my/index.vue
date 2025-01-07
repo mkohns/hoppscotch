@@ -10,6 +10,7 @@
         @click="displayModalAdd(true)"
       />
       <div class="flex">
+        <!--
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           to="https://docs.hoppscotch.io/documentation/features/environments"
@@ -17,6 +18,7 @@
           :title="t('app.wiki')"
           :icon="IconHelpCircle"
         />
+        -->
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           :icon="IconImport"
@@ -86,7 +88,7 @@ import { useReadonlyStream } from "@composables/stream"
 import { useI18n } from "~/composables/i18n"
 import IconPlus from "~icons/lucide/plus"
 import IconImport from "~icons/lucide/folder-down"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import { defineActionHandler } from "~/helpers/actions"
 import { sortPersonalEnvironmentsAlphabetically } from "~/helpers/utils/sortEnvironmentsAlphabetically"
 

@@ -7,6 +7,7 @@
         {{ t("request.request_variables") }}
       </label>
       <div class="flex">
+        <!--
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           to="https://docs.hoppscotch.io/documentation/features/rest-api-testing"
@@ -14,6 +15,7 @@
           :title="t('app.wiki')"
           :icon="IconHelpCircle"
         />
+        -->
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           :title="t('action.clear_all')"
@@ -192,7 +194,7 @@ import IconCheckCircle from "~icons/lucide/check-circle"
 import IconCircle from "~icons/lucide/circle"
 import IconEdit from "~icons/lucide/edit"
 import IconGripVertical from "~icons/lucide/grip-vertical"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconPlus from "~icons/lucide/plus"
 import IconTrash from "~icons/lucide/trash"
 import IconTrash2 from "~icons/lucide/trash-2"

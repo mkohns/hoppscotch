@@ -122,6 +122,7 @@
           <icon-lucide-info class="svg-icons mr-1.5" />
           <span>{{ filterResponseError.error }}</span>
         </div>
+        <!--
         <HoppButtonSecondary
           v-if="showResponse"
           v-tippy="{ theme: 'tooltip' }"
@@ -130,6 +131,7 @@
           to="https://github.com/JSONPath-Plus/JSONPath"
           blank
         />
+        -->
       </div>
     </div>
     <div class="h-full relative overflow-auto flex flex-col flex-1">
@@ -246,7 +248,7 @@
 import IconWrapText from "~icons/lucide/wrap-text"
 import IconFilter from "~icons/lucide/filter"
 import IconMore from "~icons/lucide/more-horizontal"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconNetwork from "~icons/lucide/network"
 import IconSave from "~icons/lucide/save"
 import * as LJSON from "lossless-json"

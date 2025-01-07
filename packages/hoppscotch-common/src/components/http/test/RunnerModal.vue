@@ -75,6 +75,7 @@
                   <span>
                     {{ t("collection_runner.keep_variable_values") }}
                   </span>
+                  <!--
                   <HoppButtonSecondary
                     v-tippy="{ theme: 'tooltip' }"
                     class="!py-0 pl-2"
@@ -83,6 +84,7 @@
                     :title="t('app.wiki')"
                     :icon="IconHelpCircle"
                   />
+                  -->
                 </HoppSmartCheckbox>
               </div>
             </section>
@@ -128,6 +130,7 @@
           </template>
         </HoppSmartTab>
         <template #actions>
+          <!--
           <HoppButtonSecondary
             v-tippy="{ theme: 'tooltip' }"
             class="!py-0 pl-2"
@@ -136,6 +139,7 @@
             :title="t('app.wiki')"
             :icon="IconHelpCircle"
           />
+          -->
         </template>
       </HoppSmartTabs>
     </template>
@@ -182,7 +186,7 @@ import { copyToClipboard } from "~/helpers/utils/clipboard"
 import { RESTTabService } from "~/services/tab/rest"
 import IconCheck from "~icons/lucide/check"
 import IconCopy from "~icons/lucide/copy"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconPlay from "~icons/lucide/play"
 import { CurrentEnv } from "./Env.vue"
 import { pipe } from "fp-ts/lib/function"
@@ -232,11 +236,13 @@ const activeTab = ref<"gui" | "cli">("gui")
 const environmentID = ref("")
 const currentEnv = ref<CurrentEnv>(null)
 
+/*
 const runnerLink = computed(() => {
   return activeTab.value === "gui"
     ? "https://docs.hoppscotch.io/documentation/features/runner#runner"
     : "https://docs.hoppscotch.io/documentation/clients/cli/overview#running-collections-present-on-the-api-client"
 })
+*/
 
 function setCurrentEnv(payload: CurrentEnv) {
   currentEnv.value = payload

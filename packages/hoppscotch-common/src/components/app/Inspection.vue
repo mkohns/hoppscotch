@@ -20,6 +20,7 @@
                 {{ t("inspections.title") }}
               </span>
             </span>
+            <!--
             <HoppButtonSecondary
               v-tippy="{ theme: 'tooltip' }"
               to="https://docs.hoppscotch.io/documentation/features/inspections"
@@ -27,6 +28,7 @@
               :title="t('app.wiki')"
               :icon="IconHelpCircle"
             />
+            -->
           </div>
           <div
             v-for="(inspector, index) in inspectionResults"
@@ -75,7 +77,7 @@
 <script lang="ts" setup>
 import { InspectorResult } from "~/services/inspection"
 import IconAlertTriangle from "~icons/lucide/alert-triangle"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import { computed } from "vue"
 import { useI18n } from "~/composables/i18n"
 

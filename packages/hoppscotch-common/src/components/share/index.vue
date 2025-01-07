@@ -17,6 +17,7 @@
         class="!rounded-none"
         @click="shareRequest()"
       />
+      <!--
       <HoppButtonSecondary
         v-tippy="{ theme: 'tooltip' }"
         to="https://docs.hoppscotch.io/documentation/features/widgets"
@@ -25,6 +26,7 @@
         :icon="IconHelpCircle"
         class="py-2"
       />
+      -->
     </div>
     <div class="flex flex-col">
       <div v-if="loading" class="flex flex-col items-center justify-center p-4">
@@ -108,7 +110,7 @@
 </template>
 
 <script lang="ts" setup>
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconPlus from "~icons/lucide/plus"
 import { useI18n } from "~/composables/i18n"
 import ShortcodeListAdapter from "~/helpers/shortcode/ShortcodeListAdapter"

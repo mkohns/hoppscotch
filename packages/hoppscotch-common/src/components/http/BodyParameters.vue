@@ -18,6 +18,7 @@
             >{{ t(`request.show_content_type`) }}</HoppSmartCheckbox
           >
         </div>
+        <!--
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           to="https://docs.hoppscotch.io/documentation/getting-started/rest/uploading-data"
@@ -25,6 +26,7 @@
           :title="t('app.wiki')"
           :icon="IconHelpCircle"
         />
+        -->
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           :title="t('action.clear_all')"
@@ -232,7 +234,7 @@
 </template>
 
 <script setup lang="ts">
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconTrash2 from "~icons/lucide/trash-2"
 import IconPlus from "~icons/lucide/plus"
 import IconGripVertical from "~icons/lucide/grip-vertical"

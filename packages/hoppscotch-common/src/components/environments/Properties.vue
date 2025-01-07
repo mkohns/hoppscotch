@@ -17,6 +17,7 @@
           >
             <span>{{ t("collection_runner.environment_id") }}</span>
 
+            <!--
             <HoppButtonSecondary
               v-tippy="{ theme: 'tooltip' }"
               to="https://docs.hoppscotch.io/documentation/clients/cli/overview#running-collections-present-on-the-api-client"
@@ -24,6 +25,7 @@
               :title="t('app.wiki')"
               :icon="IconHelpCircle"
             />
+            -->
           </div>
 
           <div class="p-4">
@@ -82,7 +84,7 @@ import { useToast } from "~/composables/toast"
 import { copyToClipboard } from "~/helpers/utils/clipboard"
 import IconCheck from "~icons/lucide/check"
 import IconCopy from "~icons/lucide/copy"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 
 const t = useI18n()
 const toast = useToast()

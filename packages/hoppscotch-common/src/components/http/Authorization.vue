@@ -63,6 +63,7 @@
           @change="authActive = !authActive"
           >{{ t("state.enabled") }}</HoppSmartCheckbox
         >
+        <!--
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           to="https://docs.hoppscotch.io/documentation/features/authorization"
@@ -70,6 +71,7 @@
           :title="t('app.wiki')"
           :icon="IconHelpCircle"
         />
+        -->
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           :title="t('action.clear')"
@@ -185,7 +187,7 @@ import { AggregateEnvironment } from "~/newstore/environments"
 import IconCircle from "~icons/lucide/circle"
 import IconCircleDot from "~icons/lucide/circle-dot"
 import IconExternalLink from "~icons/lucide/external-link"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconTrash2 from "~icons/lucide/trash-2"
 
 import { getDefaultAuthCodeOauthFlowParams } from "~/services/oauth/flows/authCode"

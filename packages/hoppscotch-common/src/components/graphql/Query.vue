@@ -45,6 +45,7 @@
         class="rounded-none"
         @click="saveRequest"
       />
+      <!--
       <HoppButtonSecondary
         v-tippy="{ theme: 'tooltip' }"
         to="https://docs.hoppscotch.io/documentation/features/graphql-api-testing"
@@ -52,6 +53,7 @@
         :title="t('app.wiki')"
         :icon="IconHelpCircle"
       />
+      -->
       <HoppButtonSecondary
         v-tippy="{ theme: 'tooltip' }"
         :title="t('action.clear_all')"
@@ -86,7 +88,7 @@
 import IconPlay from "~icons/lucide/play"
 import IconStop from "~icons/lucide/stop-circle"
 import IconSave from "~icons/lucide/save"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconTrash2 from "~icons/lucide/trash-2"
 import IconCopy from "~icons/lucide/copy"
 import IconCheck from "~icons/lucide/check"

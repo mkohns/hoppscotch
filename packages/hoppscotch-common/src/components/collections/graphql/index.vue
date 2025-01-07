@@ -23,6 +23,7 @@
           @click="displayModalAdd(true)"
         />
         <div class="flex">
+          <!--
           <HoppButtonSecondary
             v-tippy="{ theme: 'tooltip' }"
             to="https://docs.hoppscotch.io/documentation/features/collections"
@@ -30,6 +31,7 @@
             :title="t('app.wiki')"
             :icon="IconHelpCircle"
           />
+          -->
           <HoppButtonSecondary
             v-if="!saveRequest"
             v-tippy="{ theme: 'tooltip' }"
@@ -174,7 +176,7 @@ import {
   duplicateGraphQLCollection,
 } from "~/newstore/collections"
 import IconPlus from "~icons/lucide/plus"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconImport from "~icons/lucide/folder-down"
 import { useI18n } from "@composables/i18n"
 import { useReadonlyStream } from "@composables/stream"

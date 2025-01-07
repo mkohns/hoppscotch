@@ -13,6 +13,7 @@
           :placeholder="`${t('action.search')}`"
         />
         <div class="flex">
+          <!--
           <HoppButtonSecondary
             v-tippy="{ theme: 'tooltip' }"
             to="https://docs.hoppscotch.io/documentation/features/history"
@@ -20,6 +21,7 @@
             :title="t('app.wiki')"
             :icon="IconHelpCircle"
           />
+          -->
           <tippy interactive trigger="click" theme="popover">
             <HoppButtonSecondary
               v-tippy="{ theme: 'tooltip' }"
@@ -162,7 +164,7 @@
 </template>
 
 <script setup lang="ts">
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconTrash2 from "~icons/lucide/trash-2"
 import IconTrash from "~icons/lucide/trash"
 import IconFilter from "~icons/lucide/filter"

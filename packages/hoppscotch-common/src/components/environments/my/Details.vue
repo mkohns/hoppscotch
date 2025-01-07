@@ -26,6 +26,7 @@
           <HoppSmartTabs v-model="selectedEnvOption" render-inactive-tabs>
             <template #actions>
               <div class="flex flex-1 items-center justify-between">
+                <!--
                 <HoppButtonSecondary
                   v-tippy="{ theme: 'tooltip' }"
                   to="https://docs.hoppscotch.io/documentation/features/environments"
@@ -33,6 +34,7 @@
                   :title="t('app.wiki')"
                   :icon="IconHelpCircle"
                 />
+                -->
                 <HoppButtonSecondary
                   v-tippy="{ theme: 'tooltip' }"
                   :title="t('action.clear_all')"
@@ -164,7 +166,7 @@ import {
 import { platform } from "~/platform"
 import { SecretEnvironmentService } from "~/services/secret-environment.service"
 import IconDone from "~icons/lucide/check"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconPlus from "~icons/lucide/plus"
 import IconTrash from "~icons/lucide/trash"
 import IconTrash2 from "~icons/lucide/trash-2"

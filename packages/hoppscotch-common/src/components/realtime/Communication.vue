@@ -83,6 +83,7 @@
         >
           {{ t("mqtt.clear_input") }}
         </HoppSmartCheckbox>
+        <!--
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           to="https://docs.hoppscotch.io/documentation/features/realtime-api-testing"
@@ -90,6 +91,7 @@
           :title="t('app.wiki')"
           :icon="IconHelpCircle"
         />
+        -->
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           :title="t('action.clear')"
@@ -135,7 +137,7 @@
 <script setup lang="ts">
 import { Component, computed, reactive, ref } from "vue"
 import IconSend from "~icons/lucide/send"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconWrapText from "~icons/lucide/wrap-text"
 import IconTrash2 from "~icons/lucide/trash-2"
 import IconWand2 from "~icons/lucide/wand-2"

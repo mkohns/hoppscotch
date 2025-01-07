@@ -33,6 +33,7 @@
             :placeholder="`${t('action.search')}`"
           />
           <div class="flex">
+            <!--
             <HoppButtonSecondary
               v-tippy="{ theme: 'tooltip' }"
               to="https://docs.hoppscotch.io/documentation/protocols/graphql"
@@ -40,6 +41,7 @@
               :title="t('app.wiki')"
               :icon="IconHelpCircle"
             />
+            -->
           </div>
         </div>
         <HoppSmartTabs
@@ -117,6 +119,7 @@
           {{ t("graphql.schema") }}
         </label>
         <div class="flex">
+          <!--
           <HoppButtonSecondary
             v-tippy="{ theme: 'tooltip' }"
             to="https://docs.hoppscotch.io/documentation/protocols/graphql"
@@ -124,6 +127,7 @@
             :title="t('app.wiki')"
             :icon="IconHelpCircle"
           />
+          -->
           <HoppButtonSecondary
             v-tippy="{ theme: 'tooltip' }"
             :title="t('state.linewrap')"
@@ -177,7 +181,7 @@
 <script setup lang="ts">
 import IconFolder from "~icons/lucide/folder"
 import IconBookOpen from "~icons/lucide/book-open"
-import IconHelpCircle from "~icons/lucide/help-circle"
+//import IconHelpCircle from "~icons/lucide/help-circle"
 import IconWrapText from "~icons/lucide/wrap-text"
 import IconDownload from "~icons/lucide/download"
 import IconCheck from "~icons/lucide/check"
