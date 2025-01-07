@@ -21,7 +21,7 @@ import * as E from "fp-ts/Either"
 import * as TE from "fp-ts/TaskEither"
 import { pipe, constVoid, flow } from "fp-ts/function"
 import { subscribe, pipe as wonkaPipe } from "wonka"
-import { filter, map, Subject } from "rxjs"
+import { filter, map, Subject, BehaviorSubject } from "rxjs"
 import { platform } from "~/platform"
 
 // TODO: Implement caching
@@ -30,6 +30,9 @@ const BACKEND_GQL_URL =
   import.meta.env.VITE_BACKEND_GQL_URL ?? "https://api.hoppscotch.io/graphql"
 const BACKEND_WS_URL =
   import.meta.env.VITE_BACKEND_WS_URL ?? "wss://api.hoppscotch.io/graphql"
+const GQL_SUB_KEEPALIVE = parseInt(
+  import.meta.env.VITE_GQL_SUB_KEEPALIVE ?? "40000"
+)
 
 type GQLOpType = "query" | "mutation" | "subscription"
 /**
@@ -50,19 +53,73 @@ export type GQLClientErrorEvent =
  */
 export const gqlClientError$ = new Subject<GQLClientErrorEvent>()
 
+export type GQLClientStatus = "connected" | "disconnected"
+export const gqlClientStatus$ = new BehaviorSubject<GQLClientStatus>()
+
 const createSubscriptionClient = () => {
   return new SubscriptionClient(BACKEND_WS_URL, {
     reconnect: true,
     connectionParams: () => platform.auth.getBackendHeaders(),
-    connectionCallback(error) {
+    connectionCallback(error, result) {
+      console.log("Subscription connection callback", error, result)
       if (error?.length > 0) {
         gqlClientError$.next({
           type: "SUBSCRIPTION_CONN_CALLBACK_ERR_REPORT",
           errors: error,
         })
       }
+      startKeepAlive()
     },
   })
+}
+
+// Define a lightweight keep-alive query
+const KEEP_ALIVE_QUERY = `
+  query KeepAlive {
+    __typename
+  }
+`
+let keepAliveInterval: NodeJS.Timeout | null = null
+
+// Function to send a keep-alive message
+function startKeepAlive() {
+  if (!subscriptionClient) {
+    gqlClientStatus$.next("disconnected")
+    return
+  }
+  if (keepAliveInterval) return
+  gqlClientStatus$.next("connected")
+  keepAliveInterval = setInterval(() => {
+    if (!subscriptionClient || !subscriptionClient.client) {
+      gqlClientStatus$.next("disconnected")
+      return
+    }
+    if (subscriptionClient.client.readyState !== WebSocket.OPEN) {
+      console.log(
+        "Subscription client not open, not sending keep-alive. Status: ",
+        subscriptionClient.client.readyState
+      )
+      gqlClientStatus$.next("disconnected")
+      return
+    }
+    subscriptionClient
+      .request({
+        query: KEEP_ALIVE_QUERY,
+      })
+      .subscribe({
+        next: () => {
+          //console.log("Keep-alive message sent")
+        },
+        error: (err) => {
+          console.error("Error sending keep-alive query:", err)
+          gqlClientStatus$.next("disconnected")
+        },
+        complete: () => {
+          gqlClientStatus$.next("connected")
+          //console.log("Keep-alive query completed")
+        },
+      })
+  }, GQL_SUB_KEEPALIVE)
 }
 
 const createHoppClient = () => {
@@ -152,6 +209,12 @@ export function initBackendGQLClient() {
     // creating new subscription
     if (currentUser && !subscriptionClient) {
       subscriptionClient = createSubscriptionClient()
+      subscriptionClient.onDisconnected(() => {
+        gqlClientStatus$.next("disconnected")
+      })
+      subscriptionClient.onConnected(() => {
+        gqlClientStatus$.next("connected")
+      })
     }
 
     // closing existing subscription client.

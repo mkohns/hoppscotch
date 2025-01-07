@@ -26,6 +26,12 @@
           :icon="IconCookie"
           @click="showCookiesModal = true"
         />
+        <HoppButtonSecondary
+          :icon="IconSse"
+          class="!rounded-none"
+          :color="subStatus ? 'green' : 'red'"
+          :label="subStatus ? 'Online' : 'Offline'"
+        />
       </div>
       <div class="flex">
         <tippy
@@ -194,7 +200,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, onMounted, onUnmounted } from "vue"
 import { version } from "~/../package.json"
 import IconCookie from "~icons/lucide/cookie"
 import IconSidebar from "~icons/lucide/sidebar"
@@ -209,6 +215,7 @@ import IconTwitter from "~icons/lucide/twitter"
 import IconUserPlus from "~icons/lucide/user-plus"
 import IconLock from "~icons/lucide/lock"
 import IconHelpCircle from "~icons/lucide/help-circle"
+import IconSse from "~icons/lucide/satellite-dish"
 import { useSetting } from "@composables/settings"
 import { useI18n } from "@composables/i18n"
 import { useReadonlyStream } from "@composables/stream"
@@ -217,6 +224,8 @@ import { TippyComponent } from "vue-tippy"
 import { getPlatformSpecialKey as getSpecialKey } from "~/helpers/platformutils"
 import { invokeAction } from "@helpers/actions"
 import { HoppSmartItem } from "@hoppscotch/ui"
+import { gqlClientStatus$ } from "~/helpers/backend/GQLClient"
+import { Subscription } from "rxjs"
 
 const t = useI18n()
 
@@ -234,6 +243,27 @@ const currentUser = useReadonlyStream(
   platform.auth.getCurrentUserStream(),
   platform.auth.getCurrentUser()
 )
+
+const subStatus = ref(false)
+let subscription: Subscription
+
+onMounted(() => {
+  // Subscribe to the Subject
+  subscription = gqlClientStatus$.subscribe((event) => {
+    if (event === "connected") {
+      subStatus.value = true
+    } else {
+      subStatus.value = false
+    }
+  })
+})
+
+onUnmounted(() => {
+  // Make sure to unsubscribe to prevent memory leaks
+  if (subscription) {
+    subscription.unsubscribe()
+  }
+})
 
 const nativeShare = () => {
   if (navigator.share) {
