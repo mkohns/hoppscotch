@@ -33,6 +33,7 @@
             class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"
             @click="installPWA()"
           />
+          <!--
           <HoppButtonSecondary
             v-tippy="{ theme: 'tooltip', allowHTML: true }"
             :title="`${
@@ -42,6 +43,7 @@
             class="rounded hover:bg-primaryDark focus-visible:bg-primaryDark"
             @click="invokeAction('modals.support.toggle')"
           />
+          -->
         </div>
         <div
           class="flex"
@@ -280,7 +282,7 @@ import {
 } from "~/services/banner.service"
 import { WorkspaceService } from "~/services/workspace.service"
 import IconDownload from "~icons/lucide/download"
-import IconLifeBuoy from "~icons/lucide/life-buoy"
+//import IconLifeBuoy from "~icons/lucide/life-buoy"
 import IconSettings from "~icons/lucide/settings"
 import IconUploadCloud from "~icons/lucide/upload-cloud"
 import IconUser from "~icons/lucide/user"
