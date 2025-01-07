@@ -59,7 +59,7 @@
                 ref="documentation"
                 :icon="IconBook"
                 :label="`${t('app.documentation')}`"
-                to="https://docs.hoppscotch.io"
+                to="https://cass.dp.schaeffler/postboy"
                 blank
                 :shortcut="['D']"
                 @click="hide()"
@@ -75,6 +75,15 @@
                     hide()
                   }
                 "
+              />
+              <HoppSmartItem
+                ref="teamschannel"
+                :icon="IconHandShake"
+                label="Teams Channel"
+                to="https://teams.microsoft.com/l/team/19%3AOGG-WbPKZOPQ66Tloj-o0NaNdDFInZT0QJORGHMlQyg1%40thread.tacv2/conversations?groupId=ac301a8b-1db4-45a3-8dd7-9bdb904de8c8&tenantId=67416604-6509-4014-9859-45e709f53d3f"
+                blank
+                :shortcut="['T']"
+                @click="hide()"
               />
               <template
                 v-for="footerItem in platform.ui?.additionalFooterMenuItems"
@@ -102,6 +111,7 @@
                   "
                 />
               </template>
+              <!---
               <hr />
               <HoppSmartItem
                 :icon="IconGithub"
@@ -134,6 +144,7 @@
                 blank
                 @click="hide()"
               />
+              -->
               <div
                 class="flex px-4 py-2 opacity-50"
                 @dblclick="
@@ -156,6 +167,7 @@
           :icon="IconZap"
           @click="invokeAction('flyouts.keybinds.toggle')"
         />
+        <!--
         <HoppButtonSecondary
           v-if="navigatorShare"
           v-tippy="{ theme: 'tooltip' }"
@@ -163,6 +175,7 @@
           :title="t('request.share')"
           @click="nativeShare()"
         />
+        -->
         <HoppButtonSecondary
           v-tippy="{ theme: 'tooltip' }"
           :title="COLUMN_LAYOUT ? t('layout.row') : t('layout.column')"
@@ -205,15 +218,16 @@ import { version } from "~/../package.json"
 import IconCookie from "~icons/lucide/cookie"
 import IconSidebar from "~icons/lucide/sidebar"
 import IconZap from "~icons/lucide/zap"
-import IconShare2 from "~icons/lucide/share-2"
+//import IconShare2 from "~icons/lucide/share-2"
 import IconColumns from "~icons/lucide/columns"
 import IconSidebarOpen from "~icons/lucide/sidebar-open"
 import IconShieldCheck from "~icons/lucide/shield-check"
+import IconHandShake from "~icons/lucide/handshake"
 import IconBook from "~icons/lucide/book"
-import IconGithub from "~icons/lucide/github"
-import IconTwitter from "~icons/lucide/twitter"
-import IconUserPlus from "~icons/lucide/user-plus"
-import IconLock from "~icons/lucide/lock"
+//import IconGithub from "~icons/lucide/github"
+//import IconTwitter from "~icons/lucide/twitter"
+//import IconUserPlus from "~icons/lucide/user-plus"
+//import IconLock from "~icons/lucide/lock"
 import IconHelpCircle from "~icons/lucide/help-circle"
 import IconSse from "~icons/lucide/satellite-dish"
 import { useSetting } from "@composables/settings"
@@ -237,7 +251,7 @@ const SIDEBAR = useSetting("SIDEBAR")
 const COLUMN_LAYOUT = useSetting("COLUMN_LAYOUT")
 const SIDEBAR_ON_LEFT = useSetting("SIDEBAR_ON_LEFT")
 
-const navigatorShare = !!navigator.share
+//const navigatorShare = !!navigator.share
 
 const currentUser = useReadonlyStream(
   platform.auth.getCurrentUserStream(),
@@ -265,6 +279,7 @@ onUnmounted(() => {
   }
 })
 
+/*
 const nativeShare = () => {
   if (navigator.share) {
     navigator
@@ -278,6 +293,7 @@ const nativeShare = () => {
     // fallback
   }
 }
+*/
 
 const showDeveloperOptionModal = () => {
   if (currentUser.value) {

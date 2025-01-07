@@ -24,7 +24,7 @@ const headerPaddingTop = ref("0px")
 
   createHoppApp("#app", {
     ui: {
-      additionalFooterMenuItems: stdFooterItems,
+      //additionalFooterMenuItems: stdFooterItems,
       additionalSupportOptionsMenuItems: stdSupportOptionItems,
       appHeader: {
         paddingLeft: headerPaddingLeft,
