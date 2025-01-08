@@ -21,7 +21,8 @@ mod interop;
 use tauri::Manager;
 
 fn main() {
-    tauri_plugin_deep_link::prepare("io.hoppscotch.desktop");
+    let _ = fix_path_env::fix(); // <---- Add this    
+    tauri_plugin_deep_link::prepare("com.schaeffler.postboy");
 
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
