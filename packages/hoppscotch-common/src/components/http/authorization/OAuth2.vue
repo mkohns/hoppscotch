@@ -166,6 +166,11 @@
     </div>
 
     <div class="p-2 gap-1 flex">
+      <HoppButtonPrimary
+        filled
+        label="Set Schaeffler Standards"
+        @click="setSchaefflerStandards()"
+      />
       <HoppButtonSecondary
         filled
         :label="`${t('authorization.generate_token')}`"
@@ -441,7 +446,9 @@ const supportedGrantTypes = [
             isPKCE.value = target.checked
           },
         }
+        return [checkbox]
 
+        /*
         return isPKCE.value
           ? [
               checkbox,
@@ -465,9 +472,39 @@ const supportedGrantTypes = [
               },
             ]
           : [checkbox]
+          */
       })
 
       const elements = computed(() => {
+        if (isPKCE.value) {
+          return [
+            ...pkceElements.value,
+            {
+              id: "authEndpoint",
+              label: t("authorization.oauth.label_authorization_endpoint"),
+              type: "text" as const,
+              ref: authEndpoint,
+            },
+            {
+              id: "tokenEndpoint",
+              label: t("authorization.oauth.label_token_endpoint"),
+              type: "text" as const,
+              ref: tokenEndpoint,
+            },
+            {
+              id: "clientId",
+              label: "CASS ID (client id)",
+              type: "text" as const,
+              ref: clientID,
+            },
+            {
+              id: "scopes",
+              label: t("authorization.oauth.label_scopes"),
+              type: "text" as const,
+              ref: scopes,
+            },
+          ]
+        }
         return [
           ...pkceElements.value,
           {
@@ -484,7 +521,7 @@ const supportedGrantTypes = [
           },
           {
             id: "clientId",
-            label: t("authorization.oauth.label_client_id"),
+            label: "CASS ID (client id)",
             type: "text" as const,
             ref: clientID,
           },
@@ -602,7 +639,7 @@ const supportedGrantTypes = [
           },
           {
             id: "clientId",
-            label: "Client ID",
+            label: "CASS ID (client id)",
             type: "text" as const,
             ref: clientID,
           },
@@ -872,6 +909,48 @@ const supportedGrantTypes = [
   },
 ]
 
+function setSchaefflerStandards() {
+  console.log("Setting Schaeffler Standards")
+  let removeSecret = false
+  for (let i = 0; i < currentOAuthGrantTypeFormElements.value.length; i++) {
+    const element = currentOAuthGrantTypeFormElements.value[i]
+    if (element.id === "isPKCE") {
+      removeSecret = true
+    }
+  }
+
+  if (removeSecret) {
+    for (let i = 0; i < currentOAuthGrantTypeFormElements.value.length; i++) {
+      const element = currentOAuthGrantTypeFormElements.value[i]
+      if (element.id === "clientSecret") {
+        console.log("Removing client secret")
+        element.ref.value = ""
+      }
+    }
+  }
+
+  for (let i = 0; i < currentOAuthGrantTypeFormElements.value.length; i++) {
+    const element = currentOAuthGrantTypeFormElements.value[i]
+    if (element.id === "authEndpoint") {
+      element.ref.value =
+        "https://login.microsoftonline.com/67416604-6509-4014-9859-45e709f53d3f/oauth2/v2.0/authorize"
+    }
+    if (element.id === "tokenEndpoint") {
+      element.ref.value =
+        "https://login.microsoftonline.com/67416604-6509-4014-9859-45e709f53d3f/oauth2/v2.0/token"
+    }
+    if (element.id === "isPKCE") {
+      element.ref.value = true
+      removeSecret = true
+    }
+    console.log(element)
+  }
+
+  auth.value.addTo = addToTargets[0].id
+
+  toast.success("Set Schaeffler Token Endpoints")
+}
+
 type GrantTypes = z.infer<
   typeof HoppRESTAuthOAuth2
 >["grantTypeInfo"]["grantType"]
@@ -1064,6 +1143,6 @@ const generateOAuthToken = async () => {
 }
 
 const grantTypeTippyActions = ref<HTMLElement | null>(null)
-const pkceTippyActions = ref<HTMLElement | null>(null)
+//const pkceTippyActions = ref<HTMLElement | null>(null)
 const authTippyActions = ref<HTMLElement | null>(null)
 </script>
