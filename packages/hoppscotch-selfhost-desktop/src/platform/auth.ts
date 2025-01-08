@@ -87,6 +87,7 @@ async function getInitialUserDetails() {
 
     return res.data
   } catch (error) {
+    console.log("getInitialUserDetails error", error)
     let res = {
       error: "auth/cookies_not_found",
     }
@@ -109,23 +110,22 @@ async function setInitialUser() {
   const res = await getInitialUserDetails()
 
   console.log("setInitialUser", res)
-  const error = res.errors && res.errors[0]
 
   // no cookies sent. so the user is not logged in
-  if (error && error.message === "auth/cookies_not_found") {
+  if (res.error === "auth/cookies_not_found") {
     setUser(null)
     isGettingInitialUser.value = false
     return
   }
 
-  if (error && error.message === "user/not_found") {
+  if (res.error === "user/not_found") {
     setUser(null)
     isGettingInitialUser.value = false
     return
   }
 
   // cookies sent, but it is expired, we need to refresh the token
-  if (error && error.message === "Unauthorized") {
+  if (res.error === "Unauthorized") {
     const isRefreshSuccess = await refreshToken()
 
     if (isRefreshSuccess) {
