@@ -17,7 +17,7 @@ export const authEvents$ = new Subject<AuthEvent | { event: "token_refresh" }>()
 const currentUser$ = new BehaviorSubject<HoppUser | null>(null)
 export const probableUser$ = new BehaviorSubject<HoppUser | null>(null)
 
-const APP_DATA_PATH = "~/.hopp-desktop-app-data.dat"
+const APP_DATA_PATH = ".schaeffler-postboy.json"
 let accessTokenValue: String | undefined = undefined
 let refreshTokenValue: String | undefined = undefined
 
