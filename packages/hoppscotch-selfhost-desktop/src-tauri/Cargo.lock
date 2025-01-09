@@ -1435,33 +1435,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "hoppscotch-desktop"
-version = "25.1.0"
-dependencies = [
- "cocoa 0.25.0",
- "dashmap",
- "env_logger",
- "fix-path-env",
- "hex_color",
- "hoppscotch-relay",
- "log",
- "objc",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-deep-link",
- "tauri-plugin-store",
- "tauri-plugin-window-state",
- "thiserror",
- "tokio",
- "tokio-util",
- "url",
- "windows 0.52.0",
- "winver",
-]
-
-[[package]]
 name = "hoppscotch-relay"
 version = "0.1.1"
 dependencies = [
@@ -2863,6 +2836,33 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "93fc1dc3aaa9bfed95e02e6eadabb4baf7e3078b0bd1b4d7b6b0b68378900502"
 dependencies = [
  "winapi-util",
+]
+
+[[package]]
+name = "schaeffler-postboy"
+version = "25.1.1"
+dependencies = [
+ "cocoa 0.25.0",
+ "dashmap",
+ "env_logger",
+ "fix-path-env",
+ "hex_color",
+ "hoppscotch-relay",
+ "log",
+ "objc",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-deep-link",
+ "tauri-plugin-store",
+ "tauri-plugin-window-state",
+ "thiserror",
+ "tokio",
+ "tokio-util",
+ "url",
+ "windows 0.52.0",
+ "winver",
 ]
 
 [[package]]

@@ -1,8 +1,8 @@
 [package]
-name = "hoppscotch-desktop"
-version = "25.1.0"
-description = "A Tauri App"
-authors = ["you"]
+name = "schaeffler-postboy"
+version = "25.1.1"
+description = "A REST Client"
+authors = ["kohnsmrk"]
 license = ""
 repository = ""
 edition = "2021"
