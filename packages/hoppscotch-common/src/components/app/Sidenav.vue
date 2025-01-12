@@ -30,6 +30,7 @@ import { breakpointsTailwind, useBreakpoints } from "@vueuse/core"
 import IconLink2 from "~icons/lucide/link-2"
 import IconGraphql from "~icons/hopp/graphql"
 import IconGlobe from "~icons/lucide/globe"
+import IconBookHeart from "~icons/lucide/book-heart"
 import IconSettings from "~icons/lucide/settings"
 import { useSetting } from "@composables/settings"
 import { useI18n } from "@composables/i18n"
@@ -64,6 +65,12 @@ const primaryNavigation = [
     target: "/settings",
     svg: IconSettings,
     title: "navigation.settings",
+    exact: false,
+  },
+  {
+    target: "/cass",
+    svg: IconBookHeart,
+    title: "navigation.cass",
     exact: false,
   },
 ]

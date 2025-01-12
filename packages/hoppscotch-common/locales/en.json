@@ -633,7 +633,8 @@
     "profile": "Profile",
     "realtime": "Realtime",
     "rest": "REST",
-    "settings": "Settings"
+    "settings": "Settings",
+    "cass": "CASS"
   },
   "preRequest": {
     "javascript_code": "JavaScript Code",

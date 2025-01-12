@@ -20,6 +20,7 @@ const headerPaddingLeft = ref("0px")
 const headerPaddingTop = ref("0px")
 
 ;(async () => {
+  console.log("Starting Schaeffler Postboy")
   const platform = await type()
 
   createHoppApp("#app", {

@@ -105,6 +105,29 @@ function setUser(user: HoppUser | null) {
   persistenceService.setLocalConfig("login_state", JSON.stringify(user))
 }
 
+function isError(res: any, error_msg: string) {
+  // in case error is a string
+  if (res.error && res.error === error_msg) {
+    return true
+  }
+  // in case error is an object
+  if (res.error && res.error.message && res.error.message === error_msg) {
+    return true
+  }
+  // maybe errors is present, then it is an array with error objects
+  // the error objects have a message field
+  // check if one message field matches the error_msg
+  if (res.errors && res.errors.length > 0) {
+    for (let i = 0; i < res.errors.length; i++) {
+      if (res.errors[i].message === error_msg) {
+        return true
+      }
+    }
+  }
+  // no error found
+  return false
+}
+
 async function setInitialUser() {
   isGettingInitialUser.value = true
   const res = await getInitialUserDetails()
@@ -112,21 +135,23 @@ async function setInitialUser() {
   console.log("setInitialUser", res)
 
   // no cookies sent. so the user is not logged in
-  if (res.error === "auth/cookies_not_found") {
+  if (isError(res, "auth/cookies_not_found")) {
     setUser(null)
     isGettingInitialUser.value = false
     return
   }
 
-  if (res.error === "user/not_found") {
+  if (isError(res, "user/not_found")) {
     setUser(null)
     isGettingInitialUser.value = false
     return
   }
 
   // cookies sent, but it is expired, we need to refresh the token
-  if (res.error === "Unauthorized") {
+  if (isError(res, "Unauthorized")) {
+    console.log("trying to refresh token")
     const isRefreshSuccess = await refreshToken()
+    console.log("isRefreshSuccess", isRefreshSuccess)
 
     if (isRefreshSuccess) {
       setInitialUser()

@@ -1,5 +1,6 @@
 import { HOPP_MODULES } from "@modules/."
 import { createApp } from "vue"
+import { createPinia } from "pinia"
 import { initializeApp } from "./helpers/app"
 import { initBackendGQLClient } from "./helpers/backend/GQLClient"
 import { performMigrations } from "./helpers/migrations"
@@ -15,10 +16,18 @@ import "unfonts.css"
 import App from "./App.vue"
 import { getService } from "./modules/dioc"
 import { PersistenceService } from "./services/persistence"
+import { initMSAL, msalInstance } from "./msalService"
+import { msalPlugin } from "./plugins/msalPlugin"
 
-export function createHoppApp(el: string | Element, platformDef: PlatformDef) {
+export async function createHoppApp(
+  el: string | Element,
+  platformDef: PlatformDef
+) {
+  await initMSAL()
+
   setPlatformDef(platformDef)
 
+  const pinia = createPinia()
   const app = createApp(App)
 
   // Some basic work that needs to be done before module inits even
@@ -33,6 +42,8 @@ export function createHoppApp(el: string | Element, platformDef: PlatformDef) {
   getService(PersistenceService).setupLocalPersistence()
   performMigrations()
 
+  app.use(pinia)
+  app.use(msalPlugin, msalInstance)
   app.mount(el)
 
   console.info(
