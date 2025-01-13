@@ -130,6 +130,15 @@ export const useCASSStore = defineStore("cass", () => {
           subscriptions: null,
         }
       })
+
+      // sort applications by application.displayName
+      applications.value.sort((a, b) => {
+        if (a.displayName && b.displayName) {
+          return a.displayName.localeCompare(b.displayName)
+        }
+        return 0
+      })
+
       console.log(
         "fetchApplications: storing applications in store",
         applications.value
