@@ -49,6 +49,13 @@
               {{ application.state }}
             </h4>
           </li>
+          <li class="text-right">
+            <HoppButtonSecondary
+              class="!py-0 bg-blue-500/10 !text-blue-500 font-semibold ml-auto h-7 mt-1"
+              label="Open Application in CASS"
+              @click="openCASS()"
+            />
+          </li>
         </ul>
       </Pane>
     </Splitpanes>
@@ -57,10 +64,18 @@
 <script setup lang="ts">
 import { Pane, Splitpanes } from "splitpanes"
 import "splitpanes/dist/splitpanes.css"
+import { platform } from "~/platform"
 
-defineProps<{
+const props = defineProps<{
   application: any
 }>()
+
+function openCASS() {
+  console.log("Open CASS", props.application.applicationId)
+  platform.io.openExternalLink(
+    `https://cass.dp.schaeffler/applications/${props.application.applicationId}`
+  )
+}
 </script>
 <style scoped>
 .list {
