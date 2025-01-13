@@ -44,6 +44,7 @@ declare module '@vue/runtime-core' {
     AppSupport: typeof import('./components/app/Support.vue')['default']
     AppWhatsNewDialog: typeof import('./components/app/WhatsNewDialog.vue')['default']
     CassHeader: typeof import('./components/cass/Header.vue')['default']
+    CassITSec: typeof import('./components/cass/ITSec.vue')['default']
     CassOwners: typeof import('./components/cass/Owners.vue')['default']
     CassPermissions: typeof import('./components/cass/Permissions.vue')['default']
     CassSubscriptions: typeof import('./components/cass/Subscriptions.vue')['default']

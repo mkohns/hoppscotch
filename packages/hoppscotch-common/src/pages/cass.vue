@@ -77,6 +77,7 @@
           >
             <CassHeader :application="selectedApp" />
             <div class="pb-8"></div>
+            <CassITSec :application="selectedApp" />
             <CassOwners :application="selectedApp" />
             <CassSubscriptions
               :application="selectedApp"

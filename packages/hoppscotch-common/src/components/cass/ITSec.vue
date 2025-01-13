@@ -5,7 +5,7 @@
       @click="toggleAccordion()"
     >
       <span class="flex-row flex"
-        ><IconUsers class="mr-2 w-4 h-4 flex" />Owners</span
+        ><IconShield class="mr-2 w-4 h-4 flex" />IT Security By Design</span
       >
       <span class="transition-transform duration-300">
         <HoppButtonSecondary class="flex pt-0 pb-0" :icon="icon" />
@@ -15,19 +15,12 @@
       ref="content"
       class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
     >
-      <div class="flex">
-        <ul class="list mb-2">
-          <li
-            v-for="(owner, index) in application.owners"
-            :key="index"
-            class="list-item"
-          >
-            <h3 class="list-key">
-              {{ owner }}
-            </h3>
-          </li>
-        </ul>
+      <div v-if="application.itSecId" class="item mb-3">
+        <a :href="application.itSecURL" target="_blank"
+          >{{ application.itSecId }} ({{ application.itSecTitle }})</a
+        >
       </div>
+      <div v-else class="item mb-3">no IT Security Demand configured</div>
     </div>
   </div>
 </template>
@@ -35,7 +28,7 @@
 import { ref, markRaw, watch } from "vue"
 import IconPlus from "~icons/lucide/plus"
 import IconMinus from "~icons/lucide/minus"
-import IconUsers from "~icons/lucide/users"
+import IconShield from "~icons/lucide/shield-check"
 
 const props = defineProps<{
   application: any
@@ -74,27 +67,8 @@ function toggleAccordion() {
 }
 </script>
 <style scoped>
-.list {
-  width: 100%;
-  list-style-type: none;
-}
-
-.list-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--divider-light-color);
-}
-
-.list-key {
+.item {
   flex: 1;
-  text-align: left;
-  color: var(--secondary-dark-color);
-}
-
-.list-value {
-  flex: 1;
-  text-align: right;
   color: var(--secondary-dark-color);
 }
 </style>
