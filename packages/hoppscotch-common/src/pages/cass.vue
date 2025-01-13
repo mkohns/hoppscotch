@@ -79,6 +79,7 @@
             <div class="pb-8"></div>
             <CassITSec :application="selectedApp" />
             <CassOwners :application="selectedApp" />
+            <CassSecrets :application="selectedApp" />
             <CassSubscriptions
               :application="selectedApp"
               @on-load="loadSubscriptions()"

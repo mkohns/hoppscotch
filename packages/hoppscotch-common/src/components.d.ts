@@ -47,6 +47,7 @@ declare module '@vue/runtime-core' {
     CassITSec: typeof import('./components/cass/ITSec.vue')['default']
     CassOwners: typeof import('./components/cass/Owners.vue')['default']
     CassPermissions: typeof import('./components/cass/Permissions.vue')['default']
+    CassSecrets: typeof import('./components/cass/Secrets.vue')['default']
     CassSubscriptions: typeof import('./components/cass/Subscriptions.vue')['default']
     Collections: typeof import('./components/collections/index.vue')['default']
     CollectionsAdd: typeof import('./components/collections/Add.vue')['default']
