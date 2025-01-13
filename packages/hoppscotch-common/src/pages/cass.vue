@@ -81,6 +81,7 @@
             <CassOwners :application="selectedApp" />
             <CassSecrets :application="selectedApp" />
             <CassCertificates :application="selectedApp" />
+            <CassRedirect :application="selectedApp" />
             <CassSubscriptions
               :application="selectedApp"
               @on-load="loadSubscriptions()"
