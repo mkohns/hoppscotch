@@ -1,34 +1,63 @@
 <template>
   <div class="flex pl-4 pr-4">
-    <ul class="list">
-      <li class="list-item">
-        <h3 class="list-key">Display Name</h3>
-        <h3 class="list-value">
-          {{ application.displayName }}
-        </h3>
-      </li>
-      <li class="list-item">
-        <h3 class="list-key">Permission Model</h3>
-        <h4 class="list-value">
-          {{ application.permissionModel }}
-        </h4>
-      </li>
-      <li class="list-item">
-        <h3 class="list-key">Environment</h3>
-        <h4 class="list-value">
-          {{ application.environment }}
-        </h4>
-      </li>
-      <li class="list-item">
-        <h3 class="list-key">Display Id</h3>
-        <h4 class="list-value">
-          {{ application.applicationId }}
-        </h4>
-      </li>
-    </ul>
+    <Splitpanes class="smart-splitter">
+      <Pane class="pr-2">
+        <ul class="list">
+          <li class="list-item">
+            <h3 class="list-key">Display Name</h3>
+            <h3 class="list-value">
+              {{ application.displayName }}
+            </h3>
+          </li>
+          <li class="list-item">
+            <h3 class="list-key">CASS Id</h3>
+            <h4 class="list-value">
+              {{ application.applicationId }}
+            </h4>
+          </li>
+          <li class="list-item">
+            <h3 class="list-key">Permission Model</h3>
+            <h4 class="list-value">
+              {{ application.permissionModel }}
+            </h4>
+          </li>
+          <li class="list-item">
+            <h3 class="list-key">Created</h3>
+            <h4 class="list-value">
+              {{ new Date(application.createDate).toLocaleString() }}
+            </h4>
+          </li>
+        </ul>
+      </Pane>
+      <Pane class="pl-2">
+        <ul class="list">
+          <li class="list-item">
+            <h3 class="list-key">Environment</h3>
+            <h4 class="list-value">
+              {{ application.environment }}
+            </h4>
+          </li>
+          <li class="list-item">
+            <h3 class="list-key">SAP Id</h3>
+            <h4 class="list-value">
+              {{ application.apiMgmtApplicationId }}
+            </h4>
+          </li>
+          <li class="list-item">
+            <h3 class="list-key">Status</h3>
+            <h4 class="list-value">
+              {{ application.state }}
+            </h4>
+          </li>
+        </ul>
+      </Pane>
+    </Splitpanes>
   </div>
 </template>
 <script setup lang="ts">
+import { Pane, Splitpanes } from "splitpanes"
+import "splitpanes/dist/splitpanes.css"
+
 defineProps<{
   application: any
 }>()
@@ -43,19 +72,20 @@ defineProps<{
 
 .list-item {
   display: flex;
-  justify-content: space-between;
   padding: 8px 0;
   border-bottom: 1px solid var(--divider-light-color);
 }
 
 .list-key {
   flex: 1;
+  max-width: 30%;
   text-align: left;
-  font-weight: bold;
 }
 
 .list-value {
   flex: 1;
   text-align: right;
+  user-select: text;
+  color: var(--secondary-dark-color);
 }
 </style>

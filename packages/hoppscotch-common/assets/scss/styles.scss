@@ -654,3 +654,7 @@ details[open] summary .indicator {
 .gql-operation-highlight {
   @apply opacity-100;
 }
+
+.user-select {
+  user-select: text;
+}
