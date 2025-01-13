@@ -41,7 +41,7 @@
               {{ permission.type }}
             </div>
             <HoppButtonSecondary
-              class="!py-0 bg-green-700 item"
+              class="!p-0 !focus-visible:text-emerald-600 !hover:text-emerald-600 !text-emerald-500 bg-emerald-500/10"
               label="TryIt"
               @click="tryit(proxy)"
             />
