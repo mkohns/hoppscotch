@@ -911,44 +911,53 @@ const supportedGrantTypes = [
 
 function setSchaefflerStandards() {
   console.log("Setting Schaeffler Standards")
-  let removeSecret = false
-  for (let i = 0; i < currentOAuthGrantTypeFormElements.value.length; i++) {
-    const element = currentOAuthGrantTypeFormElements.value[i]
-    if (element.id === "isPKCE") {
-      removeSecret = true
-    }
-  }
-
-  if (removeSecret) {
+  if (currentOAuthGrantTypeFormElements.value) {
+    let removeSecret = false
     for (let i = 0; i < currentOAuthGrantTypeFormElements.value.length; i++) {
       const element = currentOAuthGrantTypeFormElements.value[i]
-      if (element.id === "clientSecret") {
-        console.log("Removing client secret")
-        element.ref.value = ""
+      if (element.id === "isPKCE") {
+        removeSecret = true
       }
     }
+    if (removeSecret) {
+      for (let i = 0; i < currentOAuthGrantTypeFormElements.value.length; i++) {
+        const element = currentOAuthGrantTypeFormElements.value[i]
+        if (element.id === "clientSecret") {
+          console.log("Removing client secret")
+          element.ref.value = ""
+        }
+      }
+    }
+    if (auth.value.grantTypeInfo.grantType === "AUTHORIZATION_CODE") {
+      for (let i = 0; i < currentOAuthGrantTypeFormElements.value.length; i++) {
+        const element = currentOAuthGrantTypeFormElements.value[i]
+        if (element.id === "authEndpoint") {
+          element.ref.value =
+            "https://login.microsoftonline.com/67416604-6509-4014-9859-45e709f53d3f/oauth2/v2.0/authorize"
+        }
+        if (element.id === "tokenEndpoint") {
+          element.ref.value =
+            "https://login.microsoftonline.com/67416604-6509-4014-9859-45e709f53d3f/oauth2/v2.0/token"
+        }
+        if (element.id === "isPKCE") {
+          element.ref.value = true
+          removeSecret = true
+        }
+      }
+    } else {
+      for (let i = 0; i < currentOAuthGrantTypeFormElements.value.length; i++) {
+        const element = currentOAuthGrantTypeFormElements.value[i]
+        if (element.id === "authEndpoint") {
+          element.ref.value =
+            "https://login.microsoftonline.com/67416604-6509-4014-9859-45e709f53d3f/oauth2/v2.0/token"
+        }
+      }
+    }
+
+    auth.value.addTo = addToTargets[0].id
+
+    toast.success("Set Schaeffler Token Endpoints")
   }
-
-  for (let i = 0; i < currentOAuthGrantTypeFormElements.value.length; i++) {
-    const element = currentOAuthGrantTypeFormElements.value[i]
-    if (element.id === "authEndpoint") {
-      element.ref.value =
-        "https://login.microsoftonline.com/67416604-6509-4014-9859-45e709f53d3f/oauth2/v2.0/authorize"
-    }
-    if (element.id === "tokenEndpoint") {
-      element.ref.value =
-        "https://login.microsoftonline.com/67416604-6509-4014-9859-45e709f53d3f/oauth2/v2.0/token"
-    }
-    if (element.id === "isPKCE") {
-      element.ref.value = true
-      removeSecret = true
-    }
-    console.log(element)
-  }
-
-  auth.value.addTo = addToTargets[0].id
-
-  toast.success("Set Schaeffler Token Endpoints")
 }
 
 type GrantTypes = z.infer<
@@ -1051,6 +1060,13 @@ const changeSelectedGrantType = (
         ...getDefaultPayload(),
         ...auth.value.grantTypeInfo,
       }
+    }
+    auth.value.grantTypeInfo.authEndpoint = ""
+    if (
+      "tokenEndpoint" in auth.value.grantTypeInfo &&
+      auth.value.grantTypeInfo.tokenEndpoint
+    ) {
+      auth.value.grantTypeInfo.tokenEndpoint = ""
     }
   }
 }
