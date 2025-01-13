@@ -4,7 +4,9 @@
       class="w-full flex justify-between items-center py-2"
       @click="toggleAccordion()"
     >
-      <span>Subscriptions</span>
+      <span class="flex-row flex"
+        ><IconSub class="mr-2 w-4 h-4 flex" />Subscriptions</span
+      >
       <span class="transition-transform duration-300">
         <HoppButtonSecondary class="flex pb-0 pt-0" :icon="icon" />
       </span>
@@ -20,15 +22,32 @@
         <HoppSmartSpinner />
         <span class="text-secondaryLight ml-2 mb-2"> Loading... </span>
       </div>
-      <div v-else-if="application.subscriptions.length === 0" class="pb-3">
-        No subscriptions found
-      </div>
       <div v-else>
         <div
           v-for="(subscription, index) in application.subscriptions"
           :key="index"
         >
-          {{ subscription }}
+          <div class="mb-2">
+            Product: <span class="item">{{ subscription.title }}</span>
+          </div>
+          <div
+            v-for="(proxy, proxyindex) in subscription.apiProxies"
+            :key="proxyindex"
+          >
+            <div class="grid grid-cols-12 gap-4 mb-2 ml-3">
+              <div class="col-span-4">
+                API: <span class="item">{{ proxy.name }}</span>
+              </div>
+              <div class="col-span-7 item user-select">
+                {{ "https://" + proxy.virtualHost + proxy.basePath }}
+              </div>
+              <HoppButtonSecondary
+                class="!py-0 bg-green-700 item"
+                label="Import"
+                @click="importAPI(proxy)"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -38,6 +57,7 @@
 import { ref, markRaw, watch } from "vue"
 import IconPlus from "~icons/lucide/plus"
 import IconMinus from "~icons/lucide/minus"
+import IconSub from "~icons/lucide/calendar-heart"
 
 const props = defineProps<{
   application: any
@@ -73,6 +93,10 @@ watch(
   }
 )
 
+function importAPI(proxy: any) {
+  console.log("Importing API", proxy)
+}
+
 function closeAccordion() {
   if (!content.value) return
   content.value.style.maxHeight = "0"
@@ -97,4 +121,11 @@ function toggleAccordion() {
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.item {
+  color: var(--secondary-dark-color);
+}
+.green {
+  color: var(--secondary-color);
+}
+</style>
