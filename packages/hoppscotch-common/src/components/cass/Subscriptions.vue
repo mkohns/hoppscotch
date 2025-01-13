@@ -125,7 +125,4 @@ function toggleAccordion() {
 .item {
   color: var(--secondary-dark-color);
 }
-.green {
-  color: var(--secondary-color);
-}
 </style>

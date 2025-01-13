@@ -80,7 +80,6 @@ declare module '@vue/runtime-core' {
     CollectionsTeamCollections: typeof import('./components/collections/TeamCollections.vue')['default']
     CookiesAllModal: typeof import('./components/cookies/AllModal.vue')['default']
     CookiesEditCookie: typeof import('./components/cookies/EditCookie.vue')['default']
-    copy: typeof import('./components/cass/Certificates copy.vue')['default']
     Embeds: typeof import('./components/embeds/index.vue')['default']
     EmbedsHeader: typeof import('./components/embeds/Header.vue')['default']
     EmbedsRequest: typeof import('./components/embeds/Request.vue')['default']

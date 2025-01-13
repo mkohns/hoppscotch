@@ -4,7 +4,9 @@
       class="w-full flex justify-between items-center py-2"
       @click="toggleAccordion()"
     >
-      <span>Permissions</span>
+      <span class="flex-row flex"
+        ><IconSub class="mr-2 w-4 h-4 flex" />Permissions</span
+      >
       <span class="transition-transform duration-300">
         <HoppButtonSecondary class="flex pb-0 pt-0" :icon="icon" />
       </span>
@@ -28,7 +30,22 @@
           v-for="(permission, index) in application.permissions"
           :key="index"
         >
-          {{ permission }}
+          <div class="grid grid-cols-12 gap-4 mb-2">
+            <div class="col-span-6 item">
+              {{ permission.name }}
+            </div>
+            <div class="col-span-3 item user-select">
+              {{ permission.status }}
+            </div>
+            <div class="col-span-2 item user-select">
+              {{ permission.type }}
+            </div>
+            <HoppButtonSecondary
+              class="!py-0 bg-green-700 item"
+              label="TryIt"
+              @click="tryit(proxy)"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -38,6 +55,7 @@
 import { ref, markRaw, watch } from "vue"
 import IconPlus from "~icons/lucide/plus"
 import IconMinus from "~icons/lucide/minus"
+import IconSub from "~icons/lucide/key-round"
 
 const props = defineProps<{
   application: any
@@ -73,6 +91,10 @@ watch(
   }
 )
 
+function tryit(proxy: any) {
+  console.log("TryIt", proxy)
+}
+
 function closeAccordion() {
   if (!content.value) return
   content.value.style.maxHeight = "0"
@@ -97,4 +119,8 @@ function toggleAccordion() {
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.item {
+  color: var(--secondary-dark-color);
+}
+</style>
