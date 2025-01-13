@@ -80,6 +80,7 @@
             <CassITSec :application="selectedApp" />
             <CassOwners :application="selectedApp" />
             <CassSecrets :application="selectedApp" />
+            <CassCertificates :application="selectedApp" />
             <CassSubscriptions
               :application="selectedApp"
               @on-load="loadSubscriptions()"

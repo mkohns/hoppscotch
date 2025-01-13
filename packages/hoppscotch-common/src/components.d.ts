@@ -43,6 +43,7 @@ declare module '@vue/runtime-core' {
     AppSpotlightSearch: typeof import('./components/app/SpotlightSearch.vue')['default']
     AppSupport: typeof import('./components/app/Support.vue')['default']
     AppWhatsNewDialog: typeof import('./components/app/WhatsNewDialog.vue')['default']
+    CassCertificates: typeof import('./components/cass/Certificates.vue')['default']
     CassHeader: typeof import('./components/cass/Header.vue')['default']
     CassITSec: typeof import('./components/cass/ITSec.vue')['default']
     CassOwners: typeof import('./components/cass/Owners.vue')['default']
