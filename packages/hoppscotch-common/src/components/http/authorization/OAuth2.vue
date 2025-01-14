@@ -426,6 +426,7 @@ const supportedGrantTypes = [
         }
 
         const res = await authCode.init(parsedArgs.data)
+        console.log(parsedArgs.data)
 
         if (E.isLeft(res)) {
           return res

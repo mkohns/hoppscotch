@@ -6,8 +6,9 @@ import { z } from "zod"
 import { InterceptorService } from "~/services/interceptor.service"
 
 import { AxiosRequestConfig } from "axios"
+import { platform } from "~/platform"
 
-const redirectUri = `${window.location.origin}/oauth`
+const redirectUri = "schaeffler-postboy://localhost:3000/oauth"
 
 const interceptorService = getService(InterceptorService)
 const persistenceService = getService(PersistenceService)
@@ -199,7 +200,10 @@ const tokenRequest = async ({
     )}&code_challenge_method=S256`
 
   // Redirect to the authorization server
-  window.location.assign(buildUrl())
+  // window.location.assign(buildUrl())
+  console.log("buildUrl", buildUrl())
+
+  platform.io.openExternalLink(buildUrl())
 }
 
 // OAUTH REDIRECT HANDLING

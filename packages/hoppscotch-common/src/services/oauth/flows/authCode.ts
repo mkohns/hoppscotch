@@ -11,6 +11,7 @@ import { getService } from "~/modules/dioc"
 import * as E from "fp-ts/Either"
 import { InterceptorService } from "~/services/interceptor.service"
 import { AuthCodeGrantTypeParams } from "@hoppscotch/data"
+import { platform } from "~/platform"
 
 const persistenceService = getService(PersistenceService)
 const interceptorService = getService(InterceptorService)
@@ -160,7 +161,8 @@ const initAuthCodeOauthFlow = async ({
   }
 
   // Redirect to the authorization server
-  window.location.assign(url.toString())
+  //window.location.assign(url.toString())
+  platform.io.openExternalLink(url.toString())
 
   return E.right(undefined)
 }

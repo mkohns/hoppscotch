@@ -117,7 +117,8 @@ export const decodeResponseAsJSON = (response: { data: any }) => {
 export class OauthAuthService extends Service {
   public static readonly ID = "OAUTH_AUTH_SERVICE"
 
-  static redirectURI = `${window.location.origin}/oauth`
+  //static redirectURI = `${window.location.origin}/oauth`
+  static redirectURI = "postboy://localhost:3000/oauth"
 }
 
 export const generateRandomString = () => {

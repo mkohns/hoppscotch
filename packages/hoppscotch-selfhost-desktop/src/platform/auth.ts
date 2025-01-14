@@ -323,8 +323,15 @@ export const def: AuthPlatformDef = {
     await setInitialUser()
 
     await listen("scheme-request-received", async (event: any) => {
-      let deep_link = event.payload as string
+      console.log("scheme-request-received", event)
 
+      if (event.payload.startsWith("postboy://localhost:3000/oauth")) {
+        const url = event.payload.replace("postboy://localhost:3000", "")
+        window.location.href = url
+        return
+      }
+
+      let deep_link = event.payload as string
       const params = new URLSearchParams(deep_link.split("?")[1])
       const accessToken = params.get("access_token")
       const refreshToken = params.get("refresh_token")

@@ -23,8 +23,6 @@ export async function createHoppApp(
   el: string | Element,
   platformDef: PlatformDef
 ) {
-  await initMSAL()
-
   setPlatformDef(platformDef)
 
   const pinia = createPinia()
@@ -36,6 +34,8 @@ export async function createHoppApp(
 
   HOPP_MODULES.forEach((mod) => mod.onVueAppInit?.(app))
   platformDef.addedHoppModules?.forEach((mod) => mod.onVueAppInit?.(app))
+
+  await initMSAL()
 
   // TODO: Explore possibilities of moving this invocation to the service constructor
   // `toast` was coming up as `null` in the previous attempts
