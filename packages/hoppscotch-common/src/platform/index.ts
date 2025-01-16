@@ -15,12 +15,14 @@ import { LimitsPlatformDef } from "./limits"
 import { SettingsPlatformDef } from "./settings"
 import { SpotlightPlatformDef } from "./spotlight"
 import { UIPlatformDef } from "./ui"
+import { RedirectPlatformDef } from "./redirect"
 
 export type PlatformDef = {
   ui?: UIPlatformDef
   addedHoppModules?: HoppModule[]
   addedServices?: Array<ServiceClassInstance<unknown>>
   auth: AuthPlatformDef
+  redirect: RedirectPlatformDef
   analytics?: AnalyticsPlatformDef
   io: IOPlatformDef
   sync: {

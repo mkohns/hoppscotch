@@ -32,6 +32,7 @@ import { AccessTokenModule } from './access-token/access-token.module';
 import { UserLastActiveOnInterceptor } from './interceptors/user-last-active-on.interceptor';
 import { InfraTokenModule } from './infra-token/infra-token.module';
 import { UserPhotoModule } from './userPhoto/userPhoto.module';
+import { FileServeModule } from './file-serve/file-serve.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -124,6 +125,7 @@ import { UserPhotoModule } from './userPhoto/userPhoto.module';
     TeamEnvironmentsModule,
     TeamCollectionModule,
     UserPhotoModule,
+    FileServeModule,
     TeamRequestModule,
     TeamInvitationModule,
     UserCollectionModule,

@@ -68,6 +68,7 @@ function translateOAuthRedirectError(error: string) {
 }
 
 onMounted(async () => {
+  console.log("OAuth.vue onMounted")
   const localOAuthTempConfig =
     persistenceService.getLocalConfig("oauth_temp_config")
 

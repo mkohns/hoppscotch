@@ -1,10 +1,11 @@
 import { createHoppApp } from "@hoppscotch/common"
-import { def as authDef } from "./platform/auth"
+import { def as authDef } from "./platform/auth/auth.platform"
+import { def as redirectDef } from "./platform/redirect"
 import { def as environmentsDef } from "./platform/environments/environments.platform"
 import { def as collectionsDef } from "./platform/collections/collections.platform"
 import { def as settingsDef } from "./platform/settings/settings.platform"
 import { def as historyDef } from "./platform/history/history.platform"
-import { proxyInterceptor } from "@hoppscotch/common/platform/std/interceptors/proxy"
+//import { proxyInterceptor } from "@hoppscotch/common/platform/std/interceptors/proxy"
 import { NativeInterceptorService } from "./platform/interceptors/native"
 import { nextTick, ref, watch } from "vue"
 import { emit, listen } from "@tauri-apps/api/event"
@@ -41,6 +42,7 @@ const headerPaddingTop = ref("0px")
     },
     io: ioDef,
     auth: authDef,
+    redirect: redirectDef,
     sync: {
       environments: environmentsDef,
       collections: collectionsDef,

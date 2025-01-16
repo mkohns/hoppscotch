@@ -692,12 +692,16 @@ export class NativeInterceptorService extends Service implements Interceptor {
         )
 
         try {
-          console.log(requestDef)
+          console.log("native Interceptor request:", requestDef)
+          // TODO: add this to a pinia store
 
           const response: RunRequestResponse = await invoke(
             "plugin:hopp_native_interceptor|run_request",
             { req: requestDef }
           )
+
+          console.log("native Interceptor response:", response)
+          // TODO: add this to a pinia store
 
           return E.right({
             headers: Object.fromEntries(

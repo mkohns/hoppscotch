@@ -4,86 +4,94 @@ import {
   runMutation,
 } from "@hoppscotch/common/helpers/backend/GQLClient"
 import {
-  CreateGqlChildUserCollectionDocument,
-  CreateGqlChildUserCollectionMutation,
-  CreateGqlChildUserCollectionMutationVariables,
-  CreateGqlRootUserCollectionDocument,
-  CreateGqlRootUserCollectionMutation,
-  CreateGqlRootUserCollectionMutationVariables,
-  CreateGqlUserRequestDocument,
-  CreateGqlUserRequestMutation,
-  CreateGqlUserRequestMutationVariables,
-  CreateRestChildUserCollectionDocument,
-  CreateRestChildUserCollectionMutation,
-  CreateRestChildUserCollectionMutationVariables,
   CreateRestRootUserCollectionDocument,
   CreateRestRootUserCollectionMutation,
   CreateRestRootUserCollectionMutationVariables,
-  CreateRestUserRequestDocument,
   CreateRestUserRequestMutation,
   CreateRestUserRequestMutationVariables,
-  DeleteUserCollectionDocument,
+  CreateRestUserRequestDocument,
+  CreateRestChildUserCollectionMutation,
+  CreateRestChildUserCollectionMutationVariables,
+  CreateRestChildUserCollectionDocument,
   DeleteUserCollectionMutation,
   DeleteUserCollectionMutationVariables,
-  DeleteUserRequestDocument,
-  DeleteUserRequestMutation,
-  DeleteUserRequestMutationVariables,
-  ExportUserCollectionsToJsonDocument,
-  ExportUserCollectionsToJsonQuery,
-  ExportUserCollectionsToJsonQueryVariables,
-  GetGqlRootUserCollectionsDocument,
-  GetGqlRootUserCollectionsQuery,
-  GetGqlRootUserCollectionsQueryVariables,
-  GetUserRootCollectionsDocument,
-  GetUserRootCollectionsQuery,
-  GetUserRootCollectionsQueryVariables,
-  MoveUserCollectionDocument,
+  DeleteUserCollectionDocument,
+  RenameUserCollectionMutation,
+  RenameUserCollectionMutationVariables,
+  RenameUserCollectionDocument,
   MoveUserCollectionMutation,
   MoveUserCollectionMutationVariables,
+  MoveUserCollectionDocument,
+  DeleteUserRequestMutation,
+  DeleteUserRequestMutationVariables,
+  DeleteUserRequestDocument,
   MoveUserRequestDocument,
   MoveUserRequestMutation,
   MoveUserRequestMutationVariables,
-  RenameUserCollectionDocument,
-  RenameUserCollectionMutation,
-  RenameUserCollectionMutationVariables,
-  ReqType,
-  UpdateGqlUserRequestDocument,
-  UpdateGqlUserRequestMutation,
-  UpdateGqlUserRequestMutationVariables,
-  UpdateRestUserRequestDocument,
-  UpdateRestUserRequestMutation,
-  UpdateRestUserRequestMutationVariables,
-  UpdateUserCollectionOrderDocument,
   UpdateUserCollectionOrderMutation,
   UpdateUserCollectionOrderMutationVariables,
+  UpdateUserCollectionOrderDocument,
+  GetUserRootCollectionsQuery,
+  GetUserRootCollectionsQueryVariables,
+  GetUserRootCollectionsDocument,
   UserCollectionCreatedDocument,
-  UserCollectionDuplicatedDocument,
+  UserCollectionUpdatedDocument,
+  UserCollectionRemovedDocument,
   UserCollectionMovedDocument,
   UserCollectionOrderUpdatedDocument,
-  UserCollectionRemovedDocument,
-  UserCollectionUpdatedDocument,
+  UserCollectionDuplicatedDocument,
+  ExportUserCollectionsToJsonQuery,
+  ExportUserCollectionsToJsonQueryVariables,
+  ExportUserCollectionsToJsonDocument,
   UserRequestCreatedDocument,
-  UserRequestDeletedDocument,
-  UserRequestMovedDocument,
   UserRequestUpdatedDocument,
+  UserRequestMovedDocument,
+  UserRequestDeletedDocument,
+  UpdateRestUserRequestMutation,
+  UpdateRestUserRequestMutationVariables,
+  UpdateRestUserRequestDocument,
+  CreateGqlRootUserCollectionMutation,
+  CreateGqlRootUserCollectionMutationVariables,
+  CreateGqlRootUserCollectionDocument,
+  CreateGqlUserRequestMutation,
+  CreateGqlUserRequestMutationVariables,
+  CreateGqlUserRequestDocument,
+  CreateGqlChildUserCollectionMutation,
+  CreateGqlChildUserCollectionMutationVariables,
+  CreateGqlChildUserCollectionDocument,
+  UpdateGqlUserRequestMutation,
+  UpdateGqlUserRequestMutationVariables,
+  UpdateGqlUserRequestDocument,
+  GetGqlRootUserCollectionsQuery,
+  GetGqlRootUserCollectionsQueryVariables,
+  GetGqlRootUserCollectionsDocument,
+  ReqType,
+  UpdateUserCollectionMutation,
+  UpdateUserCollectionMutationVariables,
+  UpdateUserCollectionDocument,
+  DuplicateUserCollectionDocument,
+  DuplicateUserCollectionMutation,
+  DuplicateUserCollectionMutationVariables,
 } from "../../api/generated/graphql"
 
-export const createRESTRootUserCollection = (title: string) =>
+export const createRESTRootUserCollection = (title: string, data?: string) =>
   runMutation<
     CreateRestRootUserCollectionMutation,
     CreateRestRootUserCollectionMutationVariables,
     ""
   >(CreateRestRootUserCollectionDocument, {
     title,
+    data,
   })()
 
-export const createGQLRootUserCollection = (title: string) =>
+export const createGQLRootUserCollection = (title: string, data?: string) =>
   runMutation<
     CreateGqlRootUserCollectionMutation,
     CreateGqlRootUserCollectionMutationVariables,
     ""
   >(CreateGqlRootUserCollectionDocument, {
     title,
+    data,
   })()
 
 export const createRESTUserRequest = (
@@ -118,7 +126,8 @@ export const createGQLUserRequest = (
 
 export const createRESTChildUserCollection = (
   title: string,
-  parentUserCollectionID: string
+  parentUserCollectionID: string,
+  data?: string
 ) =>
   runMutation<
     CreateRestChildUserCollectionMutation,
@@ -127,11 +136,13 @@ export const createRESTChildUserCollection = (
   >(CreateRestChildUserCollectionDocument, {
     title,
     parentUserCollectionID,
+    data,
   })()
 
 export const createGQLChildUserCollection = (
   title: string,
-  parentUserCollectionID: string
+  parentUserCollectionID: string,
+  data?: string
 ) =>
   runMutation<
     CreateGqlChildUserCollectionMutation,
@@ -140,6 +151,7 @@ export const createGQLChildUserCollection = (
   >(CreateGqlChildUserCollectionDocument, {
     title,
     parentUserCollectionID,
+    data,
   })()
 
 export const deleteUserCollection = (userCollectionID: string) =>
@@ -161,6 +173,17 @@ export const renameUserCollection = (
     ""
   >(RenameUserCollectionDocument, { userCollectionID, newTitle })()
 
+export const updateUserCollection = (
+  userCollectionID: string,
+  newTitle?: string,
+  data?: string
+) =>
+  runMutation<
+    UpdateUserCollectionMutation,
+    UpdateUserCollectionMutationVariables,
+    ""
+  >(UpdateUserCollectionDocument, { userCollectionID, newTitle, data })()
+
 export const moveUserCollection = (
   sourceCollectionID: string,
   destinationCollectionID?: string
@@ -172,6 +195,19 @@ export const moveUserCollection = (
   >(MoveUserCollectionDocument, {
     userCollectionID: sourceCollectionID,
     destCollectionID: destinationCollectionID,
+  })()
+
+export const duplicateUserCollection = (
+  collectionID: string,
+  reqType: ReqType
+) =>
+  runMutation<
+    DuplicateUserCollectionMutation,
+    DuplicateUserCollectionMutationVariables,
+    ""
+  >(DuplicateUserCollectionDocument, {
+    collectionID,
+    reqType,
   })()
 
 export const editUserRequest = (

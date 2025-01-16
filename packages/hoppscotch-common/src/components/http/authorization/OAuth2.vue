@@ -223,6 +223,7 @@ import { GQLTabService } from "~/services/tab/graphql"
 import { RESTTabService } from "~/services/tab/rest"
 import IconCircle from "~icons/lucide/circle"
 import IconCircleDot from "~icons/lucide/circle-dot"
+import { useRouter } from "vue-router"
 
 const t = useI18n()
 const toast = useToast()
@@ -230,6 +231,8 @@ const toast = useToast()
 const gqlTabsService = useService(GQLTabService)
 const persistenceService = useService(PersistenceService)
 const restTabsService = useService(RESTTabService)
+
+const router = useRouter()
 
 const props = defineProps<{
   modelValue: HoppRESTAuthOAuth2 | HoppGQLAuthOAuth2
@@ -425,8 +428,9 @@ const supportedGrantTypes = [
           return E.left("VALIDATION_FAILED" as const)
         }
 
-        const res = await authCode.init(parsedArgs.data)
-        console.log(parsedArgs.data)
+        console.log("OAuth2 -> runAction: params ", parsedArgs.data)
+        const res = await authCode.init(parsedArgs.data, router)
+        console.log("OAuth2 -> runAction: res: ", res)
 
         if (E.isLeft(res)) {
           return res
@@ -1138,9 +1142,11 @@ const generateOAuthToken = async () => {
       "oauth_temp_config",
       JSON.stringify(authConfig)
     )
+    console.log("authConfig: ", authConfig)
   }
 
   const res = await runAction.value?.()
+  console.log("res: ", res)
 
   if (res && E.isLeft(res)) {
     const errorMessages = {

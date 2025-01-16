@@ -17,16 +17,18 @@ mod win;
 
 mod interceptor;
 mod interop;
+mod oauth2;
 
 use tauri::Manager;
 
 fn main() {
+    println!("Starting Tauri for Schaeffler Postboy");
     let _ = fix_path_env::fix(); // <---- Add this    
     tauri_plugin_deep_link::prepare("com.schaeffler.postboy");
 
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
-            interop::startup::init::interop_startup_init
+            interop::startup::init::interop_startup_init,oauth2::start_server
         ])
         .plugin(
             tauri_plugin_window_state::Builder::default()
@@ -52,6 +54,7 @@ fn main() {
         )
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(interceptor::init())
+        .plugin(tauri_plugin_oauth::init())
         .setup(|app| {
             if cfg!(target_os = "macos") {
                 #[cfg(target_os = "macos")]

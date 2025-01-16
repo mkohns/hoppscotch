@@ -4,14 +4,17 @@ import {
   AuthPlatformDef,
   HoppUser,
 } from "@hoppscotch/common/platform/auth"
+import { def as redirect } from "../redirect"
 import { PersistenceService } from "@hoppscotch/common/services/persistence"
-import { listen } from "@tauri-apps/api/event"
 import { Body, getClient } from "@tauri-apps/api/http"
 import { open } from "@tauri-apps/api/shell"
 import { BehaviorSubject, Subject } from "rxjs"
 import { Store } from "tauri-plugin-store-api"
 import { Ref, ref, watch } from "vue"
 import * as E from "fp-ts/Either"
+import { html } from "./postboy-login-page"
+import { getPortFromUrl } from "@hoppscotch/common/helpers/oauth"
+import { getAllowedAuthProviders, updateUserDisplayName } from "./auth.api"
 
 export const authEvents$ = new Subject<AuthEvent | { event: "token_refresh" }>()
 const currentUser$ = new BehaviorSubject<HoppUser | null>(null)
@@ -46,6 +49,42 @@ async function signInUserWithGoogleFB() {
 }
 
 async function signInUserWithMicrosoftFB() {
+  const redirectPort = getPortFromUrl(
+    import.meta.env.VITE_POSTBOY_LOGIN_REDIRECT_URL
+  )
+
+  await redirect.cancel(redirectPort).catch((error) => {
+    console.log("Error in cancel", error)
+  })
+  const port = await redirect.start({
+    ports: [redirectPort],
+    response: html.replaceAll(
+      "VITE_BACKEND_API_URL",
+      import.meta.env.VITE_BACKEND_API_URL
+    ),
+  })
+  console.log("Redirect Port: ", port)
+
+  const redirectURL = import.meta.env.VITE_POSTBOY_LOGIN_REDIRECT_URL
+
+  const unlisten = await redirect.onUrl(async (url: string) => {
+    console.log("Received OAuth URL:", url)
+    console.log("Expected OAuth URL:", redirectURL)
+    if (!url.startsWith(redirectURL)) {
+      console.log("Ignoring URL")
+      unlisten()
+      return
+    }
+    // Process the OAuth URL...
+    console.log("Unlisten:", unlisten)
+    unlisten()
+
+    await setAuthParams(url)
+
+    window.location.href = "/"
+    return
+  })
+
   await open(
     `${
       import.meta.env.VITE_BACKEND_API_URL
@@ -260,6 +299,24 @@ async function setAuthCookies(rawHeaders: Array<String>) {
   await store.save()
 }
 
+async function setAuthParams(url: string) {
+  const params = new URLSearchParams(url.split("?")[1])
+  const accessToken = params.get("access_token")
+  const refreshToken = params.get("refresh_token")
+
+  function isNotNullOrUndefined(x: any) {
+    return x !== null && x !== undefined
+  }
+
+  if (isNotNullOrUndefined(accessToken) && isNotNullOrUndefined(refreshToken)) {
+    const store = new Store(APP_DATA_PATH)
+    console.log("Persisting access token and refresh token")
+    await store.set("access_token", { value: accessToken })
+    await store.set("refresh_token", { value: refreshToken })
+    await store.save()
+  }
+}
+
 export const def: AuthPlatformDef = {
   getCurrentUserStream: () => currentUser$,
   getAuthEventsStream: () => authEvents$,
@@ -322,6 +379,7 @@ export const def: AuthPlatformDef = {
     probableUser$.next(probableUser)
     await setInitialUser()
 
+    /*
     await listen("scheme-request-received", async (event: any) => {
       console.log("scheme-request-received", event)
 
@@ -367,6 +425,7 @@ export const def: AuthPlatformDef = {
         await setInitialUser()
       }
     })
+    */
   },
 
   waitProbableLoginToConfirm() {
@@ -439,15 +498,6 @@ export const def: AuthPlatformDef = {
     return
   },
 
-  async getAllowedAuthProviders() {
-    console.log("getAllowedAuthProviders")
-    const client = await getClient()
-    const res = await client.get(
-      `${import.meta.env.VITE_BACKEND_API_URL}/auth/providers`
-    )
-    return E.right(res.data.providers)
-  },
-
   async signOutUser() {
     // if (!currentUser$.value) throw new Error("No user has logged in")
 
@@ -461,4 +511,5 @@ export const def: AuthPlatformDef = {
       event: "logout",
     })
   },
+  getAllowedAuthProviders,
 }

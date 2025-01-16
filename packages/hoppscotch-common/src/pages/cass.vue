@@ -104,6 +104,9 @@ import IconLogOut from "~icons/lucide/log-out"
 import IconRefreshCW from "~icons/lucide/refresh-cw"
 //import { useToast } from "@composables/toast"
 import { Application, useCASSStore } from "~/stores/cass"
+import { platform } from "../platform"
+import { html } from "./cass-redirect-page"
+import { getPortFromUrl } from "~/helpers/oauth"
 
 import "splitpanes/dist/splitpanes.css"
 
@@ -153,9 +156,52 @@ function getEnvironmentShort(environment: string | null) {
   }
 }
 
-function login() {
+async function login() {
+  console.log("Login")
+
+  const redirectPort = getPortFromUrl(
+    import.meta.env.VITE_POSTBOY_CASS_REDIRECT_URL
+  )
+
+  console.log("Stopping any existing redirect server")
+  await platform.redirect.cancel(redirectPort).catch((error) => {
+    console.error("Error stopping redirect server", error)
+  })
+  console.log("Starting")
+
+  const port = await platform.redirect.start({
+    ports: [redirectPort],
+    response: html.replaceAll(
+      "VITE_BACKEND_API_URL",
+      import.meta.env.VITE_BACKEND_API_URL
+    ),
+  })
+
+  console.log("Redirect Port: ", port)
+  const redirectURL = import.meta.env.VITE_POSTBOY_CASS_REDIRECT_URL
+  console.log("Redirect URL: ", redirectURL)
+
+  const unlisten = await platform.redirect.onUrl((url) => {
+    console.log("Received OAuth URL:", url)
+    console.log("Expected URL:", redirectURL)
+    if (!url.startsWith(redirectURL)) {
+      console.log("Ignoring URL")
+      unlisten()
+      return
+    }
+    // Process the OAuth URL...
+    console.log("Unlisten:", unlisten)
+    unlisten()
+    const msalURL = url.replace(redirectURL, "")
+    console.log("MSAL URL:", msalURL)
+    msal.instance.handleRedirectPromise(msalURL).catch((error) => {
+      console.log("handleRedirectPromise error", error)
+      return
+    })
+  })
   msal.instance.loginRedirect({
     scopes: ["user.read"],
+    redirectUri: redirectURL,
   })
 }
 
@@ -170,6 +216,11 @@ function logout() {
 
   msal.instance.logoutRedirect({
     account: account,
+    onRedirectNavigate: (url) => {
+      // Return false if you would like to stop navigation after local logout
+      console.log("Pseudo Redirecting to:", url)
+      return false
+    },
   })
 }
 </script>

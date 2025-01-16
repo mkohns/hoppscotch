@@ -1,6 +1,5 @@
 import { PersistenceService } from "~/services/persistence"
 import {
-  OauthAuthService,
   PersistedOAuthConfig,
   createFlowConfig,
   decodeResponseAsJSON,
@@ -12,6 +11,9 @@ import * as E from "fp-ts/Either"
 import { InterceptorService } from "~/services/interceptor.service"
 import { AuthCodeGrantTypeParams } from "@hoppscotch/data"
 import { platform } from "~/platform"
+import { html } from "./authCode-redirect-page"
+import { Router } from "vue-router"
+import { getPortFromUrl } from "~/helpers/oauth"
 
 const persistenceService = getService(PersistenceService)
 const interceptorService = getService(InterceptorService)
@@ -65,15 +67,26 @@ export const getDefaultAuthCodeOauthFlowParams =
     codeVerifierMethod: "S256",
   })
 
-const initAuthCodeOauthFlow = async ({
-  tokenEndpoint,
-  clientID,
-  clientSecret,
-  scopes,
-  authEndpoint,
-  isPKCE,
-  codeVerifierMethod,
-}: AuthCodeOauthFlowParams) => {
+const initAuthCodeOauthFlow = async (
+  {
+    tokenEndpoint,
+    clientID,
+    clientSecret,
+    scopes,
+    authEndpoint,
+    isPKCE,
+    codeVerifierMethod,
+  }: AuthCodeOauthFlowParams,
+  router?: Router
+) => {
+  console.log("initAuthCodeOauthFlow: tokenEndpoint", tokenEndpoint)
+  console.log("initAuthCodeOauthFlow: clientID", clientID)
+  console.log("initAuthCodeOauthFlow: clientSecret", clientSecret)
+  console.log("initAuthCodeOauthFlow: scopes", scopes)
+  console.log("initAuthCodeOauthFlow: authEndpoint", authEndpoint)
+  console.log("initAuthCodeOauthFlow: isPKCE", isPKCE)
+  console.log("initAuthCodeOauthFlow: codeVerifierMethod", codeVerifierMethod)
+
   const state = generateRandomString()
 
   let codeVerifier: string | undefined
@@ -119,12 +132,16 @@ const initAuthCodeOauthFlow = async ({
     }
   }
 
+  console.log("oauthTempConfig: ", oauthTempConfig)
+
   const localOAuthTempConfig =
     persistenceService.getLocalConfig("oauth_temp_config")
 
   const persistedOAuthConfig: PersistedOAuthConfig = localOAuthTempConfig
     ? { ...JSON.parse(localOAuthTempConfig) }
     : {}
+
+  console.log("persistedOAuthConfig: ", persistedOAuthConfig)
 
   const { grant_type, ...rest } = oauthTempConfig
 
@@ -147,11 +164,13 @@ const initAuthCodeOauthFlow = async ({
     return E.left("INVALID_AUTH_ENDPOINT")
   }
 
+  const redirectURL = import.meta.env.VITE_POSTBOY_OAUTH_REDIRECT_URL
+
   url.searchParams.set("grant_type", "authorization_code")
   url.searchParams.set("client_id", clientID)
   url.searchParams.set("state", state)
   url.searchParams.set("response_type", "code")
-  url.searchParams.set("redirect_uri", OauthAuthService.redirectURI)
+  url.searchParams.set("redirect_uri", redirectURL)
 
   if (scopes) url.searchParams.set("scope", scopes)
 
@@ -160,7 +179,41 @@ const initAuthCodeOauthFlow = async ({
     url.searchParams.set("code_challenge_method", codeVerifierMethod)
   }
 
-  // Redirect to the authorization server
+  // Okay ready now, open the redirect server
+  const redirectPort = getPortFromUrl(
+    import.meta.env.VITE_POSTBOY_OAUTH_REDIRECT_URL
+  )
+
+  await platform.redirect.cancel(redirectPort).catch((error) => {
+    console.log("Could not cancel server: ", error)
+  })
+
+  await platform.redirect.start({
+    ports: [redirectPort],
+    response: html.replaceAll(
+      "VITE_BACKEND_API_URL",
+      import.meta.env.VITE_BACKEND_API_URL
+    ),
+  })
+
+  const unlisten = await platform.redirect.onUrl((url) => {
+    console.log("Received OAuth URL:", url)
+    console.log("Expected URL:", redirectURL)
+    if (!url.startsWith(redirectURL)) {
+      console.log("Ignoring URL")
+      unlisten()
+      return
+    }
+    // Process the OAuth URL...
+    console.log("Unlisten:", unlisten)
+    unlisten()
+    const reload = url.replace(redirectURL, "/oauth")
+    console.log("Reload:", reload)
+    if (router) router.push(reload)
+    else window.location.href = reload
+  })
+
+  //Redirect to the authorization server
   //window.location.assign(url.toString())
   platform.io.openExternalLink(url.toString())
 
@@ -174,6 +227,10 @@ const handleRedirectForAuthCodeOauthFlow = async (localConfig: string) => {
   const code = params.get("code")
   const state = params.get("state")
   const error = params.get("error")
+
+  console.log("handleRedirectForAuthCodeOauthFlow, code: ", code)
+  console.log("handleRedirectForAuthCodeOauthFlow, state: ", state)
+  console.log("handleRedirectForAuthCodeOauthFlow, error: ", error)
 
   if (error) {
     return E.left("AUTH_SERVER_RETURNED_ERROR")
@@ -201,18 +258,23 @@ const handleRedirectForAuthCodeOauthFlow = async (localConfig: string) => {
     return E.left("INVALID_LOCAL_CONFIG")
   }
 
+  console.log("decodedLocalConfig: ", decodedLocalConfig)
+
   // check if the state matches
   if (decodedLocalConfig.data.state !== state) {
     return E.left("INVALID_STATE")
   }
 
+  console.log("State matches")
+
+  const redirectURL = import.meta.env.VITE_POSTBOY_OAUTH_REDIRECT_URL
   // exchange the code for a token
   const formData = new URLSearchParams()
   formData.append("grant_type", "authorization_code")
   formData.append("code", code)
   formData.append("client_id", decodedLocalConfig.data.clientID)
   formData.append("client_secret", decodedLocalConfig.data.clientSecret)
-  formData.append("redirect_uri", OauthAuthService.redirectURI)
+  formData.append("redirect_uri", redirectURL)
 
   if (decodedLocalConfig.data.codeVerifier) {
     formData.append("code_verifier", decodedLocalConfig.data.codeVerifier)
@@ -230,11 +292,15 @@ const handleRedirectForAuthCodeOauthFlow = async (localConfig: string) => {
 
   const res = await response
 
+  console.log("Token response: ", res)
+
   if (E.isLeft(res)) {
     return E.left("AUTH_TOKEN_REQUEST_FAILED" as const)
   }
 
   const responsePayload = decodeResponseAsJSON(res.right)
+
+  console.log("Token responsePayload: ", responsePayload)
 
   if (E.isLeft(responsePayload)) {
     return E.left("AUTH_TOKEN_REQUEST_FAILED" as const)

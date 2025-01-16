@@ -2855,6 +2855,7 @@ dependencies = [
  "tauri",
  "tauri-build",
  "tauri-plugin-deep-link",
+ "tauri-plugin-oauth",
  "tauri-plugin-store",
  "tauri-plugin-window-state",
  "thiserror",
@@ -3500,6 +3501,19 @@ dependencies = [
  "tauri-utils",
  "windows-sys 0.52.0",
  "winreg 0.52.0",
+]
+
+[[package]]
+name = "tauri-plugin-oauth"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9f16024d111ceeb8c633bff3f17299eb4ded2a8c9eed899e18c2db5462464ff4"
+dependencies = [
+ "httparse",
+ "log",
+ "serde",
+ "tauri",
+ "url",
 ]
 
 [[package]]

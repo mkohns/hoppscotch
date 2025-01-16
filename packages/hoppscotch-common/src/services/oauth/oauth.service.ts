@@ -7,6 +7,7 @@ import implicit, { ImplicitOauthFlowParams } from "./flows/implicit"
 import { getService } from "~/modules/dioc"
 import { HoppCollection } from "@hoppscotch/data"
 import { TeamCollection } from "~/helpers/backend/graphql"
+import { Router } from "vue-router"
 
 export type PersistedOAuthConfig = {
   source: "REST" | "GraphQL"
@@ -72,7 +73,8 @@ export function createFlowConfig<
   flow: Flow,
   params: ZodType<AuthParams>,
   init: (
-    params: AuthParams
+    params: AuthParams,
+    router?: Router
   ) =>
     | E.Either<string, InitFuncReturnObject>
     | Promise<E.Either<string, InitFuncReturnObject>>
@@ -118,7 +120,7 @@ export class OauthAuthService extends Service {
   public static readonly ID = "OAUTH_AUTH_SERVICE"
 
   //static redirectURI = `${window.location.origin}/oauth`
-  static redirectURI = "postboy://localhost:3000/oauth"
+  static redirectURI = import.meta.env.VITE_POSTBOY_OAUTH_REDIRECT_URL
 }
 
 export const generateRandomString = () => {

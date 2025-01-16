@@ -112,7 +112,7 @@ export const msalConfig = {
     authority:
       "https://login.microsoftonline.com/" +
       import.meta.env.VITE_MICROSOFT_TENANT,
-    redirectUri: "postboy://localhost:3000/oauth",
+    //redirectUri: "postboy://localhost:3000/oauth",
   },
   cache: {
     cacheLocation: "localStorage",
@@ -201,10 +201,12 @@ export const initMSAL = async () => {
 
   await msalInstance.initialize()
 
+  /*
   await msalInstance.handleRedirectPromise().catch((error) => {
     console.log("handleRedirectPromise error", error)
     return
   })
+  */
 
   // Account selection logic is app dependent. Adjust as needed for different use cases.
   const accounts = msalInstance.getAllAccounts()

@@ -8,8 +8,6 @@ import { InterceptorService } from "~/services/interceptor.service"
 import { AxiosRequestConfig } from "axios"
 import { platform } from "~/platform"
 
-const redirectUri = "schaeffler-postboy://localhost:3000/oauth"
-
 const interceptorService = getService(InterceptorService)
 const persistenceService = getService(PersistenceService)
 
@@ -194,7 +192,7 @@ const tokenRequest = async ({
     )}&state=${encodeURIComponent(state)}&scope=${encodeURIComponent(
       scope
     )}&redirect_uri=${encodeURIComponent(
-      redirectUri
+      import.meta.env.VITE_POSTBOY_OAUTH_REDIRECT_URL
     )}&code_challenge=${encodeURIComponent(
       codeChallenge
     )}&code_challenge_method=S256`
@@ -259,7 +257,7 @@ const handleOAuthRedirect = async () => {
     code: queryParams.code,
     client_id: clientID,
     client_secret: clientSecret,
-    redirect_uri: redirectUri,
+    redirect_uri: import.meta.env.VITE_POSTBOY_OAUTH_REDIRECT_URL,
     code_verifier: codeVerifier,
   })
 
@@ -317,4 +315,29 @@ async function runRequestThroughInterceptor(config: AxiosRequestConfig) {
   return E.right(data)
 }
 
-export { tokenRequest, handleOAuthRedirect }
+/**
+ * Extracts the port from a given URL. If no port is found, returns the default port based on the schema.
+ * @param urlString - The URL string to extract the port from.
+ * @returns The port number.
+ */
+function getPortFromUrl(urlString: string): number {
+  try {
+    const url = new URL(urlString)
+    if (url.port) {
+      return parseInt(url.port, 10)
+    }
+    switch (url.protocol) {
+      case "http:":
+        return 80
+      case "https:":
+        return 443
+      default:
+        throw new Error(`Unsupported protocol: ${url.protocol}`)
+    }
+  } catch (error) {
+    console.error(`Invalid URL: ${urlString}`, error)
+    throw error
+  }
+}
+
+export { tokenRequest, handleOAuthRedirect, getPortFromUrl }
