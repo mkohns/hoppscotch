@@ -61,6 +61,15 @@
               @keyup.escape="hide()"
             >
               <HoppSmartItem
+                ref="apicademy"
+                :icon="IconAPIcademy"
+                :label="`${t('app.apicademy')}`"
+                to="https://apicademy.dp.schaeffler/"
+                blank
+                :shortcut="['A']"
+                @click="hide()"
+              />
+              <HoppSmartItem
                 ref="documentation"
                 :icon="IconBook"
                 :label="`${t('app.documentation')}`"
@@ -229,6 +238,7 @@ import IconSidebarOpen from "~icons/lucide/sidebar-open"
 import IconShieldCheck from "~icons/lucide/shield-check"
 import IconHandShake from "~icons/lucide/handshake"
 import IconBook from "~icons/lucide/book"
+import IconAPIcademy from "~icons/lucide/graduation-cap"
 //import IconGithub from "~icons/lucide/github"
 //import IconTwitter from "~icons/lucide/twitter"
 //import IconUserPlus from "~icons/lucide/user-plus"
