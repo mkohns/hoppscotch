@@ -32,6 +32,11 @@
           :color="subStatus ? 'green' : 'red'"
           :label="subStatus ? 'Online' : 'Offline'"
         />
+        <HoppButtonSecondary
+          class="!rounded-none"
+          :label="getConsoleLabel()"
+          @click="LOGGER = !LOGGER"
+        />
       </div>
       <div class="flex">
         <tippy
@@ -240,7 +245,7 @@ import { invokeAction } from "@helpers/actions"
 import { HoppSmartItem } from "@hoppscotch/ui"
 import { gqlClientStatus$ } from "~/helpers/backend/GQLClient"
 import { Subscription } from "rxjs"
-
+import { useLoggerStore } from "~/stores/logger"
 const t = useI18n()
 
 const showDeveloperOptions = ref(false)
@@ -248,10 +253,17 @@ const showCookiesModal = ref(false)
 
 const EXPAND_NAVIGATION = useSetting("EXPAND_NAVIGATION")
 const SIDEBAR = useSetting("SIDEBAR")
+const LOGGER = useSetting("LOGGER")
 const COLUMN_LAYOUT = useSetting("COLUMN_LAYOUT")
 const SIDEBAR_ON_LEFT = useSetting("SIDEBAR_ON_LEFT")
 
+const { logs } = useLoggerStore()
+
 //const navigatorShare = !!navigator.share
+
+function getConsoleLabel() {
+  return "Console (" + logs.length + ")"
+}
 
 const currentUser = useReadonlyStream(
   platform.auth.getCurrentUserStream(),

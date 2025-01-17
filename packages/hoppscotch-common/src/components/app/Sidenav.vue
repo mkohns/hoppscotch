@@ -32,6 +32,7 @@ import IconGraphql from "~icons/hopp/graphql"
 import IconGlobe from "~icons/lucide/globe"
 import IconBookHeart from "~icons/lucide/book-heart"
 import IconSettings from "~icons/lucide/settings"
+import IconConsole from "~icons/lucide/bug-play"
 import { useSetting } from "@composables/settings"
 import { useI18n } from "@composables/i18n"
 
@@ -71,6 +72,12 @@ const primaryNavigation = [
     target: "/cass",
     svg: IconBookHeart,
     title: "navigation.cass",
+    exact: false,
+  },
+  {
+    target: "/console",
+    svg: IconConsole,
+    title: "navigation.console",
     exact: false,
   },
 ]

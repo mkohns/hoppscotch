@@ -18,6 +18,7 @@ import {
   ClientCertStore,
   StoredClientCert,
 } from "./persisted-data"
+import { useLoggerStore } from "@hoppscotch/common/stores/logger"
 
 type KeyValuePair = {
   key: string
@@ -661,7 +662,9 @@ export class NativeInterceptorService extends Service implements Interceptor {
   public runRequest(
     req: AxiosRequestConfig
   ): RequestRunResult<InterceptorError> {
+    console.log("Axios request:", req)
     const processedReq = preProcessRequest(req)
+    console.log("Processed request:", processedReq)
 
     const relevantCookies = this.cookieJarService.getCookiesForURL(
       new URL(processedReq.url!)
@@ -690,11 +693,11 @@ export class NativeInterceptorService extends Service implements Interceptor {
           this.validateCerts.value,
           this.proxyInfo.value
         )
-
+        const { addRequest, addResponse, addResponseError } = useLoggerStore()
         try {
           console.log("native Interceptor request:", requestDef)
           // TODO: add this to a pinia store
-
+          addRequest(requestDef)
           const response: RunRequestResponse = await invoke(
             "plugin:hopp_native_interceptor|run_request",
             { req: requestDef }
@@ -702,6 +705,7 @@ export class NativeInterceptorService extends Service implements Interceptor {
 
           console.log("native Interceptor response:", response)
           // TODO: add this to a pinia store
+          addResponse(reqID, response)
 
           return E.right({
             headers: Object.fromEntries(
@@ -722,6 +726,7 @@ export class NativeInterceptorService extends Service implements Interceptor {
           })
         } catch (e) {
           console.log(e)
+          addResponseError(reqID, e)
 
           if (typeof e === "object" && (e as any)["RequestCancelled"]) {
             return E.left("cancellation" as const)

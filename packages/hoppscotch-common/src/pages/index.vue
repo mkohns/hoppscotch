@@ -1,77 +1,90 @@
 <template>
   <div>
-    <AppPaneLayout layout-id="http">
-      <template #primary>
-        <HoppSmartWindows
-          v-if="currentTabID"
-          :id="'rest_windows'"
-          v-model="currentTabID"
-          @remove-tab="removeTab"
-          @add-tab="addNewTab"
-          @sort="sortTabs"
-        >
-          <HoppSmartWindow
-            v-for="tab in activeTabs"
-            :id="tab.id"
-            :key="tab.id"
-            :label="getTabName(tab)"
-            :is-removable="activeTabs.length > 1"
-            :close-visibility="'hover'"
-          >
-            <template v-if="tab.document.type === 'request'" #tabhead>
-              <HttpTabHead
-                :tab="tab"
+    <Splitpanes class="smart-splitter" horizontal>
+      <Pane>
+        <AppPaneLayout layout-id="http">
+          <template #primary>
+            <HoppSmartWindows
+              v-if="currentTabID"
+              :id="'rest_windows'"
+              v-model="currentTabID"
+              @remove-tab="removeTab"
+              @add-tab="addNewTab"
+              @sort="sortTabs"
+            >
+              <HoppSmartWindow
+                v-for="tab in activeTabs"
+                :id="tab.id"
+                :key="tab.id"
+                :label="getTabName(tab)"
                 :is-removable="activeTabs.length > 1"
-                @open-rename-modal="openReqRenameModal(tab.id)"
-                @close-tab="removeTab(tab.id)"
-                @close-other-tabs="closeOtherTabsAction(tab.id)"
-                @duplicate-tab="duplicateTab(tab.id)"
-                @share-tab-request="shareTabRequest(tab.id)"
-              />
-            </template>
-            <template #suffix>
-              <span
-                v-if="tab.document.isDirty"
-                class="flex w-4 items-center justify-center text-secondary group-hover:hidden"
+                :close-visibility="'hover'"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="1.2em"
-                  height="1.2em"
-                  class="h-1.5 w-1.5"
-                >
-                  <circle cx="12" cy="12" r="12" fill="currentColor"></circle>
-                </svg>
-              </span>
-            </template>
-            <HttpExampleResponseTab
-              v-if="tab.document.type === 'example-response'"
-              :model-value="tab"
-              @update:model-value="onTabUpdate"
-            />
-            <!-- Render TabContents -->
-            <HttpTestRunner
-              v-if="tab.document.type === 'test-runner'"
-              :model-value="tab"
-              @update:model-value="onTabUpdate"
-            />
-            <!-- When document.type === 'request' the tab type is HoppTab<HoppRequestDocument>-->
-            <HttpRequestTab
-              v-if="tab.document.type === 'request'"
-              :model-value="tab"
-              @update:model-value="onTabUpdate"
-            />
-            <!-- END Render TabContents -->
-          </HoppSmartWindow>
-          <template #actions>
-            <EnvironmentsSelector class="h-full" />
+                <template v-if="tab.document.type === 'request'" #tabhead>
+                  <HttpTabHead
+                    :tab="tab"
+                    :is-removable="activeTabs.length > 1"
+                    @open-rename-modal="openReqRenameModal(tab.id)"
+                    @close-tab="removeTab(tab.id)"
+                    @close-other-tabs="closeOtherTabsAction(tab.id)"
+                    @duplicate-tab="duplicateTab(tab.id)"
+                    @share-tab-request="shareTabRequest(tab.id)"
+                  />
+                </template>
+                <template #suffix>
+                  <span
+                    v-if="tab.document.isDirty"
+                    class="flex w-4 items-center justify-center text-secondary group-hover:hidden"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="1.2em"
+                      height="1.2em"
+                      class="h-1.5 w-1.5"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="12"
+                        fill="currentColor"
+                      ></circle>
+                    </svg>
+                  </span>
+                </template>
+                <HttpExampleResponseTab
+                  v-if="tab.document.type === 'example-response'"
+                  :model-value="tab"
+                  @update:model-value="onTabUpdate"
+                />
+                <!-- Render TabContents -->
+                <HttpTestRunner
+                  v-if="tab.document.type === 'test-runner'"
+                  :model-value="tab"
+                  @update:model-value="onTabUpdate"
+                />
+                <!-- When document.type === 'request' the tab type is HoppTab<HoppRequestDocument>-->
+                <HttpRequestTab
+                  v-if="tab.document.type === 'request'"
+                  :model-value="tab"
+                  @update:model-value="onTabUpdate"
+                />
+                <!-- END Render TabContents -->
+              </HoppSmartWindow>
+              <template #actions>
+                <EnvironmentsSelector class="h-full" />
+              </template>
+            </HoppSmartWindows>
           </template>
-        </HoppSmartWindows>
-      </template>
-      <template #sidebar>
-        <HttpSidebar />
-      </template>
-    </AppPaneLayout>
+          <template #sidebar>
+            <HttpSidebar />
+          </template>
+        </AppPaneLayout>
+      </Pane>
+      <Pane v-if="LOGGER" size="20" min-size="10">
+        <ConsoleView />
+      </Pane>
+    </Splitpanes>
+
     <CollectionsEditRequest
       v-model="reqName"
       :request-context="requestToRename"
@@ -153,6 +166,10 @@ import { RESTTabService } from "~/services/tab/rest"
 import { HoppTab } from "~/services/tab"
 import { HoppRequestDocument, HoppTabDocument } from "~/helpers/rest/document"
 import { AuthorizationInspectorService } from "~/services/inspection/inspectors/authorization.inspector"
+import { Pane, Splitpanes } from "splitpanes"
+import { useSetting } from "@composables/settings"
+
+import "splitpanes/dist/splitpanes.css"
 
 const savingRequest = ref(false)
 const confirmingCloseForTabID = ref<string | null>(null)
@@ -162,6 +179,7 @@ const reqName = ref<string>("")
 const unsavedTabsCount = ref(0)
 const exceptedTabID = ref<string | null>(null)
 const renameTabID = ref<string | null>(null)
+const LOGGER = useSetting("LOGGER")
 
 const t = useI18n()
 

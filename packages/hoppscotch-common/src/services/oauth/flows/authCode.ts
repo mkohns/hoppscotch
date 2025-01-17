@@ -14,9 +14,13 @@ import { platform } from "~/platform"
 import { html } from "./authCode-redirect-page"
 import { Router } from "vue-router"
 import { getPortFromUrl } from "~/helpers/oauth"
+import { useLoggerStore } from "~/stores/logger"
+import { rand } from "@vueuse/core"
 
 const persistenceService = getService(PersistenceService)
 const interceptorService = getService(InterceptorService)
+
+const { addRequest } = useLoggerStore()
 
 const AuthCodeOauthFlowParamsSchema = AuthCodeGrantTypeParams.pick({
   authEndpoint: true,
@@ -196,6 +200,8 @@ const initAuthCodeOauthFlow = async (
     ),
   })
 
+  const req_id = rand(1, 100000)
+
   const unlisten = await platform.redirect.onUrl((url) => {
     console.log("Received OAuth URL:", url)
     console.log("Expected URL:", redirectURL)
@@ -207,6 +213,17 @@ const initAuthCodeOauthFlow = async (
     // Process the OAuth URL...
     console.log("Unlisten:", unlisten)
     unlisten()
+    addRequest({
+      method: "GET",
+      endpoint: url.toString(),
+      parameters: [],
+      headers: [],
+      body: null,
+      validate_certs: true,
+      client_cert: null,
+      req_id: req_id,
+      root_cert_bundle_files: [],
+    })
     const reload = url.replace(redirectURL, "/oauth")
     console.log("Reload:", reload)
     if (router) router.push(reload)
@@ -215,6 +232,17 @@ const initAuthCodeOauthFlow = async (
 
   //Redirect to the authorization server
   //window.location.assign(url.toString())
+  addRequest({
+    method: "GET",
+    endpoint: url.toString(),
+    parameters: [],
+    headers: [],
+    body: null,
+    validate_certs: true,
+    client_cert: null,
+    req_id: req_id,
+    root_cert_bundle_files: [],
+  })
   platform.io.openExternalLink(url.toString())
 
   return E.right(undefined)

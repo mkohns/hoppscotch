@@ -69,6 +69,7 @@ export type SettingsDef = {
   EXPAND_NAVIGATION: boolean
   SIDEBAR: boolean
   SIDEBAR_ON_LEFT: boolean
+  LOGGER: boolean
   COLUMN_LAYOUT: boolean
 
   HAS_OPENED_SPOTLIGHT: boolean
@@ -124,6 +125,7 @@ export const getDefaultSettings = (): SettingsDef => ({
   EXPAND_NAVIGATION: false,
   SIDEBAR: true,
   SIDEBAR_ON_LEFT: false,
+  LOGGER: false,
   COLUMN_LAYOUT: true,
 
   HAS_OPENED_SPOTLIGHT: false,

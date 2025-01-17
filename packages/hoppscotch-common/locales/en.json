@@ -634,7 +634,8 @@
     "realtime": "Realtime",
     "rest": "REST",
     "settings": "Settings",
-    "cass": "CASS"
+    "cass": "CASS",
+    "console": "Console"
   },
   "preRequest": {
     "javascript_code": "JavaScript Code",
