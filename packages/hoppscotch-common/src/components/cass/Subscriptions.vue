@@ -51,6 +51,11 @@
         </div>
       </div>
     </div>
+    <AppFeatureAnnounce
+      :show="showFeatureAnnouncement"
+      :html="featureAnnouncement"
+      @hide-modal="showFeatureAnnouncement = false"
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -58,6 +63,23 @@ import { ref, markRaw, watch } from "vue"
 import IconPlus from "~icons/lucide/plus"
 import IconMinus from "~icons/lucide/minus"
 import IconSub from "~icons/lucide/calendar-heart"
+
+const showFeatureAnnouncement = ref<boolean>(false)
+const featureAnnouncement = ref<string>("")
+
+function importAPI(proxy: any) {
+  console.log("Importing API", proxy)
+  featureAnnouncement.value = `
+  <p><strong>You discovered an upcoming feature!</strong></p>
+  </br>
+  <p><strong>The idea: </strong>By pressing the "Import" button on an API, the OAS/Swagger will be downloaded and automatically imported into your collections!</p>
+  </br>
+  <p><strong>The value: </strong>Easy, one-click and hassle-free way to get all endpoints of an API setup in a ready-to-use collection!</p>
+  </br>
+  <p>You want it? Let us know!</p>
+  `
+  showFeatureAnnouncement.value = true
+}
 
 const props = defineProps<{
   application: any
@@ -92,10 +114,6 @@ watch(
     }
   }
 )
-
-function importAPI(proxy: any) {
-  console.log("Importing API", proxy)
-}
 
 function closeAccordion() {
   if (!content.value) return

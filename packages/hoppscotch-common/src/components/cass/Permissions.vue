@@ -43,12 +43,17 @@
             <HoppButtonSecondary
               class="!p-0 !focus-visible:text-emerald-600 !hover:text-emerald-600 !text-emerald-500 bg-emerald-500/10"
               label="TryIt"
-              @click="tryit(proxy)"
+              @click="tryit(permission)"
             />
           </div>
         </div>
       </div>
     </div>
+    <AppFeatureAnnounce
+      :show="showFeatureAnnouncement"
+      :html="featureAnnouncement"
+      @hide-modal="showFeatureAnnouncement = false"
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -56,6 +61,23 @@ import { ref, markRaw, watch } from "vue"
 import IconPlus from "~icons/lucide/plus"
 import IconMinus from "~icons/lucide/minus"
 import IconSub from "~icons/lucide/key-round"
+
+const showFeatureAnnouncement = ref<boolean>(false)
+const featureAnnouncement = ref<string>("")
+
+function tryit(proxy: any) {
+  console.log("TryIt", proxy)
+  featureAnnouncement.value = `
+  <p><strong>You discovered an upcoming feature!</strong></p>
+  </br>
+  <p><strong>The idea: </strong>By pressing the "TryIt" button on an approved permission, a new tab will open with all necessary configuration to get the token for that permission.</p>
+  </br>
+  <p><strong>The value: </strong>Easy, one-click and hassle-free way to get the token corresponding to the permission to speed up your journey.</p>
+  </br>
+  <p>You want it? Let us know!</p>
+  `
+  showFeatureAnnouncement.value = true
+}
 
 const props = defineProps<{
   application: any
@@ -90,10 +112,6 @@ watch(
     }
   }
 )
-
-function tryit(proxy: any) {
-  console.log("TryIt", proxy)
-}
 
 function closeAccordion() {
   if (!content.value) return
