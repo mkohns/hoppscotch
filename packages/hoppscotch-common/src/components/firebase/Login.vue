@@ -76,20 +76,9 @@
         v-if="mode === 'sign-in' && tosLink && privacyPolicyLink"
         class="text-tiny text-secondaryLight"
       >
-        By signing in, you are agreeing to our
-        <HoppSmartAnchor
-          class="link"
-          :to="tosLink"
-          blank
-          label="Terms of Service"
-        />
-        and
-        <HoppSmartAnchor
-          class="link"
-          :to="privacyPolicyLink"
-          blank
-          label="Privacy Policy"
-        />
+        Attention! This is an internal beta version of Schaeffler PostBoy.
+        Currently we do not provide SLAs or terms of service. Use on your own
+        risk.
       </div>
       <div v-if="mode === 'email'">
         <HoppButtonSecondary
