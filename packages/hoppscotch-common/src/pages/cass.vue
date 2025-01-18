@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="msal.accounts.length !== 0">
     <Splitpanes class="smart-splitter" style="height: 100%">
       <Pane size="25">
         <div class="flex flex-col h-full">
@@ -18,13 +18,6 @@
                 :icon="IconLogOut"
                 @click="logout()"
               />
-            </div>
-          </div>
-          <div v-if="msal.accounts.length === 0">
-            <div
-              class="m-4 flex flex-col items-center justify-center flex-grow"
-            >
-              <HoppButtonPrimary label="Login" outline @click="login()" />
             </div>
           </div>
           <div v-if="msal.accounts.length !== 0">
@@ -95,6 +88,13 @@
       </Pane>
     </Splitpanes>
   </div>
+  <div v-else>
+    <div class="flex flex-col h-full w-full justify-center items-center">
+      <img :src="getHenryImage()" class="flex w-1/5" />
+      <h3 class="flex heading">Please login to view your CASS applications</h3>
+      <HoppButtonPrimary class="flex mt-4" label="Login" @click="login()" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -126,6 +126,10 @@ function getClass(app: Application) {
     return "flex flex-row pl-4 pr-4 pt-3 pb-3 m-1 bg-blue-500/10"
   }
   return "flex flex-row pl-4 pr-4 pt-3 pb-3 m-1 item"
+}
+
+function getHenryImage() {
+  return import.meta.env.VITE_BACKEND_API_URL + "/files/henry"
 }
 
 function loadPermissions() {
