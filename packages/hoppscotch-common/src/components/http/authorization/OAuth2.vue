@@ -1,6 +1,8 @@
 <template>
-  <div class="flex items-center px-4 border-b border-dividerLight">
-    <label class="truncate font-semibold text-secondaryLight">
+  <div
+    class="grid grid-cols-[150px_200px] flex items-center border-b border-dividerLight"
+  >
+    <label class="ml-4 truncate font-semibold text-secondaryLight">
       {{ t("authorization.oauth.grant_type") }}
     </label>
 
@@ -14,7 +16,7 @@
     >
       <HoppSmartSelectWrapper>
         <HoppButtonSecondary
-          class="ml-2 rounded-none pr-8"
+          class="rounded-none pr-8"
           :label="selectedGrantType?.label"
         />
       </HoppSmartSelectWrapper>
@@ -50,8 +52,11 @@
     <div
       v-for="element in currentOAuthGrantTypeFormElements"
       :key="element.id"
-      class="flex flex-1 border-b border-dividerLight"
+      class="grid grid-cols-[150px_1fr] flex flex-1 border-b border-dividerLight"
     >
+      <div class="ml-4 py-2 truncate font-semibold text-secondaryLight">
+        {{ element.label }}
+      </div>
       <SmartEnvInput
         v-if="element.type === 'text'"
         v-model="element.ref.value"
@@ -63,9 +68,6 @@
         v-else-if="element.type === 'checkbox'"
         class="px-4 py-2 flex items-center"
       >
-        <span class="text-secondaryLight font-semibold mr-6">{{
-          element.label
-        }}</span>
         <HoppSmartCheckbox
           class="text-secondaryLight flex"
           :on="element.ref.value"
@@ -119,9 +121,18 @@
         </tippy>
       </div>
     </div>
+    <div
+      v-if="auth.grantTypeInfo.grantType === 'AUTHORIZATION_CODE'"
+      class="grid grid-cols-[150px_1fr] ml-4 border-b divide-x divide-dividerLight border-dividerLight py-2"
+    >
+      <div class="truncate font-semibold text-secondaryLight">Redirect URI</div>
+      <div class="break-all user-select">
+        {{ getRedirectURI() }}
+      </div>
+    </div>
 
     <div class="flex items-center border-b border-dividerLight">
-      <span class="flex items-center">
+      <span class="grid grid-cols-[150px_1fr] flex items-center">
         <label class="ml-4 text-secondaryLight">
           {{ t("authorization.pass_key_by") }}
         </label>
@@ -132,10 +143,7 @@
           :on-shown="() => authTippyActions?.focus()"
         >
           <HoppSmartSelectWrapper>
-            <HoppButtonSecondary
-              :label="passBy"
-              class="ml-2 rounded-none pr-8"
-            />
+            <HoppButtonSecondary :label="passBy" class="rounded-none pr-8" />
           </HoppSmartSelectWrapper>
           <template #content="{ hide }">
             <div
@@ -242,6 +250,13 @@ const props = defineProps<{
 }>()
 
 const auth = ref(props.modelValue)
+
+function getRedirectURI() {
+  return (
+    import.meta.env.VITE_POSTBOY_OAUTH_REDIRECT_URL +
+    " (CASS->RedirectURI->Desktop)"
+  )
+}
 
 const addToTargets = [
   {

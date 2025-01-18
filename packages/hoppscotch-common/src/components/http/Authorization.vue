@@ -131,8 +131,15 @@
           </div>
         </div>
         <div v-if="auth.authType === 'oauth-2'" class="w-full">
-          <div class="flex flex-1 border-b border-dividerLight">
-            <!-- Ensure a new object is assigned here to avoid reactivity issues -->
+          <!-- Ensure a new object is assigned here to avoid reactivity issues -->
+          <div
+            class="grid grid-cols-[150px_1fr] border-b divide-dividerLight border-dividerLight"
+          >
+            <div
+              class="ml-4 mt-2 truncate font-semibold text-secondaryLight flex text-justify"
+            >
+              Token
+            </div>
             <SmartEnvInput
               :model-value="auth.grantTypeInfo.token"
               placeholder="Token"
@@ -142,6 +149,7 @@
               "
             />
           </div>
+
           <HttpAuthorizationOAuth2
             v-model="auth"
             :is-collection-property="isCollectionProperty"
