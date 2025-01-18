@@ -124,7 +124,7 @@ export const getDefaultSettings = (): SettingsDef => ({
   TELEMETRY_ENABLED: true,
   EXPAND_NAVIGATION: false,
   SIDEBAR: true,
-  SIDEBAR_ON_LEFT: false,
+  SIDEBAR_ON_LEFT: true,
   LOGGER: false,
   COLUMN_LAYOUT: true,
 

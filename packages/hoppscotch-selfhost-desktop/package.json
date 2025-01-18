@@ -38,6 +38,7 @@
     "util": "0.12.5",
     "verzod": "0.2.3",
     "vue": "3.3.9",
+    "vue-json-pretty": "2.4.0",
     "workbox-window": "6.6.0",
     "zod": "3.22.4"
   },

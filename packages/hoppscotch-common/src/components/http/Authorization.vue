@@ -165,6 +165,20 @@
         <div class="pb-2 text-secondaryLight">
           {{ t("helpers.authorization") }}
         </div>
+        <div
+          v-if="
+            auth &&
+            auth.grantTypeInfo &&
+            auth.grantTypeInfo.token.startsWith('ey')
+          "
+        >
+          <HoppButtonPrimary
+            filled
+            label="Inspect Token"
+            @click="inspectToken(auth.grantTypeInfo.token)"
+          />
+        </div>
+
         <!--
         <HoppSmartAnchor
           class="link"
@@ -177,6 +191,11 @@
         -->
       </div>
     </div>
+    <ObjectViewer
+      :raw-token="modelObjectViewer"
+      :show="showObjectViewer"
+      @hide-modal="showObjectViewer = false"
+    />
   </div>
 </template>
 
@@ -201,6 +220,7 @@ import {
   HoppRESTAuthDigest,
   HoppRESTAuthOAuth2,
 } from "@hoppscotch/data"
+import ObjectViewer from "../app/ObjectViewer.vue"
 
 const t = useI18n()
 
@@ -222,11 +242,19 @@ const props = withDefaults(
   }
 )
 
+const showObjectViewer = ref(false)
+const modelObjectViewer = ref("")
+
 const emit = defineEmits<{
   (e: "update:modelValue", value: HoppRESTAuth): void
 }>()
 
 const auth = useVModel(props, "modelValue", emit)
+
+function inspectToken(token: string) {
+  showObjectViewer.value = true
+  modelObjectViewer.value = token
+}
 
 onMounted(() => {
   if (props.isRootCollection && auth.value.authType === "inherit") {

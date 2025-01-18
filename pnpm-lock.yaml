@@ -688,6 +688,9 @@ importers:
       vue-i18n:
         specifier: 10.0.4
         version: 10.0.4(vue@3.5.12(typescript@5.3.3))
+      vue-json-pretty:
+        specifier: 2.4.0
+        version: 2.4.0(vue@3.5.12(typescript@5.3.3))
       vue-pdf-embed:
         specifier: 2.1.0
         version: 2.1.0(vue@3.5.12(typescript@5.3.3))
@@ -1084,6 +1087,9 @@ importers:
       vue:
         specifier: 3.5.12
         version: 3.5.12(typescript@4.9.5)
+      vue-json-pretty:
+        specifier: 2.4.0
+        version: 2.4.0(vue@3.5.12(typescript@4.9.5))
       workbox-window:
         specifier: 6.6.0
         version: 6.6.0
@@ -12176,6 +12182,12 @@ packages:
   vue-i18n@10.0.4:
     resolution: {integrity: sha512-1xkzVxqBLk2ZFOmeI+B5r1J7aD/WtNJ4j9k2mcFcQo5BnOmHBmD7z4/oZohh96AAaRZ4Q7mNQvxc9h+aT+Md3w==}
     engines: {node: '>= 16'}
+    peerDependencies:
+      vue: 3.5.12
+
+  vue-json-pretty@2.4.0:
+    resolution: {integrity: sha512-e9bP41DYYIc2tWaB6KuwqFJq5odZ8/GkE6vHQuGcbPn37kGk4a3n1RNw3ZYeDrl66NWXgTlOfS+M6NKkowmkWw==}
+    engines: {node: '>= 10.0.0', npm: '>= 5.0.0'}
     peerDependencies:
       vue: 3.5.12
 
@@ -26525,6 +26537,14 @@ snapshots:
       '@intlify/shared': 10.0.4
       '@vue/devtools-api': 6.6.4
       vue: 3.5.12(typescript@5.6.3)
+
+  vue-json-pretty@2.4.0(vue@3.5.12(typescript@4.9.5)):
+    dependencies:
+      vue: 3.5.12(typescript@4.9.5)
+
+  vue-json-pretty@2.4.0(vue@3.5.12(typescript@5.3.3)):
+    dependencies:
+      vue: 3.5.12(typescript@5.3.3)
 
   vue-pdf-embed@2.1.0(vue@3.5.12(typescript@5.3.3)):
     dependencies:
