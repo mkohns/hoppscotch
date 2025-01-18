@@ -140,6 +140,7 @@
                     }
                   "
                 />
+                <!--
                 <HoppSmartItem
                   ref="shareAction"
                   :icon="IconShare2"
@@ -152,6 +153,7 @@
                     }
                   "
                 />
+                -->
               </div>
             </template>
           </tippy>
@@ -208,7 +210,7 @@ import IconEdit from "~icons/lucide/edit"
 import IconCopy from "~icons/lucide/copy"
 import IconTrash2 from "~icons/lucide/trash-2"
 import IconRotateCCW from "~icons/lucide/rotate-ccw"
-import IconShare2 from "~icons/lucide/share-2"
+//import IconShare2 from "~icons/lucide/share-2"
 import IconArrowRight from "~icons/lucide/chevron-right"
 import IconArrowDown from "~icons/lucide/chevron-down"
 import { ref, PropType, watch, computed } from "vue"

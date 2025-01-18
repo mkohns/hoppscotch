@@ -243,7 +243,7 @@ import { useToast } from "@composables/toast"
 import { useVModel } from "@vueuse/core"
 import * as E from "fp-ts/Either"
 import { computed, ref, onUnmounted } from "vue"
-import { defineActionHandler, invokeAction } from "~/helpers/actions"
+import { defineActionHandler } from "~/helpers/actions"
 import { runMutation } from "~/helpers/backend/GQLClient"
 import { UpdateRequestDocument } from "~/helpers/backend/graphql"
 import { getPlatformSpecialKey as getSpecialKey } from "~/helpers/platformutils"
@@ -470,13 +470,16 @@ const updateRESTResponse = (response: HoppRESTResponse | null) => {
   tab.value.document.response = response
 }
 
+/*
 const currentUser = useReadonlyStream(
   platform.auth.getCurrentUserStream(),
   platform.auth.getCurrentUser()
 )
+*/
 
 //const fetchingShareLink = ref(false)
 
+/*
 const shareRequest = () => {
   if (currentUser.value) {
     invokeAction("share.request", {
@@ -486,6 +489,7 @@ const shareRequest = () => {
     invokeAction("modals.login.toggle")
   }
 }
+  */
 
 const cycleUpMethod = () => {
   const currentIndex = methods.indexOf(newMethod.value)
@@ -582,7 +586,7 @@ defineActionHandler("request.send-cancel", () => {
   else cancelRequest()
 })
 defineActionHandler("request.reset", clearContent)
-defineActionHandler("request.share-request", shareRequest)
+//defineActionHandler("request.share-request", shareRequest)
 defineActionHandler("request.method.next", cycleDownMethod)
 defineActionHandler("request.method.prev", cycleUpMethod)
 defineActionHandler("request-response.save", saveRequest)

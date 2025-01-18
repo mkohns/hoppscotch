@@ -15,7 +15,7 @@ export type HoppAction =
   | "contextmenu.open" // Send/Cancel a Hoppscotch Request
   | "request.send-cancel" // Send/Cancel a Hoppscotch Request
   | "request.reset" // Clear request data
-  | "request.share-request" // Share Request
+  //  | "request.share-request" // Share Request
   | "request-response.save" // Save Request or Response
   | "request.save-as" // Save As
   | "request.rename" // Rename request on REST or GraphQL

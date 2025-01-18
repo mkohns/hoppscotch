@@ -41,11 +41,13 @@ export function getShortcuts(t: (x: string) => string): ShortcutDef[] {
       label: t("shortcut.request.save_to_collections"),
       section: t("shortcut.request.title"),
     },
+    /*
     {
       keys: [getPlatformSpecialKey(), "U"],
       label: t("shortcut.request.share_request"),
       section: t("shortcut.request.title"),
     },
+    */
     {
       keys: [getPlatformSpecialKey(), "I"],
       label: t("shortcut.request.reset_request"),

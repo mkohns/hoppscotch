@@ -44,7 +44,7 @@ export const bindings: {
 } = {
   "ctrl-enter": "request.send-cancel",
   "ctrl-i": "request.reset",
-  "ctrl-u": "request.share-request",
+  //  "ctrl-u": "request.share-request",
   "ctrl-s": "request-response.save",
   "ctrl-shift-s": "request.save-as",
   "alt-up": "request.method.next",
