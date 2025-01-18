@@ -2840,7 +2840,7 @@ dependencies = [
 
 [[package]]
 name = "schaeffler-postboy"
-version = "25.1.1"
+version = "25.1.2"
 dependencies = [
  "cocoa 0.25.0",
  "dashmap",

@@ -61,6 +61,15 @@
               @keyup.escape="hide()"
             >
               <HoppSmartItem
+                ref="echoservice"
+                :icon="IconEchoService"
+                :label="`${t('app.echoservice')}`"
+                to="https://echo.api.schaeffler/"
+                blank
+                :shortcut="['E']"
+                @click="hide()"
+              />
+              <HoppSmartItem
                 ref="apicademy"
                 :icon="IconAPIcademy"
                 :label="`${t('app.apicademy')}`"
@@ -239,6 +248,7 @@ import IconShieldCheck from "~icons/lucide/shield-check"
 import IconHandShake from "~icons/lucide/handshake"
 import IconBook from "~icons/lucide/book"
 import IconAPIcademy from "~icons/lucide/graduation-cap"
+import IconEchoService from "~icons/lucide/megaphone"
 //import IconGithub from "~icons/lucide/github"
 //import IconTwitter from "~icons/lucide/twitter"
 //import IconUserPlus from "~icons/lucide/user-plus"

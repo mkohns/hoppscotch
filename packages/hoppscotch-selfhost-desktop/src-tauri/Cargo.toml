@@ -1,6 +1,6 @@
 [package]
 name = "schaeffler-postboy"
-version = "25.1.1"
+version = "25.1.2"
 description = "A REST Client"
 authors = ["kohnsmrk"]
 license = ""
