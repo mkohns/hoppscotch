@@ -140,5 +140,6 @@ function toggleAccordion() {
 <style scoped>
 .item {
   color: var(--secondary-dark-color);
+  user-select: text;
 }
 </style>

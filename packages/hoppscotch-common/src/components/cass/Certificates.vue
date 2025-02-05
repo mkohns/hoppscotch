@@ -98,20 +98,24 @@ function toggleAccordion() {
   justify-content: space-between;
   padding: 8px 0;
   border-bottom: 1px solid var(--divider-light-color);
+  user-select: text;
 }
 
 .list-key {
   text-align: left;
+  user-select: text;
 }
 
 .list-value {
   flex: 1;
   text-align: right;
   color: var(--secondary-dark-color);
+  user-select: text;
 }
 
 .item {
   flex: 1;
   color: var(--secondary-dark-color);
+  user-select: text;
 }
 </style>

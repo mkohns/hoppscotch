@@ -70,5 +70,6 @@ function toggleAccordion() {
 .item {
   flex: 1;
   color: var(--secondary-dark-color);
+  user-select: text;
 }
 </style>
