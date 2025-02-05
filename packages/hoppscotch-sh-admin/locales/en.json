@@ -29,11 +29,11 @@
       "title": "Authentication Providers",
       "update_failure": "Failed to update authentication provider configurations!!"
     },
-    "confirm_changes": "Hoppscotch server must restart to reflect the new changes. Confirm changes made to the server configurations?",
+    "confirm_changes": "Postboy server must restart to reflect the new changes. Confirm changes made to the server configurations?",
     "input_empty": "Please fill all the fields before updating the configurations",
     "data_sharing": {
       "title": "Data Sharing",
-      "description": "Help improve Hoppscotch by sharing anonymous data",
+      "description": "Help improve Postboy by sharing anonymous data",
       "enable": "Enable Data Sharing",
       "secondary_title": "Data Sharing Configurations",
       "see_shared": "See what is shared",
@@ -59,7 +59,7 @@
       "user": "MAILER USER"
     },
     "history_configs": {
-      "description": "Disable or enable tracking history of sent requests from the Hoppscotch app",
+      "description": "Disable or enable tracking history of sent requests from the Postboy app",
       "title": "History Configurations",
       "enable_history": "Enable History",
       "clear_history": "Clear existing history",
@@ -69,7 +69,7 @@
       "clear_confirm": "Are you sure you want to clear all history?"
     },
     "reset": {
-      "confirm_reset": "Hoppscotch server must restart to reflect the new changes. Confirm the reset of server configurations?",
+      "confirm_reset": "Postboy server must restart to reflect the new changes. Confirm the reset of server configurations?",
       "description": "Default configurations will be loaded as specified in the environment file",
       "failure": "Failed to reset configurations!!",
       "title": "Reset Configurations",
@@ -85,11 +85,11 @@
     "update_failure": "Failed to update server configurations"
   },
   "data_sharing": {
-    "description": "Share anonymous data usage to improve Hoppscotch",
+    "description": "Share anonymous data usage to improve Postboy",
     "enable": "Enable Data Sharing",
     "see_shared": "See what is shared",
-    "toggle_description": "Share data and make Hoppscotch better",
-    "title": "Make Hoppscotch Better",
+    "toggle_description": "Share data and make Postboy better",
+    "title": "Make Postboy Better",
     "welcome": "Welcome to"
   },
   "infra_tokens": {
@@ -106,7 +106,7 @@
     "last_used_on": "Last used on",
     "no_expiration": "No expiration",
     "no_expiration_verbose": "This token will never expire!",
-    "section_description": "Manage your Hoppscotch users through APIs with Infra tokens.",
+    "section_description": "Manage your Postboy users through APIs with Infra tokens.",
     "section_title": "Infra Tokens",
     "tab_title": "Infra Tokens",
     "token_expires_on": "This token will expire on",
@@ -124,7 +124,7 @@
     "description": "Get updates about our latest news",
     "subscribe": "Subscribe",
     "title": "Stay in Touch",
-    "toggle_description": "Get updates about the latest at Hoppscotch",
+    "toggle_description": "Get updates about the latest at Postboy",
     "unsubscribe": "Unsubscribe"
   },
   "settings": {
@@ -258,7 +258,7 @@
     "users_to_admin_failure": "Failed to elevate selected users to admin status!!"
   },
   "support": {
-    "description": "Get help from the Hoppscotch community",
+    "description": "Get help from the Postboy community",
     "documentation": "Documentation",
     "more_info": "More Info"
   },
@@ -340,7 +340,7 @@
     "invalid_user": "Invalid User",
     "invite_load_list_error": "Unable to Load Invited Users List",
     "invite_user": "Invite User",
-    "invite_users_description": "Invite your team members to join Hoppscotch.",
+    "invite_users_description": "Invite your team members to join Postboy.",
     "invited_by": "Invited By",
     "invited_on": "Invited On",
     "invited_users": "Invited Users",

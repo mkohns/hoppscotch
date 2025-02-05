@@ -69,20 +69,20 @@
     "copy_interface_type": "Copy interface type",
     "copy_user_id": "User Auth Tokenをコピー",
     "developer_option": "開発者向けオプション",
-    "developer_option_description": "Hoppscotchの開発に役立つ開発者向けツール",
+    "developer_option_description": "Postboyの開発に役立つ開発者向けツール",
     "discord": "Discord",
     "documentation": "ドキュメント",
     "github": "GitHub",
     "help": "ヘルプ & フィードバック",
     "home": "ホーム",
     "invite": "招待",
-    "invite_description": "HoppscotchはオープンソースのAPI開発エコシステムです。APIを作成・管理するためのシンプルで直感的なインターフェイスを設計しました。HoppscotchはAPIの構築・テスト・文書化・共有を支援します。",
+    "invite_description": "PostboyはオープンソースのAPI開発エコシステムです。APIを作成・管理するためのシンプルで直感的なインターフェイスを設計しました。PostboyはAPIの構築・テスト・文書化・共有を支援します。",
     "invite_your_friends": "友達を招待する",
     "join_discord_community": "Discordコミュニティに参加する",
     "keyboard_shortcuts": "キーボードショートカット",
     "name": "Schaeffler PostBoy",
     "new_version_found": "新しいバージョンが見つかりました。再読み込みすると更新されます。",
-    "open_in_hoppscotch": "Open in Hoppscotch",
+    "open_in_hoppscotch": "Open in Postboy",
     "options": "オプション",
     "proxy_privacy_policy": "プロキシのプライバシーポリシー",
     "reload": "更新",
@@ -98,7 +98,7 @@
     "twitter": "Twitter",
     "type_a_command_search": "コマンドもしくは検索ワードを入力…",
     "we_use_cookies": "Cookieを使用しています",
-    "updated_text": "Hoppscotch has been updated to v{version} 🎉",
+    "updated_text": "Postboy has been updated to v{version} 🎉",
     "whats_new": "新着情報",
     "see_whats_new": "See what’s new",
     "wiki": "Wiki"
@@ -249,7 +249,7 @@
   },
   "documentation": {
     "generate": "ドキュメントを生成",
-    "generate_message": "Hoppscotchのコレクションをインポートして、APIドキュメントをすぐに生成することができます。"
+    "generate_message": "Postboyのコレクションをインポートして、APIドキュメントをすぐに生成することができます。"
   },
   "empty": {
     "authorization": "このリクエストでは認証を使用しません",
@@ -270,7 +270,7 @@
     "protocols": "プロトコルがありません",
     "request_variables": "This request does not have any request variables",
     "schema": "GraphQLエンドポイントに接続する",
-    "secret_environments": "Secrets are not synced to Hoppscotch",
+    "secret_environments": "Secrets are not synced to Postboy",
     "shared_requests": "Shared requests are empty",
     "shared_requests_logout": "Login to view your shared requests or create a new one",
     "subscription": "サブスクリプションはありません",
@@ -427,15 +427,15 @@
     "collections": "コレクションをインポート",
     "curl": "cURLをインポート",
     "environments_from_gist": "Import From Gist",
-    "environments_from_gist_description": "Import Hoppscotch Environments From Gist",
+    "environments_from_gist_description": "Import Postboy Environments From Gist",
     "failed": "インポートに失敗しました",
     "from_file": "Import from File",
     "from_gist": "Gistからインポート",
     "from_gist_description": "GistのURLからインポート",
     "from_insomnia": "Insomniaからインポート",
     "from_insomnia_description": "Insomniaのコレクションからインポート",
-    "from_json": "Hoppscotchからインポート",
-    "from_json_description": "Hoppscotchのコレクションファイルからインポート",
+    "from_json": "Postboyからインポート",
+    "from_json_description": "Postboyのコレクションファイルからインポート",
     "from_my_collections": "マイコレクションからインポート",
     "from_my_collections_description": "マイコレクションファイルからインポート",
     "from_openapi": "OpenAPIからインポート",
@@ -445,14 +445,14 @@
     "from_url": "URLからインポート",
     "gist_url": "GistのURLを入力してください",
     "gql_collections_from_gist_description": "Import GraphQL Collections From Gist",
-    "hoppscotch_environment": "Hoppscotch Environment",
-    "hoppscotch_environment_description": "Import Hoppscotch Environment JSON file",
+    "hoppscotch_environment": "Postboy Environment",
+    "hoppscotch_environment_description": "Import Postboy Environment JSON file",
     "import_from_url_invalid_fetch": "指定されたURLからデータを取得できませんでした",
     "import_from_url_invalid_file_format": "コレクションのインポート中にエラーが発生しました",
     "import_from_url_invalid_type": "サポートされていないタイプです。サポートされているのは 'hoppscotch', 'openapi', 'postman', 'insomnia' です。",
     "import_from_url_success": "コレクションがインポートされました",
     "insomnia_environment_description": "Import Insomnia Environment from a JSON/YAML file",
-    "json_description": "Hoppscotchのコレクション (JSONファイル) からインポート",
+    "json_description": "Postboyのコレクション (JSONファイル) からインポート",
     "postman_environment": "Postman Environment",
     "postman_environment_description": "Import Postman Environment from a JSON file",
     "title": "インポート",
@@ -469,7 +469,7 @@
       "not_found": "Environment variable “{environment}” not found."
     },
     "header": {
-      "cookie": "The browser doesn't allow Hoppscotch to set the Cookie Header. While we're working on the Hoppscotch Desktop App (coming soon), please use the Authorization Header instead."
+      "cookie": "The browser doesn't allow Postboy to set the Cookie Header. While we're working on the Postboy Desktop App (coming soon), please use the Authorization Header instead."
     },
     "response": {
       "401_error": "Please check your authentication credentials.",
@@ -481,7 +481,7 @@
     "title": "Inspector",
     "url": {
       "extension_not_installed": "Extension not installed.",
-      "extension_unknown_origin": "Make sure you've added the API endpoint's origin to the Hoppscotch Browser Extension list.",
+      "extension_unknown_origin": "Make sure you've added the API endpoint's origin to the Postboy Browser Extension list.",
       "extention_enable_action": "Enable Browser Extension",
       "extention_not_enabled": "Extension not enabled."
     }
@@ -607,7 +607,7 @@
     "save_as": "名前を付けて保存",
     "saved": "保存されたリクエスト",
     "share": "共有",
-    "share_description": "Hoppscotchを友人に共有",
+    "share_description": "Postboyを友人に共有",
     "share_request": "Share Request",
     "stop": "Stop",
     "title": "リクエスト",
@@ -663,7 +663,7 @@
     "interceptor_description": "アプリケーションとAPIをつなぐミドルウェア",
     "language": "言語",
     "light_mode": "ライト",
-    "official_proxy_hosting": "公式プロキシはHoppscotchによってホストされています。",
+    "official_proxy_hosting": "公式プロキシはPostboyによってホストされています。",
     "profile": "プロフィール",
     "profile_description": "プロフィールの詳細を更新",
     "profile_email": "メールアドレス",
@@ -693,7 +693,7 @@
   },
   "shared_requests": {
     "button": "Button",
-    "button_info": "Create a 'Run in Hoppscotch' button for your website, blog or a README.",
+    "button_info": "Create a 'Run in Postboy' button for your website, blog or a README.",
     "copy_html": "Copy HTML",
     "copy_link": "Copy Link",
     "copy_markdown": "Copy Markdown",
@@ -702,14 +702,14 @@
     "deleted": "Shared request deleted",
     "description": "Select a widget, you can change and customize this later",
     "embed": "Embed",
-    "embed_info": "Add a mini 'Hoppscotch API Playground' to your website, blog or documentation.",
+    "embed_info": "Add a mini 'Postboy API Playground' to your website, blog or documentation.",
     "link": "Link",
     "link_info": "Create a shareable link to share with anyone on the internet with view access.",
     "modified": "Shared request modified",
     "not_found": "Shared request not found",
     "open_new_tab": "Open in new tab",
     "preview": "Preview",
-    "run_in_hoppscotch": "Run in Hoppscotch",
+    "run_in_hoppscotch": "Run in Postboy",
     "theme": {
       "dark": "Dark",
       "light": "Light",
@@ -726,7 +726,7 @@
       "title": "全般"
     },
     "miscellaneous": {
-      "invite": "Hoppscotchに招待",
+      "invite": "Postboyに招待",
       "title": "その他"
     },
     "navigation": {
@@ -817,7 +817,7 @@
       "disconnect": "Disconnect from server"
     },
     "miscellaneous": {
-      "invite": "Invite your friends to Hoppscotch",
+      "invite": "Invite your friends to Postboy",
       "title": "Miscellaneous"
     },
     "request": {
@@ -927,7 +927,7 @@
     "changelog": "最新リリースについてもっと読む",
     "chat": "ご質問はこちら。チャットでお問い合わせください！",
     "community": "質問の投稿・回答はこちらから",
-    "documentation": "Hoppscotchをもっと知る",
+    "documentation": "Postboyをもっと知る",
     "forum": "質問をして答えを得る",
     "github": "GitHubでフォローする",
     "shortcuts": "アプリをより効率よく使いこなす",
@@ -1018,7 +1018,7 @@
     "we_sent_invite_link": "招待者の皆様に、招待リンクを送信しました！",
     "invite_sent_smtp_disabled": "Invite links generated",
     "we_sent_invite_link_description": "招待者全員に受信トレイを確認するよう依頼します。リンクをクリックすると、チームに参加できます。",
-    "invite_sent_smtp_disabled_description": "Sending invite emails is disabled for this instance of Hoppscotch. Please use the Copy link button to copy and share the invite link manually.",
+    "invite_sent_smtp_disabled_description": "Sending invite emails is disabled for this instance of Postboy. Please use the Copy link button to copy and share the invite link manually.",
     "copy_invite_link": "Copy Invite Link",
     "search_title": "Team Requests",
     "join_beta": "ベータプログラムに参加して、チームにアクセスする。"
@@ -1054,13 +1054,13 @@
   },
   "site_protection": {
     "login_to_continue": "Login to continue",
-    "login_to_continue_description": "You need to be logged in to access this Hoppscotch Enterprise Instance.",
+    "login_to_continue_description": "You need to be logged in to access this Postboy Enterprise Instance.",
     "error_fetching_site_protection_status": "Something Went Wrong While Fetching Site Protection Status"
   },
   "access_tokens": {
     "tab_title": "Tokens",
     "section_title": "Personal Access Tokens",
-    "section_description": "Personal access tokens currently helps you connect the CLI to your Hoppscotch account",
+    "section_description": "Personal access tokens currently helps you connect the CLI to your Postboy account",
     "last_used_on": "Last used on",
     "expires_on": "Expires on",
     "no_expiration": "No expiration",
@@ -1082,8 +1082,8 @@
   "collection_runner": {
     "collection_id": "Collection ID",
     "environment_id": "Environment ID",
-    "cli_collection_id_description": "This collection ID will be used by the CLI collection runner for Hoppscotch.",
-    "cli_environment_id_description": "This environment ID will be used by the CLI collection runner for Hoppscotch.",
+    "cli_collection_id_description": "This collection ID will be used by the CLI collection runner for Postboy.",
+    "cli_environment_id_description": "This environment ID will be used by the CLI collection runner for Postboy.",
     "include_active_environment": "Include active environment:",
     "cli": "CLI",
     "ui": "Runner (coming soon)",

@@ -69,20 +69,20 @@
     "copy_interface_type": "Interface típusának másolása",
     "copy_user_id": "Felhasználó-hitelesítési token másolása",
     "developer_option": "Fejlesztői beállítások",
-    "developer_option_description": "Fejlesztői eszközök, amelyek segítenek a Hoppscotch fejlesztésében és karbantartásában.",
+    "developer_option_description": "Fejlesztői eszközök, amelyek segítenek a Postboy fejlesztésében és karbantartásában.",
     "discord": "Discord",
     "documentation": "Dokumentáció",
     "github": "GitHub",
     "help": "Súgó és visszajelzés",
     "home": "Kezdőlap",
     "invite": "Meghívás",
-    "invite_description": "A Hoppscotch egy nyílt forráskódú API-fejlesztési ökoszisztéma. Egyszerű és intuitív felületet terveztünk az API-k létrehozásához és kezeléséhez. A Hoppscotch egy olyan eszköz, amely segít az API-k összeállításában, tesztelésében, dokumentálásában és megosztásában.",
+    "invite_description": "A Postboy egy nyílt forráskódú API-fejlesztési ökoszisztéma. Egyszerű és intuitív felületet terveztünk az API-k létrehozásához és kezeléséhez. A Postboy egy olyan eszköz, amely segít az API-k összeállításában, tesztelésében, dokumentálásában és megosztásában.",
     "invite_your_friends": "Hívja meg az ismerőseit",
     "join_discord_community": "Csatlakozzon a Discord közösségünkhöz",
     "keyboard_shortcuts": "Gyorsbillentyűk",
     "name": "Schaeffler PostBoy",
     "new_version_found": "Új verzió található. Töltse újra az oldalt a frissítéshez.",
-    "open_in_hoppscotch": "Megnyitás Hoppscotch-ban.",
+    "open_in_hoppscotch": "Megnyitás Postboy-ban.",
     "options": "Beállítások",
     "proxy_privacy_policy": "Proxy adatvédelmi irányelvei",
     "reload": "Újratöltés",
@@ -98,7 +98,7 @@
     "twitter": "Twitter",
     "type_a_command_search": "Írjon be parancsot vagy keresést…",
     "we_use_cookies": "Sütiket használunk",
-    "updated_text": "Hoppscotch has been updated to v{version} 🎉",
+    "updated_text": "Postboy has been updated to v{version} 🎉",
     "whats_new": "Mik az újdonságok?",
     "see_whats_new": "See what’s new",
     "wiki": "Wiki"
@@ -249,7 +249,7 @@
   },
   "documentation": {
     "generate": "Dokumentáció előállítása",
-    "generate_message": "Importáljon bármilyen Hoppscotch-gyűjteményt, hogy API-dokumentációt készítsen a folyamat során."
+    "generate_message": "Importáljon bármilyen Postboy-gyűjteményt, hogy API-dokumentációt készítsen a folyamat során."
   },
   "empty": {
     "authorization": "Ez a kérés nem használ azonosítást",
@@ -270,7 +270,7 @@
     "protocols": "A protokollok üresek",
     "request_variables": "This request does not have any request variables",
     "schema": "Kapcsolódjon egy GraphQL-végponthoz a séma megtekintéséhez",
-    "secret_environments": "Secrets are not synced to Hoppscotch",
+    "secret_environments": "Secrets are not synced to Postboy",
     "shared_requests": "Shared requests are empty",
     "shared_requests_logout": "Login to view your shared requests or create a new one",
     "subscription": "A feliratkozások üresek",
@@ -427,15 +427,15 @@
     "collections": "Gyűjtemények importálása",
     "curl": "cURL importálása",
     "environments_from_gist": "Importálás Gist-ből",
-    "environments_from_gist_description": "Hoppscotch környezetek importálása Gist-ből",
+    "environments_from_gist_description": "Postboy környezetek importálása Gist-ből",
     "failed": "Hiba az importálás során: a formátum nem azonosítható",
     "from_file": "Importálás fájlból",
     "from_gist": "Importálás Gist-ből",
     "from_gist_description": "Importálás Gist URL-ből",
     "from_insomnia": "Importálás Insomniából",
     "from_insomnia_description": "Importálás Insomnia-gyűjteményből",
-    "from_json": "Importálás Hoppscotchból",
-    "from_json_description": "Importálás Hoppscotch-gyűjteményfájlból",
+    "from_json": "Importálás Postboyból",
+    "from_json_description": "Importálás Postboy-gyűjteményfájlból",
     "from_my_collections": "Importálás saját gyűjteményekből",
     "from_my_collections_description": "Importálás saját gyűjtemények fájlból",
     "from_openapi": "Importálás OpenAPI-ból",
@@ -445,14 +445,14 @@
     "from_url": "Importálás URL-ből",
     "gist_url": "Gist URL megadása",
     "gql_collections_from_gist_description": "GraphQL gyűjtemények importálása Gist-ből",
-    "hoppscotch_environment": "Hoppscotch környezet",
-    "hoppscotch_environment_description": "Hoppscotch környezet importálása JSON fájlból",
+    "hoppscotch_environment": "Postboy környezet",
+    "hoppscotch_environment_description": "Postboy környezet importálása JSON fájlból",
     "import_from_url_invalid_fetch": "Nem sikerült lekérni az adatokat az URL-ről",
     "import_from_url_invalid_file_format": "Hiba a gyűjtemények importálása során",
     "import_from_url_invalid_type": "Nem támogatott típus. Az elfogadott értékek: „hoppscotch”, „openapi”, „postman” vagy „insomnia”.",
     "import_from_url_success": "Gyűjtemények importálva",
     "insomnia_environment_description": "Insomnia környezet importálása JSON/YAML fájlból",
-    "json_description": "Gyűjtemények importálása Hoppscotch-gyűjtemények JSON-fájlból",
+    "json_description": "Gyűjtemények importálása Postboy-gyűjtemények JSON-fájlból",
     "postman_environment": "Postman környezet",
     "postman_environment_description": "Postman környezet importálása  JSON fájlból",
     "title": "Importálás",
@@ -469,7 +469,7 @@
       "not_found": "\"{environment}\" környezet nem található."
     },
     "header": {
-      "cookie": "A böngésző nem engedélyezi a Hoppscotch-nak, hogy süti fejlécet állítson be. Amíg dolgozunk a Hoppscotch asztali alkalmazáson (hamarosan), kérjük használjon Authorization Header fejlécet."
+      "cookie": "A böngésző nem engedélyezi a Postboy-nak, hogy süti fejlécet állítson be. Amíg dolgozunk a Postboy asztali alkalmazáson (hamarosan), kérjük használjon Authorization Header fejlécet."
     },
     "response": {
       "401_error": "Kérjük ellenőrizze az autentikációs adatokat.",
@@ -481,7 +481,7 @@
     "title": "Inspector",
     "url": {
       "extension_not_installed": "Bővítmény nincs telepítve.",
-      "extension_unknown_origin": "Ellenőrizze, hogy hozzáadta az API végpont forrását Hoppscotch Browser bővítmény listájához.",
+      "extension_unknown_origin": "Ellenőrizze, hogy hozzáadta az API végpont forrását Postboy Browser bővítmény listájához.",
       "extention_enable_action": "Bővítmény engedélyezése",
       "extention_not_enabled": "Bővítmény nincs engedélyezve."
     }
@@ -607,7 +607,7 @@
     "save_as": "Mentés másként",
     "saved": "Kérés elmentve",
     "share": "Megosztás",
-    "share_description": "A Hoppscotch megosztása az ismerőseivel",
+    "share_description": "A Postboy megosztása az ismerőseivel",
     "share_request": "Kérés megosztása",
     "stop": "Leállítás",
     "title": "Kérés",
@@ -663,7 +663,7 @@
     "interceptor_description": "Középprogram az alkalmazás és az API-k között.",
     "language": "Nyelv",
     "light_mode": "Világos",
-    "official_proxy_hosting": "A hivatalos proxyt a Hoppscotch üzemelteti.",
+    "official_proxy_hosting": "A hivatalos proxyt a Postboy üzemelteti.",
     "profile": "Profil",
     "profile_description": "Profilrészletek frissítése",
     "profile_email": "E-mail-cím",
@@ -693,7 +693,7 @@
   },
   "shared_requests": {
     "button": "Gomb",
-    "button_info": "Hozza létre a 'Futtatás Hoppscotch-ban' gombot a weboldalán vagy blogján.",
+    "button_info": "Hozza létre a 'Futtatás Postboy-ban' gombot a weboldalán vagy blogján.",
     "copy_html": "HTML másolása",
     "copy_link": "Link másolása",
     "copy_markdown": "Jelölő másolása",
@@ -702,14 +702,14 @@
     "deleted": "Megosztott kérés törölve",
     "description": "Válasszon ki egy widgetet, ezt később módosíthatja és testreszabhatja",
     "embed": "Beágyazás",
-    "embed_info": "Adja hozzá a  \"Hoppscotch API Playground\"-ot weboldalához vagy blogjához.",
+    "embed_info": "Adja hozzá a  \"Postboy API Playground\"-ot weboldalához vagy blogjához.",
     "link": "Link",
     "link_info": "Link létrehozása olvasási joggal való megosztáshoz.",
     "modified": "Megosztott kérés módosítva",
     "not_found": "Megosztott kérés nem található.",
     "open_new_tab": "Megnyitás új lapon.",
     "preview": "Előnézet",
-    "run_in_hoppscotch": "Futtatás Hoppscotch-ban.",
+    "run_in_hoppscotch": "Futtatás Postboy-ban.",
     "theme": {
       "dark": "Sötét",
       "light": "Világos",
@@ -726,7 +726,7 @@
       "title": "Általános"
     },
     "miscellaneous": {
-      "invite": "Emberek meghívása a Hoppscotch-ba",
+      "invite": "Emberek meghívása a Postboy-ba",
       "title": "Egyebek"
     },
     "navigation": {
@@ -817,7 +817,7 @@
       "disconnect": "Lecsatlakozás a szerverről"
     },
     "miscellaneous": {
-      "invite": "Hívja meg barátait a Hoppscotch-ba",
+      "invite": "Hívja meg barátait a Postboy-ba",
       "title": "Egyéb"
     },
     "request": {
@@ -927,7 +927,7 @@
     "changelog": "Tudjon meg többet a legújabb kiadásokról",
     "chat": "Kérdése van? Csevegjen velünk!",
     "community": "Tegyen fel kérdéseket és segítsen másoknak",
-    "documentation": "Tudjon meg többet a Hoppscotchról",
+    "documentation": "Tudjon meg többet a Postboyról",
     "forum": "Tegyen fel kérdéseket és kapjon válaszokat",
     "github": "Kövessen minket GitHubon",
     "shortcuts": "Az alkalmazás gyorsabb böngészése",
@@ -1018,7 +1018,7 @@
     "we_sent_invite_link": "Elküldtünk egy meghívási hivatkozást az összes meghívottnak.",
     "invite_sent_smtp_disabled": "Invite links generated",
     "we_sent_invite_link_description": "Kérje meg az összes meghívottat, hogy nézzék meg a beérkező leveleiket. Kattintsanak a hivatkozásra a csapathoz való csatlakozáshoz.",
-    "invite_sent_smtp_disabled_description": "Sending invite emails is disabled for this instance of Hoppscotch. Please use the Copy link button to copy and share the invite link manually.",
+    "invite_sent_smtp_disabled_description": "Sending invite emails is disabled for this instance of Postboy. Please use the Copy link button to copy and share the invite link manually.",
     "copy_invite_link": "Copy Invite Link",
     "search_title": "Team Requests",
     "join_beta": "Csatlakozzon a béta programhoz, hogy hozzáférjen a csapatokhoz."
@@ -1054,13 +1054,13 @@
   },
   "site_protection": {
     "login_to_continue": "Login to continue",
-    "login_to_continue_description": "You need to be logged in to access this Hoppscotch Enterprise Instance.",
+    "login_to_continue_description": "You need to be logged in to access this Postboy Enterprise Instance.",
     "error_fetching_site_protection_status": "Something Went Wrong While Fetching Site Protection Status"
   },
   "access_tokens": {
     "tab_title": "Tokens",
     "section_title": "Personal Access Tokens",
-    "section_description": "Personal access tokens currently helps you connect the CLI to your Hoppscotch account",
+    "section_description": "Personal access tokens currently helps you connect the CLI to your Postboy account",
     "last_used_on": "Last used on",
     "expires_on": "Expires on",
     "no_expiration": "No expiration",
@@ -1082,8 +1082,8 @@
   "collection_runner": {
     "collection_id": "Collection ID",
     "environment_id": "Environment ID",
-    "cli_collection_id_description": "This collection ID will be used by the CLI collection runner for Hoppscotch.",
-    "cli_environment_id_description": "This environment ID will be used by the CLI collection runner for Hoppscotch.",
+    "cli_collection_id_description": "This collection ID will be used by the CLI collection runner for Postboy.",
+    "cli_environment_id_description": "This environment ID will be used by the CLI collection runner for Postboy.",
     "include_active_environment": "Include active environment:",
     "cli": "CLI",
     "ui": "Runner (coming soon)",

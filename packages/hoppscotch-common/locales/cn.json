@@ -69,20 +69,20 @@
     "copy_interface_type": "复制接口类型",
     "copy_user_id": "复制认证 Token",
     "developer_option": "开发者选项",
-    "developer_option_description": "开发者工具，有助于开发和维护 Hoppscotch。",
+    "developer_option_description": "开发者工具，有助于开发和维护 Postboy。",
     "discord": "Discord",
     "documentation": "帮助文档",
     "github": "GitHub",
     "help": "帮助与反馈",
     "home": "主页",
     "invite": "邀请",
-    "invite_description": "Hoppscotch 是一个开源的 API 开发生态系统。我们设计了简单而直观的界面来创建和管理你的 API。Hoppscotch 是一个帮助你构建、测试、记录与分享你的 API 的工具。",
+    "invite_description": "Postboy 是一个开源的 API 开发生态系统。我们设计了简单而直观的界面来创建和管理你的 API。Postboy 是一个帮助你构建、测试、记录与分享你的 API 的工具。",
     "invite_your_friends": "邀请你的伙伴",
     "join_discord_community": "加入我们的 Discord 社区",
     "keyboard_shortcuts": "键盘快捷键",
     "name": "Schaeffler PostBoy",
     "new_version_found": "已发现新版本。刷新页面以更新。",
-    "open_in_hoppscotch": "在 Hoppscotch 中打开",
+    "open_in_hoppscotch": "在 Postboy 中打开",
     "options": "选项",
     "proxy_privacy_policy": "代理隐私政策",
     "reload": "重新加载",
@@ -98,7 +98,7 @@
     "twitter": "Twitter",
     "type_a_command_search": "输入命令或搜索内容……",
     "we_use_cookies": "我们使用 cookies",
-    "updated_text": "Hoppscotch 已更新至 v{version} 🎉",
+    "updated_text": "Postboy 已更新至 v{version} 🎉",
     "whats_new": "新增内容",
     "see_whats_new": "查看更新内容",
     "wiki": "帮助"
@@ -249,7 +249,7 @@
   },
   "documentation": {
     "generate": "生成文档",
-    "generate_message": "导入 Hoppscotch 集合以随时随地生成 API 文档。"
+    "generate_message": "导入 Postboy 集合以随时随地生成 API 文档。"
   },
   "empty": {
     "authorization": "该请求没有使用任何授权",
@@ -270,7 +270,7 @@
     "protocols": "协议为空",
     "request_variables": "这个请求没有任何请求变量",
     "schema": "连接至 GraphQL 端点",
-    "secret_environments": "密钥不会被 Hoppscotch 同步",
+    "secret_environments": "密钥不会被 Postboy 同步",
     "shared_requests": "共享请求为空",
     "shared_requests_logout": "登录并查看你的共享请求或创建一个新的共享请求",
     "subscription": "订阅为空",
@@ -427,15 +427,15 @@
     "collections": "导入集合",
     "curl": "导入 cURL",
     "environments_from_gist": "从 Gist 导入",
-    "environments_from_gist_description": "从 Gist 导入 Hoppscotch 环境",
+    "environments_from_gist_description": "从 Gist 导入 Postboy 环境",
     "failed": "导入失败",
     "from_file": "从文件导入",
     "from_gist": "从 Gist 导入",
     "from_gist_description": "从 Gist URL 导入",
     "from_insomnia": "从 Insomnia 导入",
     "from_insomnia_description": "从 Insomnia 集合中导入",
-    "from_json": "从 Hoppscotch 导入",
-    "from_json_description": "从 Hoppscotch 集合中导入",
+    "from_json": "从 Postboy 导入",
+    "from_json_description": "从 Postboy 集合中导入",
     "from_my_collections": "从我的集合导入",
     "from_my_collections_description": "从我的集合文件导入",
     "from_openapi": "从 OpenAPI 导入",
@@ -445,14 +445,14 @@
     "from_url": "从 URL 导入",
     "gist_url": "输入 Gist URL",
     "gql_collections_from_gist_description": "从 Gist 导入 GraphQL 集合",
-    "hoppscotch_environment": "Hoppscotch 环境",
-    "hoppscotch_environment_description": "导入 Hoppscotch 环境 JSON 文件",
+    "hoppscotch_environment": "Postboy 环境",
+    "hoppscotch_environment_description": "导入 Postboy 环境 JSON 文件",
     "import_from_url_invalid_fetch": "无法从网址取得资料",
     "import_from_url_invalid_file_format": "导入组合时发生错误",
     "import_from_url_invalid_type": "不支持此类型。可接受的值为 'hoppscotch'、'openapi'、'postman'、'insomnia'",
     "import_from_url_success": "已导入组合",
     "insomnia_environment_description": "从一个 JSON/YAML 文件中导入 Insomnia 环境",
-    "json_description": "从 Hoppscotch 的集合文件导入（JSON）",
+    "json_description": "从 Postboy 的集合文件导入（JSON）",
     "postman_environment": "Postman 环境",
     "postman_environment_description": "从一个 JSON 文件中导入 Postman 环境",
     "title": "导入",
@@ -469,7 +469,7 @@
       "not_found": "环境变量“{environment}”未找到。"
     },
     "header": {
-      "cookie": "浏览器不允许 Hoppscotch 设置 Cookie 标头。当前我们正在开发 Hoppscotch 桌面应用程序（即将推出），与此同时请改用授权标头。"
+      "cookie": "浏览器不允许 Postboy 设置 Cookie 标头。当前我们正在开发 Postboy 桌面应用程序（即将推出），与此同时请改用授权标头。"
     },
     "response": {
       "401_error": "请检查您的身份验证凭据。",
@@ -481,7 +481,7 @@
     "title": "Inspector",
     "url": {
       "extension_not_installed": "未安装扩展。",
-      "extension_unknown_origin": "确保您已将 API 端点的源添加到 Hoppscotch 浏览器扩展列表中。",
+      "extension_unknown_origin": "确保您已将 API 端点的源添加到 Postboy 浏览器扩展列表中。",
       "extention_enable_action": "启用浏览器扩展",
       "extention_not_enabled": "扩展未启用。"
     }
@@ -607,7 +607,7 @@
     "save_as": "另存为",
     "saved": "请求已保存",
     "share": "分享",
-    "share_description": "分享 Hoppscotch 给你的朋友",
+    "share_description": "分享 Postboy 给你的朋友",
     "share_request": "分享请求",
     "stop": "停止",
     "title": "请求",
@@ -663,7 +663,7 @@
     "interceptor_description": "应用程序和 API 之间的中间件。",
     "language": "语言",
     "light_mode": "亮色",
-    "official_proxy_hosting": "官方代理由 Hoppscotch 托管。",
+    "official_proxy_hosting": "官方代理由 Postboy 托管。",
     "profile": "个人资料",
     "profile_description": "更新你的资料",
     "profile_email": "电子邮箱地址",
@@ -693,7 +693,7 @@
   },
   "shared_requests": {
     "button": "按钮",
-    "button_info": "为你的网站、博客或者 README 创建一个“Run in Hoppscotch”按钮。",
+    "button_info": "为你的网站、博客或者 README 创建一个“Run in Postboy”按钮。",
     "copy_html": "复制 HTML",
     "copy_link": "复制链接",
     "copy_markdown": "复制 Markdown",
@@ -702,14 +702,14 @@
     "deleted": "共享请求已删除",
     "description": "选择一个控件，之后你可以更改或者自定义",
     "embed": "内嵌",
-    "embed_info": "为你的网站、博客或者文档添加一个小的“Hoppscotch API Playground”。",
+    "embed_info": "为你的网站、博客或者文档添加一个小的“Postboy API Playground”。",
     "link": "链接",
     "link_info": "创建一个仅查看的分享链接给任何人",
     "modified": "共享请求与修改",
     "not_found": "未找到共享请求",
     "open_new_tab": "在新标签中打开",
     "preview": "预览",
-    "run_in_hoppscotch": "在 Hoppscotch 中运行",
+    "run_in_hoppscotch": "在 Postboy 中运行",
     "theme": {
       "dark": "深色",
       "light": "浅色",
@@ -726,7 +726,7 @@
       "title": "通用"
     },
     "miscellaneous": {
-      "invite": "邀请使用 Hoppscotch",
+      "invite": "邀请使用 Postboy",
       "title": "杂项"
     },
     "navigation": {
@@ -817,7 +817,7 @@
       "disconnect": "与服务器断开连接"
     },
     "miscellaneous": {
-      "invite": "邀请你的朋友来 Hoppscotch",
+      "invite": "邀请你的朋友来 Postboy",
       "title": "杂项"
     },
     "request": {
@@ -927,7 +927,7 @@
     "changelog": "阅读更多有关最新版本的内容",
     "chat": "有问题？来和我们交流吧！",
     "community": "提问与互助",
-    "documentation": "阅读更多有关 Hoppscotch 的内容",
+    "documentation": "阅读更多有关 Postboy 的内容",
     "forum": "答疑解惑",
     "github": "在 Github 关注我们",
     "shortcuts": "更快浏览应用",
@@ -1018,7 +1018,7 @@
     "we_sent_invite_link": "我们向所有受邀者发送了邀请链接！",
     "invite_sent_smtp_disabled": "邀请链接已生成",
     "we_sent_invite_link_description": "请所有受邀者检查他们的收件箱，点击链接以加入团队。",
-    "invite_sent_smtp_disabled_description": "发送邀请邮件在此 Hoppscotch 实例中已禁用。请使用“复制链接”按钮手动复制并分享邀请链接。",
+    "invite_sent_smtp_disabled_description": "发送邀请邮件在此 Postboy 实例中已禁用。请使用“复制链接”按钮手动复制并分享邀请链接。",
     "copy_invite_link": "复制邀请链接",
     "search_title": "团队请求",
     "join_beta": "加入 Beta 计划以访问团队。"
@@ -1054,13 +1054,13 @@
   },
   "site_protection": {
     "login_to_continue": "登录以继续",
-    "login_to_continue_description": "您需要登录才能访问此 Hoppscotch 企业实例。",
+    "login_to_continue_description": "您需要登录才能访问此 Postboy 企业实例。",
     "error_fetching_site_protection_status": "获取站点保护状态时出现问题"
   },
   "access_tokens": {
     "tab_title": "令牌",
     "section_title": "个人访问令牌",
-    "section_description": "个人访问令牌目前帮助您将 CLI 连接到您的 Hoppscotch 账户",
+    "section_description": "个人访问令牌目前帮助您将 CLI 连接到您的 Postboy 账户",
     "last_used_on": "最后使用于",
     "expires_on": "过期于",
     "no_expiration": "未过期",
@@ -1082,8 +1082,8 @@
   "collection_runner": {
     "collection_id": "集合ID",
     "environment_id": "环境ID",
-    "cli_collection_id_description": "此集合 ID 将由 Hoppscotch 的 CLI 集合运行器使用。",
-    "cli_environment_id_description": "此环境 ID 将由 Hoppscotch 的 CLI 集合运行器使用。",
+    "cli_collection_id_description": "此集合 ID 将由 Postboy 的 CLI 集合运行器使用。",
+    "cli_environment_id_description": "此环境 ID 将由 Postboy 的 CLI 集合运行器使用。",
     "include_active_environment": "包含活动环境：",
     "cli": "CLI",
     "ui": "运行器（即将推出）",

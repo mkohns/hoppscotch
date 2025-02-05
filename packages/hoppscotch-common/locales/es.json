@@ -69,20 +69,20 @@
     "copy_interface_type": "Copiar tipo de interfaz",
     "copy_user_id": "Copiar token de autenticación de usuario",
     "developer_option": "Opciones para desarrolladores",
-    "developer_option_description": "Herramientas para desarrolladores que ayudan en el desarrollo y mantenimiento de Hoppscotch.",
+    "developer_option_description": "Herramientas para desarrolladores que ayudan en el desarrollo y mantenimiento de Postboy.",
     "discord": "Discord",
     "documentation": "Documentación",
     "github": "GitHub",
     "help": "Ayuda y comentarios",
     "home": "Inicio",
     "invite": "Invitar",
-    "invite_description": "En Hoppscotch, diseñamos una interfaz simple e intuitiva para crear y administrar tus APIs. Hoppscotch es una herramienta que le ayuda a crear, probar, documentar y compartir tus APIs.",
+    "invite_description": "En Postboy, diseñamos una interfaz simple e intuitiva para crear y administrar tus APIs. Postboy es una herramienta que le ayuda a crear, probar, documentar y compartir tus APIs.",
     "invite_your_friends": "Invita a tus amigos",
     "join_discord_community": "Únete a nuestra comunidad Discord",
     "keyboard_shortcuts": "Atajos de teclado",
     "name": "Schaeffler PostBoy",
     "new_version_found": "Se ha encontrado una nueva versión. Recarga la página para usarla.",
-    "open_in_hoppscotch": "Open in Hoppscotch",
+    "open_in_hoppscotch": "Open in Postboy",
     "options": "Opciones",
     "proxy_privacy_policy": "Política de privacidad de proxy",
     "reload": "Recargar",
@@ -98,7 +98,7 @@
     "twitter": "Twitter",
     "type_a_command_search": "Escribe un comando o buscar algo…",
     "we_use_cookies": "Usamos cookies",
-    "updated_text": "Hoppscotch has been updated to v{version} 🎉",
+    "updated_text": "Postboy has been updated to v{version} 🎉",
     "whats_new": "¿Qué hay de nuevo?",
     "see_whats_new": "Novedades",
     "wiki": "Wiki"
@@ -249,7 +249,7 @@
   },
   "documentation": {
     "generate": "Generar documentación",
-    "generate_message": "Importar cualquier colección de Hoppscotch para generar documentación de la API sobre la marcha."
+    "generate_message": "Importar cualquier colección de Postboy para generar documentación de la API sobre la marcha."
   },
   "empty": {
     "authorization": "Esta solicitud no utiliza ninguna autorización",
@@ -270,7 +270,7 @@
     "protocols": "No hay protocolos",
     "request_variables": "Esta solicitud no tiene variables de solicitud",
     "schema": "Conectarse a un punto final de GraphQL",
-    "secret_environments": "Los secretos no están sincronizados con Hoppscotch",
+    "secret_environments": "Los secretos no están sincronizados con Postboy",
     "shared_requests": "No hay solicitudes compartidas",
     "shared_requests_logout": "Iniciar sesión para ver sus solicitudes compartidas o crear una nueva",
     "subscription": "No hay suscripciones",
@@ -427,15 +427,15 @@
     "collections": "Importar colecciones",
     "curl": "Importar cURL",
     "environments_from_gist": "Importar desde GitHub Gist",
-    "environments_from_gist_description": "Importar entornos Hoppscotch desde GitHub Gist",
+    "environments_from_gist_description": "Importar entornos Postboy desde GitHub Gist",
     "failed": "Importación fallida",
     "from_file": "Importar desde archivo",
     "from_gist": "Importar desde GitHub Gist",
     "from_gist_description": "Importar desde URL de GitHub Gist",
     "from_insomnia": "Importar desde Insomnia",
     "from_insomnia_description": "Importar desde una colección de Insomnia",
-    "from_json": "Importar de Hoppscotch",
-    "from_json_description": "Importar desde el archivo de colección de Hoppscotch",
+    "from_json": "Importar de Postboy",
+    "from_json_description": "Importar desde el archivo de colección de Postboy",
     "from_my_collections": "Importar desde Mis colecciones",
     "from_my_collections_description": "Importar desde el archivo de Mis colecciones",
     "from_openapi": "Importar desde OpenAPI",
@@ -445,14 +445,14 @@
     "from_url": "Importar desde una URL",
     "gist_url": "Introduce la URL del GitHub Gist",
     "gql_collections_from_gist_description": "Importar colecciones GraphQL desde GitHub Gist",
-    "hoppscotch_environment": "Entorno de Hoppscotch",
-    "hoppscotch_environment_description": "Importar archivo JSON del entorno de Hoppscotch",
+    "hoppscotch_environment": "Entorno de Postboy",
+    "hoppscotch_environment_description": "Importar archivo JSON del entorno de Postboy",
     "import_from_url_invalid_fetch": "No se han podido obtener datos de la url",
     "import_from_url_invalid_file_format": "Error al importar colecciones",
     "import_from_url_invalid_type": "Tipo no admitido. Los valores aceptados son \"hoppscotch\", \"openapi\", \"postman\", \"insomnia\".",
     "import_from_url_success": "Colecciones Importadas",
     "insomnia_environment_description": "Importar el entorno de Insomnia desde un archivo JSON/YAML",
-    "json_description": "Importar colecciones desde un archivo JSON de colecciones de Hoppscotch",
+    "json_description": "Importar colecciones desde un archivo JSON de colecciones de Postboy",
     "postman_environment": "Entorno de Postman",
     "postman_environment_description": "Importar entorno de Postman desde un archivo JSON",
     "title": "Importar",
@@ -469,7 +469,7 @@
       "not_found": "No se ha encontrado la variable de entorno \"{environment}\"."
     },
     "header": {
-      "cookie": "El navegador no permite que Hoppscotch establezca el encabezado Cookie. Mientras trabajamos en la aplicación de escritorio de Hoppscotch (próximamente), por favor utilice el encabezado de autorización en su lugar."
+      "cookie": "El navegador no permite que Postboy establezca el encabezado Cookie. Mientras trabajamos en la aplicación de escritorio de Postboy (próximamente), por favor utilice el encabezado de autorización en su lugar."
     },
     "response": {
       "401_error": "Compruebe tus credenciales de autenticación.",
@@ -481,7 +481,7 @@
     "title": "Inspeccionador",
     "url": {
       "extension_not_installed": "Extensión no instalada.",
-      "extension_unknown_origin": "Asegúrate de haber agregado el origen del punto final de la API a la lista de Extensiones del Navegador Hoppscotch.",
+      "extension_unknown_origin": "Asegúrate de haber agregado el origen del punto final de la API a la lista de Extensiones del Navegador Postboy.",
       "extention_enable_action": "Activar la extensión del navegador",
       "extention_not_enabled": "Extensión no habilitada."
     }
@@ -607,7 +607,7 @@
     "save_as": "Guardar como",
     "saved": "Solicitud guardada",
     "share": "Compartir",
-    "share_description": "Comparte Hoppscotch con tus amigos",
+    "share_description": "Comparte Postboy con tus amigos",
     "share_request": "Compartir solicitud",
     "stop": "Detener",
     "title": "Solicitud",
@@ -663,7 +663,7 @@
     "interceptor_description": "Middleware entre la aplicación y las APIs.",
     "language": "Idioma",
     "light_mode": "Luz",
-    "official_proxy_hosting": "El proxy oficial está alojado en Hoppscotch.",
+    "official_proxy_hosting": "El proxy oficial está alojado en Postboy.",
     "profile": "Perfil",
     "profile_description": "Actualiza los datos de tu perfil",
     "profile_email": "Correo electrónico",
@@ -693,7 +693,7 @@
   },
   "shared_requests": {
     "button": "Botón",
-    "button_info": "Crea un botón \"Ejecutar en Hoppscotch\" para tu página web, blog o un README.",
+    "button_info": "Crea un botón \"Ejecutar en Postboy\" para tu página web, blog o un README.",
     "copy_html": "Copiar HTML",
     "copy_link": "Copiar enlace",
     "copy_markdown": "Copiar Markdown",
@@ -702,14 +702,14 @@
     "deleted": "Solicitud compartida eliminada",
     "description": "Selecciona un widget, puedes cambiarlo y personalizarlo más tarde",
     "embed": "Incrustar",
-    "embed_info": "Añada un mini \"Hoppscotch API Playground\" a tu sitio web, blog o documentación.",
+    "embed_info": "Añada un mini \"Postboy API Playground\" a tu sitio web, blog o documentación.",
     "link": "Enlace",
     "link_info": "Crea un enlace compartible para compartirlo con cualquier persona en Internet con acceso de visualización.",
     "modified": "Solicitud compartida modificada",
     "not_found": "Solicitud compartida no encontrada",
     "open_new_tab": "Abrir en una nueva pestaña",
     "preview": "Vista previa",
-    "run_in_hoppscotch": "Ejecutar en Hoppscotch",
+    "run_in_hoppscotch": "Ejecutar en Postboy",
     "theme": {
       "dark": "Oscuro",
       "light": "Claro",
@@ -726,7 +726,7 @@
       "title": "General"
     },
     "miscellaneous": {
-      "invite": "Invita a tus amigos a Hoppscotch",
+      "invite": "Invita a tus amigos a Postboy",
       "title": "Varios"
     },
     "navigation": {
@@ -817,7 +817,7 @@
       "disconnect": "Desconectarse del servidor"
     },
     "miscellaneous": {
-      "invite": "Invita a tus amigos a Hoppscotch",
+      "invite": "Invita a tus amigos a Postboy",
       "title": "Varios"
     },
     "request": {
@@ -927,7 +927,7 @@
     "changelog": "Leer más sobre los últimos lanzamientos",
     "chat": "¿Preguntas? ¡Habla con nosotros!",
     "community": "Haz preguntas y ayuda a los demás",
-    "documentation": "Leer más sobre Hoppscotch",
+    "documentation": "Leer más sobre Postboy",
     "forum": "Haz preguntas y obtén respuestas",
     "github": "Síguenos en Github",
     "shortcuts": "Navega por la aplicación más rápido",
@@ -1018,7 +1018,7 @@
     "we_sent_invite_link": "¡Hemos enviado un enlace de invitación a todos los invitados!",
     "invite_sent_smtp_disabled": "Invite links generated",
     "we_sent_invite_link_description": "Pide a todos los invitados que revisen su bandeja de entrada. Tienen que hacer clic en el enlace para unirse al espacio de trabajo.",
-    "invite_sent_smtp_disabled_description": "El envío de correos electrónicos de invitación está deshabilitado para esta instancia de Hoppscotch. Utiliza el botón Copiar enlace para copiar y compartir el enlace de invitación manualmente.",
+    "invite_sent_smtp_disabled_description": "El envío de correos electrónicos de invitación está deshabilitado para esta instancia de Postboy. Utiliza el botón Copiar enlace para copiar y compartir el enlace de invitación manualmente.",
     "copy_invite_link": "Copiar enlace de invitación",
     "search_title": "Solicitudes del espacio de trabajo",
     "join_beta": "Únete al programa beta para acceder a los espacio de trabajos."
@@ -1054,13 +1054,13 @@
   },
   "site_protection": {
     "login_to_continue": "Iniciar sesión para continuar",
-    "login_to_continue_description": "Debes iniciar sesión para acceder a esta instancia de Hoppscotch Enterprise.",
+    "login_to_continue_description": "Debes iniciar sesión para acceder a esta instancia de Postboy Enterprise.",
     "error_fetching_site_protection_status": "Algo ha fallado al obtener el estado de protección del sitio web"
   },
   "access_tokens": {
     "tab_title": "Tokens",
     "section_title": "Tokens de acceso personal",
-    "section_description": "Los tokens de acceso personal actualmente te ayudan a conectar el CLI a tu cuenta Hoppscotch",
+    "section_description": "Los tokens de acceso personal actualmente te ayudan a conectar el CLI a tu cuenta Postboy",
     "last_used_on": "Utilizado por última vez en",
     "expires_on": "Expira en",
     "no_expiration": "Sin expiración",
@@ -1082,8 +1082,8 @@
   "collection_runner": {
     "collection_id": "ID de colección",
     "environment_id": "ID de entorno",
-    "cli_collection_id_description": "Este ID de colección será utilizado por el CLI collection runner para Hoppscotch.",
-    "cli_environment_id_description": "Este ID de entorno será utilizado por el CLI collection runner para Hoppscotch.",
+    "cli_collection_id_description": "Este ID de colección será utilizado por el CLI collection runner para Postboy.",
+    "cli_environment_id_description": "Este ID de entorno será utilizado por el CLI collection runner para Postboy.",
     "include_active_environment": "Incluir un entorno activo:",
     "cli": "CLI",
     "ui": "Runner (próximamente)",
