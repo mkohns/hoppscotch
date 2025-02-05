@@ -15,6 +15,7 @@ import * as E from "fp-ts/Either"
 import { html } from "./postboy-login-page"
 import { getPortFromUrl } from "@hoppscotch/common/helpers/oauth"
 import { getAllowedAuthProviders, updateUserDisplayName } from "./auth.api"
+import { listen } from "@tauri-apps/api/event"
 
 export const authEvents$ = new Subject<AuthEvent | { event: "token_refresh" }>()
 const currentUser$ = new BehaviorSubject<HoppUser | null>(null)
@@ -378,6 +379,18 @@ export const def: AuthPlatformDef = {
     )
     probableUser$.next(probableUser)
     await setInitialUser()
+
+    // https://postboy.api.schaeffler.com/join-team?id=cm6pf6ij5000cv2fzorno0ffv
+    await listen("scheme-request-received", async (event: any) => {
+      console.log("scheme-request-received", event)
+      if (event.payload.startsWith("postboy://join-team?id=")) {
+        const url = event.payload.replace("postboy:/", "")
+        window.location.href = url
+        return
+      } else {
+        console.log("Ignoring URL")
+      }
+    })
 
     /*
     await listen("scheme-request-received", async (event: any) => {

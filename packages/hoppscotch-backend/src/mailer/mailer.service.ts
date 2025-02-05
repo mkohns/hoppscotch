@@ -47,7 +47,11 @@ export class MailerService {
     mailDesc: MailDescription | UserMagicLinkMailDescription,
   ) {
     if (this.configService.get('INFRA.MAILER_SMTP_ENABLE') !== 'true') return;
-
+    console.log('(sendEmail) Sending email to:', to);
+    console.log(
+      '(sendEmail) Email Subject:',
+      this.resolveSubjectForMailDesc(mailDesc),
+    );
     try {
       await this.nestMailerService.sendMail({
         to,
@@ -72,6 +76,11 @@ export class MailerService {
     mailDesc: AdminUserInvitationMailDescription,
   ) {
     if (this.configService.get('INFRA.MAILER_SMTP_ENABLE') !== 'true') return;
+    console.log('(sendUserInvitationEmail) Sending email to:', to);
+    console.log(
+      '(sendUserInvitationEmail) Email Subject:',
+      this.resolveSubjectForMailDesc(mailDesc),
+    );
 
     try {
       const res = await this.nestMailerService.sendMail({

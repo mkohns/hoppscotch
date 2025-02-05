@@ -28,7 +28,12 @@ export class MailerModule {
     // If mailer is ENABLED, return the module with configuration (service, etc.)
 
     // Determine transport configuration based on custom config flag
-    let transportOption = getTransportOption(env, config);
+    // let transportOption = getTransportOption(env, config);
+    const transportOption = {
+      host: 'mail-de-hza.schaeffler.com',
+      port: 25,
+      secure: false,
+    };
     // Get mailer address from environment or config
     const mailerAddressFrom = getMailerAddressFrom(env, config);
 

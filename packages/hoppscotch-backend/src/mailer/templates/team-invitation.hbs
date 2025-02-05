@@ -169,11 +169,14 @@
                             name='invite_team_name'
                             href='#'
                           >{{invite_team_name}}</a>
-                          has invited you to use Schaeffler PostBoy to
-                          collaborate with them. If you already have Schaeffler
-                          PostBoy installed, open it and look for the new
-                          Teamspace in the upper right corner. Click the button
-                          below if you do not have Schaeffler PostBoy yet!</p>
+                          has invited you to use
+                          <a
+                            href='https://cass.dp.schaeffler/postboy'
+                            target='_blank'
+                          >Schaeffler PostBoy</a>
+                          to collaborate with them. If you already have
+                          Schaeffler PostBoy installed, click the button below
+                          to join the team workspace!</p>
                         <!-- Action -->
                         <table
                           class='body-action'
@@ -201,10 +204,10 @@
                                       <tr>
                                         <td>
                                           <a
-                                            href='https://cass.dp.schaeffler/postboy'
+                                            href='{{action_url}}'
                                             class='button button--green'
                                             target='_blank'
-                                          >Get Schaeffler PostBoy</a>
+                                          >Accept Team Invitation</a>
                                         </td>
                                       </tr>
                                     </table>
@@ -239,9 +242,7 @@
                               <p class='sub'>If you’re having trouble with the
                                 button above, copy and paste the URL below into
                                 your web browser.</p>
-                              <p
-                                class='sub'
-                              >https://cass.dp.schaeffler/postboy</p>
+                              <p class='sub'>{{action_url}}</p>
                             </td>
                           </tr>
                         </table>
