@@ -512,13 +512,19 @@ watch(
   () => props.show,
   (show) => {
     if (!show) {
+      console.log("Pause Invite")
       pendingInvites.pause()
     } else {
-      pendingInvites.unpause()
+      console.log("Start Invite")
+      //pendingInvites.unpause()
+      pendingInvites.execute({
+        teamID: props.editingTeamID,
+      })
     }
   }
 )
 
+/*
 watch(
   () => props.editingTeamID,
   () => {
@@ -529,6 +535,7 @@ watch(
     }
   }
 )
+*/
 
 const isLoadingIndex = ref<null | number>(null)
 

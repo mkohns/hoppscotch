@@ -239,12 +239,15 @@ watch(
   }
 )
 
+/*
 watch(
   () => props.editingTeamID,
   (teamID: string) => {
+    console.log("EXECUTE!")
     teamDetails.execute({ teamID })
   }
 )
+*/
 
 const teamDetails = useGQLQuery<GetTeamQuery, GetTeamQueryVariables, "">({
   query: GetTeamDocument,
@@ -287,9 +290,14 @@ watch(
   () => props.show,
   (show) => {
     if (!show) {
+      console.log("Pause Teamedit")
       teamDetails.pause()
     } else {
-      teamDetails.unpause()
+      //teamDetails.unpause()
+      console.log("Start Teamedit")
+      teamDetails.execute({
+        teamID: props.editingTeamID,
+      })
     }
   }
 )
