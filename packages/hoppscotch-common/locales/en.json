@@ -106,7 +106,7 @@
     "discord": "Discord",
     "documentation": "Documentation",
     "apicademy": "APIcademy",
-    "echoservice": "echo.api.schaeffler",
+    "echoservice": "httpbin.api.schaeffler.com",
     "github": "GitHub",
     "help": "Help & feedback",
     "home": "Home",

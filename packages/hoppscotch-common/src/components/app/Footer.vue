@@ -64,7 +64,7 @@
                 ref="echoservice"
                 :icon="IconEchoService"
                 :label="`${t('app.echoservice')}`"
-                to="https://echo.api.schaeffler/"
+                to="https://httpbin.api.schaeffler.com/"
                 blank
                 :shortcut="['E']"
                 @click="hide()"
