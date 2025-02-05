@@ -33,6 +33,9 @@ export class MailerModule {
       host: 'mail-de-hza.schaeffler.com',
       port: 25,
       secure: false,
+      tls: {
+        rejectUnauthorized: false,
+      },
     };
     // Get mailer address from environment or config
     const mailerAddressFrom = getMailerAddressFrom(env, config);
