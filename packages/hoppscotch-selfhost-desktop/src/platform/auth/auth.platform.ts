@@ -384,7 +384,14 @@ export const def: AuthPlatformDef = {
     await listen("scheme-request-received", async (event: any) => {
       console.log("scheme-request-received", event)
       if (event.payload.startsWith("postboy://join-team?id=")) {
+        // This is MAC
         const url = event.payload.replace("postboy:/", "")
+        window.location.href = url
+        return
+      } else if (event.payload.startsWith("postboy://join-team/?id=")) {
+        // This is Windoof
+        let url = event.payload.replace("postboy:/", "")
+        url = url.replace("join-team/?", "join-team?")
         window.location.href = url
         return
       } else {
