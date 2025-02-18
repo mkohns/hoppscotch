@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Schaeffler PostBoy",
-    "version": "25.2.6"
+    "version": "25.2.18"
   },
   "tauri": {
     "allowlist": {
