@@ -18,6 +18,9 @@
             :label="t('app.name')"
             to="/"
           />
+          <div class="flex">
+            <div class="flex beta" @click="openClickMe()">Click Me!</div>
+          </div>
         </div>
       </div>
       <div class="col-span-1 flex items-center justify-between space-x-2">
@@ -258,6 +261,7 @@
       @hide-modal="confirmRemove = false"
       @resolve="deleteTeam"
     />
+    <ClickMe v-if="showClickMe" @hide-modal="showClickMe = false" />
   </div>
 </template>
 
@@ -289,6 +293,7 @@ import IconUser from "~icons/lucide/user"
 import IconUserPlus from "~icons/lucide/user-plus"
 import IconUsers from "~icons/lucide/users"
 import UserAvatar from "@components/smart/UserAvatar.vue"
+import ClickMe from "@components/app/ClickMe.vue"
 
 const t = useI18n()
 const toast = useToast()
@@ -312,6 +317,12 @@ const showTeamsModal = ref(false)
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const mdAndLarger = breakpoints.greater("md")
+
+const showClickMe = ref(false)
+function openClickMe() {
+  console.log("openClickMe Dialog")
+  showClickMe.value = !showClickMe.value
+}
 
 const banner = useService(BannerService)
 const bannerContent = computed(() => banner.content.value?.content)
@@ -513,3 +524,17 @@ const noPermission = () => {
   toast.error(`${t("profile.no_permission")}`)
 }
 </script>
+<style scoped>
+.beta {
+  font-size: 0.75rem;
+  color: white;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0.25rem 0.35rem;
+  border-radius: 9999px; /* Full rounded corners */
+  cursor: pointer;
+}
+</style>

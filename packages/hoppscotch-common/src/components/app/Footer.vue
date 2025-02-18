@@ -102,10 +102,10 @@
               <HoppSmartItem
                 ref="teamschannel"
                 :icon="IconHandShake"
-                label="Teams Channel"
-                to="https://teams.microsoft.com/l/team/19%3AOGG-WbPKZOPQ66Tloj-o0NaNdDFInZT0QJORGHMlQyg1%40thread.tacv2/conversations?groupId=ac301a8b-1db4-45a3-8dd7-9bdb904de8c8&tenantId=67416604-6509-4014-9859-45e709f53d3f"
+                label="Postboy Community"
+                to="https://community.api.schaeffler.com/c/postboy/"
                 blank
-                :shortcut="['T']"
+                :shortcut="['C']"
                 @click="hide()"
               />
               <template
